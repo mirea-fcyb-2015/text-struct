@@ -72,12 +72,6 @@
 				<ModuleName>Project1.res</ModuleName>
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
-			<CppCompile Include="Unit1.cpp">
-				<Form>Form1</Form>
-				<DependentOn>Unit1.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
-			</CppCompile>
-			<FormResources Include="Unit1.dfm"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -132,6 +126,12 @@
 					<Source>
 						<Source Name="MainSource">Project1.cpp</Source>
 					</Source>
+					<Folders>
+						<Folder Path="bin" Masks="*.*" ShowSubdirectories="false"/>
+						<Folder Path="res" Masks="*.*" ShowSubdirectories="false"/>
+						<Folder Path="h" Masks="*.*" ShowSubdirectories="false"/>
+						<Folder Path="src" Masks="*.*" ShowSubdirectories="false"/>
+					</Folders>
 				</CPlusPlusBuilder.Personality>
 				<Platforms>
 					<Platform value="Win32">True</Platform>
