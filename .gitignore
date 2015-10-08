@@ -1,0 +1,21 @@
+#########################
+## Embarcadero RAD Studio
+#########################
+
+## Ignore RAD Studio temporary files, build results, and
+
+# User-specific files
+
+__history/
+*.~*
+*.bak
+*.bpl
+*.cfg
+*.dcu
+*.dll
+*.exe
+*.identcache
+*.local
+*.stat
+*.xml
+*.zip
