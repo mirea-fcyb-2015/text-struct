@@ -1,9 +1,13 @@
 
-#include <windows.h>
+
 
 #include "main.h"
+#include "FileOpen.h"
+
 int main()
 {
-system("PAUSE");
-return 0;
+    FileOpen file;
+    file.ChoiseHowOpenPlan();
+    system("PAUSE");
+    return 0;
 }
