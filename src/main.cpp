@@ -1,13 +1,20 @@
+//---------------------------------------------------------------------------
 
+#include <vcl.h>
+#pragma hdrstop
 
+#include <tchar.h>
+#include "FOpen.h"
+//---------------------------------------------------------------------------
 
-#include "main.h"
-#include "FileOpen.h"
-
-int main()
+#pragma argsused
+int _tmain(int argc, _TCHAR* argv[])
 {
-    FileOpen file;
-    file.ChoiseHowOpenPlan();
+    ofstream *pointer;
+    FOpen file;
+    file.ChoiseHowOpenFile();
+     pointer = file.GetFile();
     system("PAUSE");
     return 0;
 }
+//---------------------------------------------------------------------------
