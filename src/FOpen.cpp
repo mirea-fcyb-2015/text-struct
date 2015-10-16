@@ -1,4 +1,29 @@
-﻿#include "FOpen.h"
+﻿/*______________________________ MainForm.cpp ________________________________ */
+/**
+    \file       MainForm.cpp
+    \brief      Реализация класса для открытия текстого документа и проверки разрешения 
+    \author     Шепшелевич П.И.  
+    \version    1.0
+    \date       16.10.2015
+    \note       
+    \remarks    
+    \par        История создания:
+    \code
+        15/10/2015 - 1.0 - Создание класса
+        16/10/2015 - 1.1 - Реализация методов FileOpenDir(string str),
+                                              FileOpenCurentDir(string str),
+                                              FileOpenCurentDir(string str),
+                                              CheckFormat(string str,const char* text),
+                                              ChoiseHowOpenFile();
+
+
+
+      
+    \endcode
+
+*/
+
+#include "FOpen.h"
 
 //!
 //! Constructor
