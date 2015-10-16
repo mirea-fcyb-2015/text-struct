@@ -11,8 +11,8 @@ using namespace std;
 
 class FOpen
 {
-    ofstream F,*p; //
-    string str; //путь до файла или имя файла
+    ofstream F,*p; 
+    string str; 
     public:
     FOpen();
     ~FOpen();
