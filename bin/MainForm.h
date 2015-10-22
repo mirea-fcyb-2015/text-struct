@@ -1,4 +1,4 @@
-/*______________________________ MainForm.h ________________________________ */
+﻿/*______________________________ MainForm.h ________________________________ */
 /**
     \file       MainForm.cpp
     \brief      Класс отвечающего за главную форму
@@ -22,15 +22,25 @@
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
 #include "FOpen.h"
+#include "FOpen.h"
+#include <Dialogs.hpp>
+#include <ExtDlgs.hpp>
 //---------------------------------------------------------------------------
-class TForm1 : public TForm
+class TMForm : public TForm
 {
 __published:	// IDE-managed Components
+    TOpenTextFileDialog *OpenTextFileDialog1;
+    TButton *Button1;
+    void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
+AnsiString str;
 public:		// User declarations
-    __fastcall TForm1(TComponent* Owner);
+    __fastcall TMForm(TComponent* Owner);
+    void OpenFile();
+    const char* AnsiToCChar(AnsiString text); //! Convert Ansistring to const char
+    AnsiString GetStr(){ return str;}
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern PACKAGE TMForm *MForm;
 //---------------------------------------------------------------------------
 #endif

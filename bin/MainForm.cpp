@@ -1,4 +1,4 @@
-/*______________________________ MainForm.cpp ________________________________ */
+﻿/*______________________________ MainForm.cpp ________________________________ */
 /**
     \file       MainForm.cpp
     \brief      Реализация класса, отвечающего за главную форму
@@ -22,11 +22,41 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TForm1 *Form1;
+TMForm *MForm;
 //---------------------------------------------------------------------------
-__fastcall TForm1::TForm1(TComponent* Owner)
+__fastcall TMForm::TMForm(TComponent* Owner)
     : TForm(Owner)
 {
-    
+    OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";
+}
+void TMForm::OpenFile()
+{
+
+    FOpen file;
+    ofstream *p = file.GetFile();
+    p->open(AnsiToCChar(GetStr()),ios::in); //! GetStr возвращает строку ansi и преобразуется в const char
+    if(!p->is_open()) //!
+    {
+        ShowMessage("Error!");
+    }else
+    {
+        ShowMessage("All OK!");
+        //тут надо что-то делать.а что? я не знаю...думаю.
+    }
 }
 //---------------------------------------------------------------------------
+void __fastcall TMForm::Button1Click(TObject *Sender)
+{
+     if( OpenTextFileDialog1->Execute() )
+    {
+        str = OpenTextFileDialog1->FileName;
+    }
+    OpenFile();
+}
+const char* TMForm::AnsiToCChar(AnsiString text)
+{
+    return text.c_str();
+}
+
+//---------------------------------------------------------------------------
+

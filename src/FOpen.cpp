@@ -30,7 +30,7 @@
 //!
 FOpen::FOpen() 
 {
-    p = &F;
+    p = &F; //! Передаем адрес по ссылке
 }
 
 //!
@@ -39,6 +39,14 @@ FOpen::FOpen()
 FOpen::~FOpen()
 {
     F.close();
+}
+
+//!
+//! Open file
+//!
+void FOpen::FOpenFile()
+{
+
 }
 
 //!
