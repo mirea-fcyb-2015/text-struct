@@ -68,7 +68,7 @@
 		</PropertyGroup>
 		<ItemGroup>
 			<CppCompile Include="MainForm.cpp">
-				<Form>Form1</Form>
+				<Form>MForm</Form>
 				<DependentOn>MainForm.h</DependentOn>
 				<BuildOrder>2</BuildOrder>
 			</CppCompile>
@@ -84,6 +84,9 @@
 			<None Include="..\h\main.h">
 				<BuildOrder>7</BuildOrder>
 			</None>
+			<None Include="..\h\StructEngine.h">
+				<BuildOrder>9</BuildOrder>
+			</None>
 			<None Include="..\h\TextType.h">
 				<BuildOrder>8</BuildOrder>
 			</None>
@@ -92,6 +95,9 @@
 			</CppCompile>
 			<CppCompile Include="..\src\main.cpp">
 				<BuildOrder>4</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\src\StructEngine.cpp">
+				<BuildOrder>10</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="..\src\TextType.cpp">
 				<BuildOrder>5</BuildOrder>

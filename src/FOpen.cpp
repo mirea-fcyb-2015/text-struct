@@ -46,7 +46,7 @@ FOpen::~FOpen()
 //!
 void FOpen::FOpenFile()
 {
-
+    //
 }
 
 //!
@@ -66,7 +66,7 @@ void FOpen::FileOpenDir(string str)
     const char *a = str.c_str();
 
     F.open(a,ios::in);
-    if(!F.is_open()) //! 
+    if(!F.is_open()) //!
     {
         cout << " Can't open file (Please select correct file!)" << "\n";
     }else

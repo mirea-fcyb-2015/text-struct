@@ -1,4 +1,4 @@
-/*______________________________ MainForm.h ________________________________ */
+﻿/*______________________________ MainForm.h ________________________________ */
 /**
     \file       MainForm.h
     \brief      Класс отвечающего за открытие текстого документа и проверку разрешения 
@@ -30,8 +30,8 @@ using namespace std;
 
 class FOpen
 {
-    ofstream F,*p; 
-    string str; 
+    ofstream F,*p;
+    string str;
     public:
     FOpen();
     ~FOpen();
@@ -39,6 +39,7 @@ class FOpen
     void FileOpenDir(string str);
     void FileOpenCurentDir(string str);
     void ChoiseHowOpenFile();
+    void FOpenFile();
     void FClose();
     friend bool CheckFormat(string str,const char* text);
 
