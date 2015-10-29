@@ -21,7 +21,7 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include "FOpen.h"
+#include "StructEngine.h"
 #include "FOpen.h"
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
@@ -36,6 +36,8 @@ private:	// User declarations
 AnsiString str;
 public:		// User declarations
     __fastcall TMForm(TComponent* Owner);
+    __fastcall ~TMForm() {delete pData; };
+    Data *pData; //Создаем объект класса данных (потом переместить вызов в панель открытия файла)
     void OpenFile();
     const char* AnsiToCChar(AnsiString text); //! Convert Ansistring to const char
     AnsiString GetStr(){ return str;}

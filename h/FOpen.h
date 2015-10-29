@@ -13,7 +13,7 @@
         16/10/2015 - 1.1 - Открытие файла через указанный путь;
                            Открытие файла в месте ,где выполняется исходник;
                            Проверка файла на разрешение txt; 
-      
+        29/10/2015 - 1.2 - Добавил метод WriteToData(Data *pD)
     \endcode
 
 */
@@ -25,25 +25,28 @@
 #include <string>
 #include <windows.h>
 #include <vector>
+#include "StructEngine.h"
 
 using namespace std;
 
 class FOpen
 {
-    ofstream F,*p;
-    string str;
     public:
+    ifstream F,*p;
+    string str;
     FOpen();
     ~FOpen();
 
     void FileOpenDir(string str);
     void FileOpenCurentDir(string str);
     void ChoiseHowOpenFile();
-    void FOpenFile();
+    bool FOpenFile(const char *file);
     void FClose();
     friend bool CheckFormat(string str,const char* text);
+    void WriteToData(Data *pD);
 
-    ofstream *GetFile(){return p;};
+
+
 
 };
 

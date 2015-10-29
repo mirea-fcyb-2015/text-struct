@@ -19,6 +19,7 @@
 
 #include "MainForm.h"
 
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -28,21 +29,20 @@ __fastcall TMForm::TMForm(TComponent* Owner)
     : TForm(Owner)
 {
     OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";
+     pData = new Data; //! Выделяем память для данных
+
 }
 void TMForm::OpenFile()
 {
 
-    FOpen file;
-    ofstream *p = file.GetFile();
-    p->open(AnsiToCChar(GetStr()),ios::in); //! GetStr возвращает строку ansi и преобразуется в const char
-    if(!p->is_open()) //!
+    FOpen file; // Создаем объект класса FOpen
+    if( file.FOpenFile(AnsiToCChar(GetStr())) == true) //Открывает файл и проверяет есть ли такой файл,если есть...
     {
-        ShowMessage("Error!");
-    }else
-    {
-        ShowMessage("All OK!");
-        //тут надо что-то делать.а что? я не знаю...думаю.
-    }
+     file.WriteToData(pData); //! Записываем данные
+
+    }else //если нету такого файла
+    ShowMessage("Error");
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TMForm::Button1Click(TObject *Sender)

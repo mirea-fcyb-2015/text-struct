@@ -15,7 +15,8 @@
                                               FileOpenCurentDir(string str),
                                               CheckFormat(string str,const char* text),
                                               ChoiseHowOpenFile();
-
+        29/10/2015 - 1.2 - реализация метода  FOpenFile(const char *file),
+                                              WriteToData(Data *pD)
 
 
       
@@ -31,6 +32,7 @@
 FOpen::FOpen() 
 {
     p = &F; //! Передаем адрес по ссылке
+
 }
 
 //!
@@ -44,10 +46,30 @@ FOpen::~FOpen()
 //!
 //! Open file
 //!
-void FOpen::FOpenFile()
+bool FOpen::FOpenFile(const char * file)
 {
-    //
+    F.open(file,ios::in);
+    if(!F.is_open()) //! Есть такой файл?
+    {
+        return false;
+    }else
+    {
+
+        return true;
+    }
 }
+void FOpen::WriteToData(Data *pD)
+{
+
+    while( F.eof() != -1) //! Пока не конец файла
+    {
+    string *str = new string; //! Выделяем память под переменную стокового типа
+    getline(F,*str); //! Получаем строку
+    pD->addString(*str); //! Записываем данные в строку
+    delete str; //! Освобождение памяти под строку
+    }
+}
+
 
 //!
 //! Close file
