@@ -26,17 +26,31 @@
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
 #include <ComCtrls.hpp>
+#include <ImgList.hpp>
+#include <Menus.hpp>
+#include <ToolWin.hpp>
+#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMForm : public TForm
 {
 __published:	// IDE-managed Components
     TOpenTextFileDialog *OpenTextFileDialog1;
-    TButton *Button1;
-    TMemo *Memo1;
+    TMainMenu *MainMenu1;
+    TMenuItem *N1;
+    TMenuItem *N2;
+    TMenuItem *N3;
+    TImageList *ImageList1;
+    TToolBar *ToolBar1;
+    TToolButton *ToolButton1;
+    TToolButton *ToolButton2;
+    TToolButton *ToolButton3;
+    TPanel *Panel1;
     TTreeView *TreeView1;
-    void __fastcall Button1Click(TObject *Sender);
+    TMemo *Memo1;
+    void __fastcall ToolButton1Click(TObject *Sender);
 private:	// User declarations
     AnsiString str;
+    TTextStruct* textStruct;
     Data *pData;
 public:		// User declarations
     __fastcall TMForm(TComponent* Owner);

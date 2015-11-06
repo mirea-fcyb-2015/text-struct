@@ -81,6 +81,19 @@ void Data::chapter()
     }
 }
 
+
+TTextStruct::TTextStruct()
+{
+    text = new TStringList();
+}
+void TTextStruct::setText(TStringList *txt)
+{
+    text = txt;
+}
+TStringList* TTextStruct::getText()
+{
+    return text;
+}
 //! Будет нужно
 
 //iequals(str1, str2)

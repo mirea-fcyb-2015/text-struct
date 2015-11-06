@@ -16,11 +16,13 @@
 #ifndef StructEngine_H
 #define StructEngine_H
 
+#include <Classes.hpp>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <algorithm>
 #include <cctype>
+
 
 using namespace std;
 
@@ -36,6 +38,18 @@ class Data
     vector<string> &getVector(){return stg;}
     void chapter();
 
+};
+
+class TTextStruct
+{
+private:
+    TStringList *text;
+
+public:
+    TTextStruct();
+
+    void setText(TStringList *txt);
+    TStringList *getText();
 };
 
 #endif

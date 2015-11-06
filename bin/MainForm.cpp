@@ -30,6 +30,7 @@ __fastcall TMForm::TMForm(TComponent* Owner)
 {
     OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";
     pData = new Data;
+
 }
  __fastcall TMForm::~TMForm()
 {
@@ -53,18 +54,28 @@ void TMForm::OpenFile()
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TMForm::Button1Click(TObject *Sender)
-{
-     if( OpenTextFileDialog1->Execute() )
-    {
-        str = OpenTextFileDialog1->FileName;
-    }
-    OpenFile();
-}
+
 const char* TMForm::AnsiToCChar(AnsiString text)
 {
     return text.c_str();
 }
 
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TMForm::ToolButton1Click(TObject *Sender)
+{
+    textStruct = new TTextStruct();
+    if(OpenTextFileDialog1->Execute())
+    {
+        TStringList* sl = textStruct->getText();
+        sl->LoadFromFile(OpenTextFileDialog1->FileName);
+        Memo1->Lines->Text = sl->Text;
+    }
+    //OpenFile();
+}
 //---------------------------------------------------------------------------
 
