@@ -1,35 +1,20 @@
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
 #pragma hdrstop
-#include <tchar.h>
-//---------------------------------------------------------------------------
-USEFORM("MainForm.cpp", Form1);
-//---------------------------------------------------------------------------
-WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
+
+#include "TextStruct.h"
+
+TTextStruct::TTextStruct()
 {
-    try
-    {
-         Application->Initialize();
-         Application->MainFormOnTaskBar = true;
-         Application->CreateForm(__classid(TForm1), &Form1);
-         Application->Run();
-    }
-    catch (Exception &exception)
-    {
-         Application->ShowException(&exception);
-    }
-    catch (...)
-    {
-         try
-         {
-             throw Exception("");
-         }
-         catch (Exception &exception)
-         {
-             Application->ShowException(&exception);
-         }
-    }
-    return 0;
+    text = new TStringList();
+}
+void TTextStruct::setText(TStringList *txt)
+{
+    text = txt;
+}
+TStringList* TTextStruct::getText()
+{
+    return text;
 }
 //---------------------------------------------------------------------------
+#pragma package(smart_init)
