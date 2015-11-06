@@ -61,12 +61,11 @@ bool FOpen::FOpenFile(const char * file)
 void FOpen::WriteToData(Data *pD)
 {
 
-    while( F.eof() != -1) //! Пока не конец файла
+    while( !F.eof()) //! Пока не конец файла
     {
-    string *str = new string; //! Выделяем память под переменную стокового типа
-    getline(F,*str); //! Получаем строку
-    pD->addString(*str); //! Записываем данные в строку
-    delete str; //! Освобождение памяти под строку
+    string str;
+    getline(F,str); //! Получаем строку
+    pD->addString(str); //! Записываем данные в строку
     }
 }
 

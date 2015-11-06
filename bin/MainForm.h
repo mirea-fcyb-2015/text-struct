@@ -21,23 +21,26 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include "StructEngine.h"
+#include "Data.h"
 #include "FOpen.h"
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
+#include <ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMForm : public TForm
 {
 __published:	// IDE-managed Components
     TOpenTextFileDialog *OpenTextFileDialog1;
     TButton *Button1;
+    TMemo *Memo1;
+    TTreeView *TreeView1;
     void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
-AnsiString str;
+    AnsiString str;
+    Data *pData;
 public:		// User declarations
     __fastcall TMForm(TComponent* Owner);
-    __fastcall ~TMForm() {delete pData; };
-    Data *pData; //Создаем объект класса данных (потом переместить вызов в панель открытия файла)
+    __fastcall ~TMForm();
     void OpenFile();
     const char* AnsiToCChar(AnsiString text); //! Convert Ansistring to const char
     AnsiString GetStr(){ return str;}
