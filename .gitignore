@@ -31,4 +31,4 @@ __history/
 *.pdi
 *.tdw
 
-bin/WIN32/*
+Win32/*
