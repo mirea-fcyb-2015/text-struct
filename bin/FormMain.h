@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+п»ї//---------------------------------------------------------------------------
 
 #ifndef FormMainH
 #define FormMainH
@@ -29,7 +29,7 @@ __published:	// IDE-managed Components
     void __fastcall Button2Click(TObject *Sender);
     void __fastcall btnDelTopClick(TObject *Sender);
 private:	// User declarations
-    TTextStruct* textStruct; // Класс работы с текстом
+    TTextStruct* textStruct; // РљР»Р°СЃСЃ СЂР°Р±РѕС‚С‹ СЃ С‚РµРєСЃС‚РѕРј
 
     void setCountRowListView1();
 public:		// User declarations

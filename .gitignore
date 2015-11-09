@@ -19,6 +19,7 @@ __history/
 *.stat
 *.xml
 *.zip
+
 *.res
 *.obj
 *.#00
@@ -32,4 +33,3 @@ __history/
 *.tdw
 
 bin/Win32/*
-Debug/*
