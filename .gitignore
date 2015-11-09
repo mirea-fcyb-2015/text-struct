@@ -31,4 +31,5 @@ __history/
 *.pdi
 *.tdw
 
-/WIN32/*
+/WIN32
+/WIN32/Debug
