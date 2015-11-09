@@ -11,7 +11,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Dialogs.hpp>
 
-#include "TextStruct.h"
+#include "StructEngine.h"
 //---------------------------------------------------------------------------
 class TfrmMain : public TForm
 {
@@ -24,8 +24,10 @@ __published:	// IDE-managed Components
     TSplitter *Splitter1;
     TButton *Button2;
     TFileOpenDialog *FileOpenDialog2;
+    TButton *btnDelTop;
     void __fastcall Button1Click(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
+    void __fastcall btnDelTopClick(TObject *Sender);
 private:	// User declarations
     TTextStruct* textStruct;
 

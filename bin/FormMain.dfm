@@ -50,6 +50,19 @@ object frmMain: TfrmMain
       TabOrder = 1
       OnClick = Button2Click
     end
+    object btnDelTop: TButton
+      Left = 297
+      Top = 1
+      Width = 75
+      Height = 27
+      Align = alLeft
+      Caption = 'delTop'
+      TabOrder = 2
+      OnClick = btnDelTopClick
+      ExplicitLeft = 303
+      ExplicitTop = 0
+      ExplicitHeight = 25
+    end
   end
   object mmText: TMemo
     AlignWithMargins = True

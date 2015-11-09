@@ -12,11 +12,11 @@ TfrmMain *frmMain;
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     : TForm(Owner)
 {
+    textStruct = new TTextStruct();
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::Button1Click(TObject *Sender)
 {
-    textStruct = new TTextStruct();
     if(FileOpenDialog1->Execute())
     {
         TStringList* sl = textStruct->getText();
@@ -37,6 +37,12 @@ void __fastcall TfrmMain::Button2Click(TObject *Sender)
             li->Caption = sl->Strings[i];
         }
     }
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
+{
+    textStruct->delTop();
+    mmText->Lines->Text = textStruct->getText()->Text;
 }
 //---------------------------------------------------------------------------
 

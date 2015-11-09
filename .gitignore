@@ -30,3 +30,5 @@ __history/
 *.pch
 *.pdi
 *.tdw
+
+/WIN32/*

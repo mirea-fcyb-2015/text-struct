@@ -8,10 +8,12 @@
 class TTextStruct
 {
 private:
-    TStringList *text;
+    TStringList* text;
 
 public:
     TTextStruct();
+
+    void delTop();  // Удаление информации перед содержанием
 
     void        setText(TStringList *txt);
     TStringList *getText();
