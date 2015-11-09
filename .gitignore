@@ -19,3 +19,14 @@ __history/
 *.stat
 *.xml
 *.zip
+*.res
+*.obj
+*.#00
+*.ilc
+*.ild
+*.ilf
+*.ils
+*.map
+*.pch
+*.pdi
+*.tdw

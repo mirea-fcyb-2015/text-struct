@@ -63,8 +63,6 @@ object frmMain: TfrmMain
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 1
-    ExplicitLeft = 258
-    ExplicitTop = 4
   end
   object lvStruct: TListView
     AlignWithMargins = True
@@ -81,8 +79,6 @@ object frmMain: TfrmMain
     ShowColumnHeaders = False
     TabOrder = 2
     ViewStyle = vsReport
-    ExplicitLeft = 6
-    ExplicitTop = 8
   end
   object FileOpenDialog1: TFileOpenDialog
     FavoriteLinks = <>

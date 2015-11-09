@@ -41,8 +41,8 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <Multithreaded>true</Multithreaded>
-        <IncludePath>src\;..\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>src\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>..\src\;..\h\;src\;..\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>..\src\;..\h\;src\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
@@ -108,16 +108,18 @@
             <DependentOn>FormMain.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="TextStruct.cpp">
-            <DependentOn>TextStruct.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
-        </CppCompile>
         <CppCompile Include="TextStructuring.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
         <PCHCompile Include="TextStructuringPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
+        <None Include="..\h\StructEngine.h">
+            <BuildOrder>5</BuildOrder>
+        </None>
+        <CppCompile Include="..\src\StructEngine.cpp">
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <FormResources Include="FormMain.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
