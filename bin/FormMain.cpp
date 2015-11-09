@@ -41,7 +41,7 @@ void __fastcall TfrmMain::Button2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
-    textStruct->delTop();
+    textStruct->delTop(); // Удаление начала текста
     mmText->Lines->Text = textStruct->getText()->Text;
 }
 //---------------------------------------------------------------------------

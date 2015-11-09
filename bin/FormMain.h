@@ -29,7 +29,7 @@ __published:	// IDE-managed Components
     void __fastcall Button2Click(TObject *Sender);
     void __fastcall btnDelTopClick(TObject *Sender);
 private:	// User declarations
-    TTextStruct* textStruct;
+    TTextStruct* textStruct; // Класс работы с текстом
 
     void setCountRowListView1();
 public:		// User declarations
