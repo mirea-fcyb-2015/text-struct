@@ -59,8 +59,18 @@ object frmMain: TfrmMain
       Caption = 'delTop'
       TabOrder = 2
       OnClick = btnDelTopClick
-      ExplicitLeft = 303
-      ExplicitTop = 0
+    end
+    object btnFind: TButton
+      Left = 372
+      Top = 1
+      Width = 75
+      Height = 27
+      Align = alLeft
+      Caption = 'btnFind'
+      TabOrder = 3
+      OnClick = btnFindClick
+      ExplicitLeft = 432
+      ExplicitTop = 24
       ExplicitHeight = 25
     end
   end

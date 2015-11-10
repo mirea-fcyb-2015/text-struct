@@ -22,7 +22,7 @@ void __fastcall TfrmMain::Button1Click(TObject *Sender)
         TStringList* sl = textStruct->getText();
         sl->LoadFromFile(FileOpenDialog1->FileName);
         mmText->Lines->Text = sl->Text;
-    }
+	}
 }
 void __fastcall TfrmMain::Button2Click(TObject *Sender)
 {
@@ -43,6 +43,19 @@ void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
     textStruct->delTop(); // Удаление начала текста
     mmText->Lines->Text = textStruct->getText()->Text;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::btnFindClick(TObject *Sender)
+{
+	TStringList *sl = textStruct->getText();
+	int Index = sl->IndexOf("Введение");
+	if (Index != -1)
+	{
+		TListItem *li = lvStruct->Items->Add();
+		li->Caption = sl->Strings[Index];
+		//Label1->Caption = "Введение находится в строке с номером " + AnsiString(Index);
+	}
 }
 //---------------------------------------------------------------------------
 

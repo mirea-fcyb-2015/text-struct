@@ -13,10 +13,13 @@ private:
 public:
     TTextStruct();
 
-    void delTop();  // Удаление информации перед содержанием
+	void delTop();  // Удаление информации перед содержанием
+	void AlgContent(); // Структуризация по оглавлению
 
-    void        setText(TStringList *txt);
-    TStringList *getText();
+	void new_Exchange(int num, String new1); // Функция замены строк в массиве строк
+
+	void setText(TStringList *txt);
+	TStringList *getText();
 };
 //---------------------------------------------------------------------------
 #endif
