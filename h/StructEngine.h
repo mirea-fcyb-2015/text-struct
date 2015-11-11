@@ -11,10 +11,15 @@ private:
     TStringList* text;
 
 public:
-    TTextStruct();
+    TTextStruct();      // Конструктор
+    ~TTextStruct();     // Деструктор
 
-	void delTop();  // Удаление информации перед содержанием
-	void AlgContent(); // Структуризация по оглавлению
+    void algArtefact(); // Структуризация про артефактам
+	void algContent();  // Структуризация по оглавлению
+    void delHeader();   // Удаление текста перед оглавлением
+    void delPage();     // Удаление номеров страниц
+    void delTop();      // Удаление информации перед содержанием
+    void fileLoad(UnicodeString fileName);    // Загрузка данных из файла
 
 	void new_Exchange(int num, String new1); // Функция замены строк в массиве строк
 

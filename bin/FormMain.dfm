@@ -30,7 +30,7 @@ object frmMain: TfrmMain
     Height = 29
     Align = alBottom
     TabOrder = 0
-    object Button1: TButton
+    object btnMemoText: TButton
       Left = 1
       Top = 1
       Width = 160
@@ -38,7 +38,7 @@ object frmMain: TfrmMain
       Align = alLeft
       Caption = #1054#1090#1082#1088#1099#1090#1100' '#1092#1072#1081#1083' '#1076#1083#1103' Memo'
       TabOrder = 0
-      OnClick = Button1Click
+      OnClick = btnMemoTextClick
     end
     object Button2: TButton
       Left = 161
@@ -69,9 +69,6 @@ object frmMain: TfrmMain
       Caption = 'btnFind'
       TabOrder = 3
       OnClick = btnFindClick
-      ExplicitLeft = 432
-      ExplicitTop = 24
-      ExplicitHeight = 25
     end
   end
   object mmText: TMemo
@@ -103,7 +100,7 @@ object frmMain: TfrmMain
     TabOrder = 2
     ViewStyle = vsReport
   end
-  object FileOpenDialog1: TFileOpenDialog
+  object FODForMemo: TFileOpenDialog
     FavoriteLinks = <>
     FileTypes = <
       item
@@ -114,7 +111,7 @@ object frmMain: TfrmMain
     Left = 832
     Top = 24
   end
-  object FileOpenDialog2: TFileOpenDialog
+  object FODForLv: TFileOpenDialog
     FavoriteLinks = <>
     FileTypes = <
       item
