@@ -42,14 +42,14 @@ class Data
 
 class TTextStruct
 {
-private:
+    private:
     TStringList *text;
-
-public:
+    public:
     TTextStruct();
-
+    ~TTextStruct();
     void setText(TStringList *txt);
     TStringList *getText();
+    void addText(AnsiString str);
 };
 
 #endif

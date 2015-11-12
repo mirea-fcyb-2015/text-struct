@@ -30,41 +30,35 @@ __fastcall TMForm::TMForm(TComponent* Owner)
 {
     OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";
     pData = new Data;
-
 }
+
  __fastcall TMForm::~TMForm()
 {
     delete pData;
 }
+
 void TMForm::OpenFile()
 {
-
-    FOpen file; // Создаем объект класса FOpen
-    if( file.FOpenFile(AnsiToCChar(GetStr())) == true) //Открывает файл и проверяет есть ли такой файл,если есть...
-    {
-     file.WriteToData(pData); //! Записываем данные
-    }else //если нету такого файла
-    ShowMessage("Error");
-//Вывод на экран
-//    for (vector<string>::iterator it = pData->getVector().begin(); it != pData->getVector().end(); ++it)
+//    FOpen file; // Создаем объект класса FOpen
+//    if( file.FOpenFile(AnsiToCChar(GetStr())) == true) //Открывает файл и проверяет есть ли такой файл,если есть...
 //    {
-//        Memo1->Lines->Add((*it).c_str());
-//    }
-    pData->chapter();
-
+//        file.WriteToData(pData); //! Записываем данные
+//    }else //если нету такого файла
+//        ShowMessage("Error");
+//    //Вывод на экран
+//    //    for (vector<string>::iterator it = pData->getVector().begin(); it != pData->getVector().end(); ++it)
+//    //    {
+//    //        Memo1->Lines->Add((*it).c_str());
+//    //    }
+//    pData->chapter();
+    TStringList* sl = textStruct->getText();
+    sl->
 }
-//---------------------------------------------------------------------------
 
 const char* TMForm::AnsiToCChar(AnsiString text)
 {
     return text.c_str();
 }
-
-//---------------------------------------------------------------------------
-
-
-
-
 
 void __fastcall TMForm::ToolButton1Click(TObject *Sender)
 {
@@ -75,7 +69,7 @@ void __fastcall TMForm::ToolButton1Click(TObject *Sender)
         sl->LoadFromFile(OpenTextFileDialog1->FileName);
         Memo1->Lines->Text = sl->Text;
     }
-    //OpenFile();
+    OpenFile();
 }
-//---------------------------------------------------------------------------
+
 

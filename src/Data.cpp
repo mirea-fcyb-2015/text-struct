@@ -15,13 +15,13 @@
     \endcode
 
 */
-
 #include "Data.h"
 #include <string>
 #include <ctype.h>
 #include <algorithm>
 #include <functional>
 #include <iostream>
+
 //!
 //! Конструктор
 //!
@@ -81,21 +81,33 @@ void Data::chapter()
     }
 }
 
-
 TTextStruct::TTextStruct()
 {
     text = new TStringList();
 }
+
+TTextStruct::~TTextStruct()
+{
+    delete text;
+}
+
 void TTextStruct::setText(TStringList *txt)
 {
     text = txt;
 }
+
 TStringList* TTextStruct::getText()
 {
     return text;
 }
-//! Будет нужно
 
+void TTextStruct::addText(AnsiString str)
+{
+    text->Add(str);
+}
+
+
+//! Будет нужно
 //iequals(str1, str2)
 //transform(foreword.begin(), foreword.end(), foreword.begin(), ::tolower);
 //transform(foreword.begin(), foreword.end(), foreword.begin(), ::toupper);
