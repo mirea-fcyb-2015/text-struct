@@ -31,7 +31,7 @@
 #include <ToolWin.hpp>
 #include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-class TMForm : public TForm
+class TfrmMain : public TForm
 {
 __published:	// IDE-managed Components
     TOpenTextFileDialog *OpenTextFileDialog1;
@@ -64,15 +64,17 @@ private:	// User declarations
     TTextStruct* textStruct; // Создание объекта
     void showTextMemo(TStringList *sl); // отобразить текст в Memo
     void setCountRowListView1();
+    void refreshMemo();
+
 
 public:		// User declarations
-    __fastcall TMForm(TComponent* Owner);
-    __fastcall ~TMForm();
+    __fastcall TfrmMain(TComponent* Owner);
+    __fastcall ~TfrmMain();
     void OpenFile();
     const char* AnsiToCChar(AnsiString text); //! Convert Ansistring to const char
     AnsiString GetStr(){ return str;}
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMForm *MForm;
+extern PACKAGE TfrmMain *frmMain;
 //---------------------------------------------------------------------------
 #endif

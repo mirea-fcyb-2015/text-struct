@@ -1,9 +1,10 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #ifndef AlgContentH
 #define AlgContentH
 
 #include "Algorithm.h"
+#include <iostream>
 
 class AlgContent : public AlgAbstract
 {
@@ -13,7 +14,12 @@ public:
     AlgContent();
     ~AlgContent();
 
-    void AlgStruct(TStringList *sl);
+    void delTop(TStringList *sl);
+    void AlgStruct(TStringList *sl);  	// Функция структурирования текста
+    void AlgChapter(TStringList *sl); 	// Функция вывода оглавления текста
+    int findInStrI(TStringList *s1,AnsiString str);  			// Функция поиска строки в TStringList
+    bool findInStrB(TStringList *s1,AnsiString str);
+
 };
 //---------------------------------------------------------------------------
 #endif

@@ -1,71 +1,45 @@
-/*______________________________ Data.cpp ________________________________ */
+п»ї/*______________________________ StructEngine.cpp ________________________________ */
 /**
-    \file       Data.cpp
-    \brief      Класс для работы с данными
-    \author     Шепшелевич П. , Молчанов К. , Березин А.
+    \file       StructEngine.cpp
+    \brief      СЂРїСЂРїСЂРѕРІРїРѕ
+    \author     ?????????? ?. , ???????? ?. , ??????? ?.
     \version    1.0
     \date       22.10.2015
     \remarks
-    \par        История создания:
+    \par        ??????? ????????:
     \code
-        22/10/2015 – 1.0 – Создание файла
-        29/10/2015 - 1.1 - Реализация метода addString(string str),
+        22/10/2015 ? 1.0 ? ???????? ?????
+        29/10/2015 - 1.1 - ?????????? ?????? addString(string str),
                                              clearVector()
 
     \endcode
 
 */
 #include "StructEngine.h"
-#include <string>
-#include <ctype.h>
-#include <algorithm>
-#include <functional>
-#include <iostream>
+#include "Algorithm.h"
+#include "AlgArtefact.h"
+#include "AlgContent.h"
 
-//void Data::chapter()
-//{
-//    int rating = 0;
-//    for (vector<string>::iterator it = stg.begin(); it != stg.end(); ++it) //пробегаемся по всем строкам
-//    {
-//        string sg = *it;
-//
-//        //!
-//        //! Поиск слова Введение
-//        //!
-//        string foreword("Введение");
-//        int pos_L = sg.find(foreword); //запоминает позицию для слова
-//        std::transform(foreword.begin(),foreword.end(), foreword.begin(), ::toupper); // Все символы делает врехнего регистра
-//        int pos_U = sg.find(foreword);
-//        int pos = sg.find(foreword);
-//        if( (pos_U != std::string::npos) | (pos_L != std::string::npos))
-//        {
-//            int pos = sg.find("....");
-//            if(pos != std::string::npos)
-//            {
-//                string s = sg;
-//                cout << s;
-//            }
-//        }
-//    }
-//}
 //!
-//! Конструктор
+//! РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 //!
 TTextStruct::TTextStruct()
 {
     text = NULL;
+    alg  = NULL;
 }
 
 //!
-//! Деструктор
+//! Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 //!
 TTextStruct::~TTextStruct()
 {
         delete text;
+        delete alg;
 }
 
 //!
-//! Устанавливаем текст
+//! РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚
 //!
 void TTextStruct::setText(TStringList *txt)
 {
@@ -73,7 +47,7 @@ void TTextStruct::setText(TStringList *txt)
 }
 
 //!
-//! Получить текст
+//! РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚
 //!
 TStringList* TTextStruct::getText()
 {
@@ -81,27 +55,18 @@ TStringList* TTextStruct::getText()
 }
 
 //!
-//! Удаление строк
-//!
-void TTextStruct::delTop()
-{
-    int CheckForContent = 0;
-    if( CheckForContent = findInText("Содержание") != -1);
-    {
-          do{text->Delete(0); ++CheckForContent;}while ( CheckForContent !=35);
-    }
-}
-
-//!
-//! Алгоритм ...
+//! РђР»РіРѕСЂРёС‚Рј СЃС‚СЂСѓРєС‚СѓСЂРёСЂРѕРІР°РЅРёСЏ ...
 //!
 void TTextStruct::algContent()
 {
-
+    if(!alg)
+        delete alg;
+    alg = new AlgContent();
+    alg->AlgStruct(text);
 }
 
 //!
-//! Загрузить файл
+//! Р—Р°РіСЂСѓР·РёС‚СЊ С‚РµРєСЃС‚ 
 //!
 void TTextStruct::fileLoad(UnicodeString fileName)
 {
@@ -110,48 +75,25 @@ void TTextStruct::fileLoad(UnicodeString fileName)
     text = new TStringList();
     text->LoadFromFile(fileName);
 }
-// Функция замены строк в массиве строк
+
+//!
+//!  
+//! 
 void TTextStruct::new_Exchange(int num, String new1)
 {
-    text->Add(new1);          //добавление строки в конец массива строк
-    int num1 = text->Count;   //получение количества строк
-    --num1;                        //установка номера последней строки (нумерация с 0)
-    text->Exchange(num,num1); //замена строк - последняя становится выделенной, выделенная - последней
-    text->Delete(num1);       //удаление последней строки
+    text->Add(new1);          //?????????? ?????? ? ????? ??????? ?????
+    int num1 = text->Count;   //????????? ?????????? ?????
+    --num1;                        //????????? ?????? ????????? ?????? (????????? ? 0)
+    text->Exchange(num,num1); //?????? ????? - ????????? ?????????? ??????????, ?????????? - ?????????
+    text->Delete(num1);       //???????? ????????? ??????
 }
 
-int TTextStruct::findInText(AnsiString t)
+void TTextStruct::delHeader()
 {
-    for (int i = 0; text->Count - 1; ++i ) //пробегаемся по всем строкам
-    {
-
-        if( text->Strings[i] == t )
-        {
-            return i;
-        }
-
-//        //!
-//        //! Поиск слова Введение
-//        //!
-//        string foreword("Введение");
-//        int pos_L = sg.find(foreword); //запоминает позицию для слова
-//        std::transform(foreword.begin(),foreword.end(), foreword.begin(), ::toupper); // Все символы делает врехнего регистра
-//        int pos_U = sg.find(foreword);
-//        int pos = sg.find(foreword);
-//        if( (pos_U != std::string::npos) | (pos_L != std::string::npos))
-//        {
-//            int pos = sg.find("....");
-//            if(pos != std::string::npos)
-//            {
-//                string s = sg;
-//                cout << s;
-//            }
-//        }
-    }
-    return -1;
+    // РЈРґР°Р»РµРЅРёРµ РєРѕР»РѕРЅС‚РёС‚СѓР»РѕРІ
 }
 
-//! Будет нужно
-//iequals(str1, str2)
-//transform(foreword.begin(), foreword.end(), foreword.begin(), ::tolower);
-//transform(foreword.begin(), foreword.end(), foreword.begin(), ::toupper);
+void TTextStruct::delPage()
+{
+    // РЈРґР°Р»РµРЅРёРµ РЅРѕРјРµСЂРѕРІ СЃС‚СЂР°РЅРёС†
+}
