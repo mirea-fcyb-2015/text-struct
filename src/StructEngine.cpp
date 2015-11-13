@@ -1,16 +1,15 @@
-
-/*______________________________ StructEngine.cpp ________________________________ */
+/*______________________________ Data.cpp ________________________________ */
 /**
     \file       Data.cpp
-    \brief      ????? ??? ?????? ? ???????
-    \author     ?????????? ?. , ???????? ?. , ??????? ?.
+    \brief      Класс для работы с данными
+    \author     Шепшелевич П. , Молчанов К. , Березин А.
     \version    1.0
     \date       22.10.2015
     \remarks
-    \par        ??????? ????????:
+    \par        История создания:
     \code
-        22/10/2015 ? 1.0 ? ???????? ?????
-        29/10/2015 - 1.1 - ?????????? ?????? addString(string str),
+        22/10/2015 – 1.0 – Создание файла
+        29/10/2015 - 1.1 - Реализация метода addString(string str),
                                              clearVector()
 
     \endcode
@@ -23,8 +22,34 @@
 #include <functional>
 #include <iostream>
 
+//void Data::chapter()
+//{
+//    int rating = 0;
+//    for (vector<string>::iterator it = stg.begin(); it != stg.end(); ++it) //пробегаемся по всем строкам
+//    {
+//        string sg = *it;
+//
+//        //!
+//        //! Поиск слова Введение
+//        //!
+//        string foreword("Введение");
+//        int pos_L = sg.find(foreword); //запоминает позицию для слова
+//        std::transform(foreword.begin(),foreword.end(), foreword.begin(), ::toupper); // Все символы делает врехнего регистра
+//        int pos_U = sg.find(foreword);
+//        int pos = sg.find(foreword);
+//        if( (pos_U != std::string::npos) | (pos_L != std::string::npos))
+//        {
+//            int pos = sg.find("....");
+//            if(pos != std::string::npos)
+//            {
+//                string s = sg;
+//                cout << s;
+//            }
+//        }
+//    }
+//}
 //!
-//! РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+//! Конструктор
 //!
 TTextStruct::TTextStruct()
 {
@@ -32,7 +57,7 @@ TTextStruct::TTextStruct()
 }
 
 //!
-//! Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
+//! Деструктор
 //!
 TTextStruct::~TTextStruct()
 {
@@ -40,7 +65,7 @@ TTextStruct::~TTextStruct()
 }
 
 //!
-//! РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚
+//! Устанавливаем текст
 //!
 void TTextStruct::setText(TStringList *txt)
 {
@@ -48,7 +73,7 @@ void TTextStruct::setText(TStringList *txt)
 }
 
 //!
-//! РїРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚
+//! Получить текст
 //!
 TStringList* TTextStruct::getText()
 {
@@ -56,28 +81,27 @@ TStringList* TTextStruct::getText()
 }
 
 //!
-//! СѓРґР°Р»РёС‚СЊ РІСЃРµ СЃС‚СЂРѕРєРё
+//! Удаление строк
 //!
 void TTextStruct::delTop()
 {
     int CheckForContent = 0;
-    if( CheckForContent = findInText("РЎРѕРґРµСЂР¶Р°РЅРёРµ") != -1); //! РџРѕРєР° С‡С‚Рѕ С‚Р°Рє. С‚РµСЃС‚ 
+    if( CheckForContent = findInText("Содержание") != -1);
     {
           do{text->Delete(0); ++CheckForContent;}while ( CheckForContent !=35);
     }
 }
 
 //!
-//! ???????? ...
+//! Алгоритм ...
 //!
-
 void TTextStruct::algContent()
 {
 
 }
 
 //!
-//! ????????? ????
+//! Загрузить файл
 //!
 void TTextStruct::fileLoad(UnicodeString fileName)
 {
@@ -86,19 +110,19 @@ void TTextStruct::fileLoad(UnicodeString fileName)
     text = new TStringList();
     text->LoadFromFile(fileName);
 }
-// ??????? ?????? ????? ? ??????? ?????
+// Функция замены строк в массиве строк
 void TTextStruct::new_Exchange(int num, String new1)
 {
-    text->Add(new1);          //?????????? ?????? ? ????? ??????? ?????
-    int num1 = text->Count;   //????????? ?????????? ?????
-    --num1;                        //????????? ?????? ????????? ?????? (????????? ? 0)
-    text->Exchange(num,num1); //?????? ????? - ????????? ?????????? ??????????, ?????????? - ?????????
-    text->Delete(num1);       //???????? ????????? ??????
+    text->Add(new1);          //добавление строки в конец массива строк
+    int num1 = text->Count;   //получение количества строк
+    --num1;                        //установка номера последней строки (нумерация с 0)
+    text->Exchange(num,num1); //замена строк - последняя становится выделенной, выделенная - последней
+    text->Delete(num1);       //удаление последней строки
 }
 
 int TTextStruct::findInText(AnsiString t)
 {
-    for (int i = 0; text->Count - 1; ++i ) //??????????? ?? ???? ???????
+    for (int i = 0; text->Count - 1; ++i ) //пробегаемся по всем строкам
     {
 
         if( text->Strings[i] == t )
@@ -107,11 +131,11 @@ int TTextStruct::findInText(AnsiString t)
         }
 
 //        //!
-//        //! ????? ????? ????????
+//        //! Поиск слова Введение
 //        //!
-//        string foreword("????????");
-//        int pos_L = sg.find(foreword); //?????????? ??????? ??? ?????
-//        std::transform(foreword.begin(),foreword.end(), foreword.begin(), ::toupper); // ??? ??????? ?????? ???????? ????????
+//        string foreword("Введение");
+//        int pos_L = sg.find(foreword); //запоминает позицию для слова
+//        std::transform(foreword.begin(),foreword.end(), foreword.begin(), ::toupper); // Все символы делает врехнего регистра
 //        int pos_U = sg.find(foreword);
 //        int pos = sg.find(foreword);
 //        if( (pos_U != std::string::npos) | (pos_L != std::string::npos))
@@ -127,8 +151,7 @@ int TTextStruct::findInText(AnsiString t)
     return -1;
 }
 
-//! ????? ?????
+//! Будет нужно
 //iequals(str1, str2)
 //transform(foreword.begin(), foreword.end(), foreword.begin(), ::tolower);
 //transform(foreword.begin(), foreword.end(), foreword.begin(), ::toupper);
-
