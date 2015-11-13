@@ -10,6 +10,7 @@ object frmMain: TfrmMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
   Position = poScreenCenter
   PixelsPerInch = 96
@@ -121,5 +122,64 @@ object frmMain: TfrmMain
     Options = []
     Left = 832
     Top = 80
+  end
+  object MainMenu1: TMainMenu
+    Left = 768
+    Top = 24
+    object miFile: TMenuItem
+      Caption = #1060#1072#1081#1083
+      object miFileOpen: TMenuItem
+        Caption = #1054#1090#1082#1088#1099#1090#1100' '#1092#1072#1081#1083
+        OnClick = miFileOpenClick
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object miExit: TMenuItem
+        Caption = #1042#1099#1093#1086#1076
+        Default = True
+        OnClick = miExitClick
+      end
+    end
+    object miService: TMenuItem
+      Caption = #1057#1077#1088#1074#1080#1089
+      object miStruct: TMenuItem
+        Caption = #1057#1090#1088#1091#1082#1090#1091#1088#1080#1079#1072#1094#1080#1103
+        object miContent: TMenuItem
+          Caption = #1055#1086' '#1086#1075#1083#1072#1074#1083#1077#1085#1080#1102
+          OnClick = miContentClick
+        end
+        object miArtefact: TMenuItem
+          Caption = #1055#1086' '#1072#1088#1090#1077#1092#1072#1082#1090#1072#1084
+          OnClick = miArtefactClick
+        end
+      end
+      object miDelete: TMenuItem
+        Caption = #1059#1076#1072#1083#1077#1085#1080#1077
+        object miDelHeader: TMenuItem
+          Caption = #1050#1086#1083#1086#1085#1090#1080#1090#1091#1083#1099
+          OnClick = miDelHeaderClick
+        end
+        object miDelTop: TMenuItem
+          Caption = #1058#1077#1082#1089#1090' '#1087#1077#1088#1077#1076' '#1086#1075#1083#1072#1074#1083#1077#1085#1080#1077#1084
+          OnClick = miDelTopClick
+        end
+        object miDelPage: TMenuItem
+          Caption = #1053#1086#1084#1077#1088#1072' '#1089#1090#1088#1072#1085#1080#1094
+          OnClick = miDelPageClick
+        end
+      end
+    end
+    object miHelp: TMenuItem
+      Caption = #1057#1087#1088#1072#1074#1082#1072
+      object miAbout: TMenuItem
+        Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+      end
+    end
+  end
+  object ActionManager1: TActionManager
+    Left = 696
+    Top = 24
+    StyleName = 'Platform Default'
   end
 end

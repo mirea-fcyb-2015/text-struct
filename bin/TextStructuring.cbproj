@@ -41,10 +41,10 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\src\;..\h\;src\;..\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>..\src\;..\h\;src\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>..\units\;..\src\;..\h\;src\;..\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>..\units\;..\src\;..\h\;src\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
@@ -95,7 +95,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -119,6 +119,18 @@
         </None>
         <CppCompile Include="..\src\StructEngine.cpp">
             <BuildOrder>4</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\units\AlgArtefact.cpp">
+            <DependentOn>..\units\AlgArtefact.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\units\AlgContent.cpp">
+            <DependentOn>..\units\AlgContent.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\units\Algorithm.cpp">
+            <DependentOn>..\units\Algorithm.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
         </CppCompile>
         <FormResources Include="FormMain.dfm"/>
         <BuildConfiguration Include="Release">

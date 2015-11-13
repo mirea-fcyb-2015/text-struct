@@ -5,10 +5,13 @@
 
 #include <System.Classes.hpp>
 
+class AlgAbstract;
+
 class TTextStruct
 {
 private:
-    TStringList* text;
+    TStringList *text;
+    AlgAbstract *alg;
 
 public:
     TTextStruct();      // Конструктор

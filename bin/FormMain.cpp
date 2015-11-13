@@ -17,11 +17,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::btnMemoTextClick(TObject *Sender)
 {
-    if(FODForMemo->Execute())
-    {
-        textStruct->fileLoad(FODForMemo->FileName);
-        showTextMemo(textStruct->getText());
-	}
+    fileOpen();
 }
 void __fastcall TfrmMain::Button2Click(TObject *Sender)
 {
@@ -36,7 +32,7 @@ void __fastcall TfrmMain::Button2Click(TObject *Sender)
 void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
     textStruct->delTop(); // Удаление начала текста
-    mmText->Lines->Text = textStruct->getText()->Text;
+    refreshMemo();
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::btnFindClick(TObject *Sender)
@@ -51,10 +47,23 @@ void __fastcall TfrmMain::btnFindClick(TObject *Sender)
 	}
 }
 //---------------------------------------------------------------------------
-void TfrmMain::showTextMemo(TStringList *sl)
+void __fastcall TfrmMain::miFileOpenClick(TObject *Sender)
 {
-    mmText->Clear();
-    mmText->Lines->Text = sl->Text;
+    fileOpen();
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmMain::miExitClick(TObject *Sender)
+{
+    this->Close();
+}
+//---------------------------------------------------------------------------
+void TfrmMain::fileOpen()
+{
+    if(FODForMemo->Execute())
+    {
+        textStruct->fileLoad(FODForMemo->FileName);
+        showTextMemo(textStruct->getText());
+	}
 }
 //---------------------------------------------------------------------------
 void TfrmMain::showTextLv(TStringList *sl)
@@ -66,6 +75,50 @@ void TfrmMain::showTextLv(TStringList *sl)
         li = lvStruct->Items->Add();
         li->Caption = sl->Strings[i];
     }
+}
+//---------------------------------------------------------------------------
+void TfrmMain::showTextMemo(TStringList *sl)
+{
+    mmText->Clear();
+    mmText->Lines->Text = sl->Text;
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmMain::miContentClick(TObject *Sender)
+{
+    textStruct->algContent();
+    refreshMemo();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::miArtefactClick(TObject *Sender)
+{
+    textStruct->algArtefact();
+    refreshMemo();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::miDelTopClick(TObject *Sender)
+{
+    textStruct->delTop();
+    refreshMemo();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::miDelHeaderClick(TObject *Sender)
+{
+    textStruct->delHeader();
+    refreshMemo();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::miDelPageClick(TObject *Sender)
+{
+    textStruct->delPage();
+}
+void TfrmMain::refreshMemo()
+{
+    mmText->Clear();
+    mmText->Lines->Text = textStruct->getText()->Text;
 }
 //---------------------------------------------------------------------------
 
