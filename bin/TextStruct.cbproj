@@ -24,11 +24,11 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<OutputExt>exe</OutputExt>
-			<ILINK_LibraryPath>..\h\;..\src\;..\..\..\Desktop\text-struct\bin\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<ILINK_LibraryPath>..\units\;..\h\;..\src\;..\..\..\Desktop\text-struct\bin\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<PackageImports>vclimg.bpi;vcl.bpi;vclx.bpi;dbrtl.bpi;Rave90VCL.bpi;bdertl.bpi;rtl.bpi;bcbie.bpi;xmlrtl.bpi;vclactnband.bpi;bcbsmp.bpi;svnui.bpi;svn.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vcldb.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;vclib.bpi;ibxpress.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;inet.bpi;intrawebdb_110_150.bpi;Intraweb_110_150.bpi;vclie.bpi;websnap.bpi;webdsnap.bpi;inetdb.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;vclribbon.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DataSnapIndy10ServerTransport.bpi;DataSnapProviderClient.bpi;DataSnapClient.bpi;dbxcds.bpi;DbxClientDriver.bpi;DataSnapServer.bpi;AzureCloud.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;DBXFirebirdDriver.bpi;DBXSybaseASEDriver.bpi;DBXSybaseASADriver.bpi;DBXOracleDriver.bpi;DBXMSSQLDriver.bpi;DBXInformixDriver.bpi;DBXDb2Driver.bpi;CodeSiteExpressVcl.bpi</PackageImports>
 			<LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
 			<Multithreaded>true</Multithreaded>
-			<IncludePath>..\h\;..\src\;..\..\..\Desktop\text-struct\bin\;$(IncludePath)</IncludePath>
+			<IncludePath>..\units\;..\h\;..\src\;..\..\..\Desktop\text-struct\bin\;$(IncludePath)</IncludePath>
 			<AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
 			<ProjectType>CppVCLApplication</ProjectType>
 			<_TCHARMapping>wchar_t</_TCHARMapping>
@@ -89,6 +89,18 @@
 			</CppCompile>
 			<CppCompile Include="..\src\StructEngine.cpp">
 				<BuildOrder>10</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\units\AlgArtefact.cpp">
+				<DependentOn>..\units\AlgArtefact.h</DependentOn>
+				<BuildOrder>9</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\units\AlgContent.cpp">
+				<DependentOn>..\units\AlgContent.h</DependentOn>
+				<BuildOrder>8</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\units\Algorithm.cpp">
+				<DependentOn>..\units\Algorithm.h</DependentOn>
+				<BuildOrder>7</BuildOrder>
 			</CppCompile>
 			<FormResources Include="MainForm.dfm"/>
 			<BuildConfiguration Include="Release">
