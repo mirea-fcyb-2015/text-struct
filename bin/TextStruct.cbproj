@@ -78,29 +78,17 @@
 			<ResFiles Include="TextStruct.res">
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
-			<None Include="..\h\Data.h">
-				<BuildOrder>9</BuildOrder>
-			</None>
 			<None Include="..\h\FOpen.h">
 				<BuildOrder>6</BuildOrder>
 			</None>
-			<None Include="..\h\main.h">
-				<BuildOrder>7</BuildOrder>
+			<None Include="..\h\StructEngine.h">
+				<BuildOrder>9</BuildOrder>
 			</None>
-			<None Include="..\h\TextType.h">
-				<BuildOrder>8</BuildOrder>
-			</None>
-			<CppCompile Include="..\src\Data.cpp">
-				<BuildOrder>10</BuildOrder>
-			</CppCompile>
 			<CppCompile Include="..\src\FOpen.cpp">
 				<BuildOrder>3</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="..\src\main.cpp">
-				<BuildOrder>4</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="..\src\TextType.cpp">
-				<BuildOrder>5</BuildOrder>
+			<CppCompile Include="..\src\StructEngine.cpp">
+				<BuildOrder>10</BuildOrder>
 			</CppCompile>
 			<FormResources Include="MainForm.dfm"/>
 			<BuildConfiguration Include="Release">

@@ -58,16 +58,16 @@ bool FOpen::FOpenFile(const char * file)
         return true;
     }
 }
-void FOpen::WriteToData(Data *pD)
-{
-
-    while( !F.eof()) //! Пока не конец файла
-    {
-    string str;
-    getline(F,str); //! Получаем строку
-    pD->addString(str); //! Записываем данные в строку
-    }
-}
+//void FOpen::WriteToData(Data *pD)
+//{
+//
+//    while( !F.eof()) //! Пока не конец файла
+//    {
+//    string str;
+//    getline(F,str); //! Получаем строку
+//    pD->addString(str); //! Записываем данные в строку
+//    }
+//}
 
 
 //!

@@ -14,36 +14,57 @@ object MForm: TMForm
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object ToolBar1: TToolBar
+  object ToolBar: TToolBar
     Left = 0
     Top = 0
     Width = 932
     Height = 65
     ButtonHeight = 64
     ButtonWidth = 64
-    Caption = 'ToolBar1'
+    Caption = 'ToolBar'
     Images = ImageList1
     TabOrder = 0
-    object ToolButton1: TToolButton
+    object FileOpen: TToolButton
       Left = 0
       Top = 0
-      Caption = 'ToolButton1'
+      Caption = 'FileOpen'
       ImageIndex = 0
-      OnClick = ToolButton1Click
+      OnClick = FileOpenClick
     end
-    object ToolButton2: TToolButton
+    object Separator1: TToolButton
       Left = 64
       Top = 0
       Width = 3
-      Caption = 'ToolButton2'
+      Caption = 'Separator1'
       ImageIndex = 1
       Style = tbsSeparator
     end
-    object ToolButton3: TToolButton
+    object FileClose: TToolButton
       Left = 67
       Top = 0
-      Caption = 'ToolButton3'
+      Caption = 'FileClose'
       ImageIndex = 1
+    end
+    object Separator2: TToolButton
+      Left = 131
+      Top = 0
+      Width = 3
+      Caption = 'Separator2'
+      ImageIndex = 2
+      Style = tbsSeparator
+    end
+    object btnDelTop: TToolButton
+      Left = 134
+      Top = 0
+      Caption = 'btnDelTop'
+      ImageIndex = 4
+      OnClick = btnDelTopClick
+    end
+    object btnFind: TToolButton
+      Left = 198
+      Top = 0
+      Caption = 'btnFind'
+      ImageIndex = 5
     end
   end
   object Panel1: TPanel
@@ -52,7 +73,7 @@ object MForm: TMForm
     Width = 932
     Height = 649
     TabOrder = 1
-    object TreeView1: TTreeView
+    object TreeView: TTreeView
       Left = 10
       Top = 7
       Width = 239
@@ -60,7 +81,7 @@ object MForm: TMForm
       Indent = 19
       TabOrder = 0
     end
-    object Memo1: TMemo
+    object mmText: TMemo
       Left = 255
       Top = 7
       Width = 666
@@ -93,7 +114,7 @@ object MForm: TMForm
     Left = 840
     Top = 8
     Bitmap = {
-      494C0101020038004C0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102003800500020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

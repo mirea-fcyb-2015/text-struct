@@ -28,13 +28,13 @@ TMForm *MForm;
 __fastcall TMForm::TMForm(TComponent* Owner)
     : TForm(Owner)
 {
-    OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";
-    pData = new Data;
+    OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";   // Чтобы мог открыть только файлы с расширением txt
+    textStruct = new TTextStruct();
 }
 
  __fastcall TMForm::~TMForm()
 {
-    delete pData;
+   delete textStruct; // Освобождаем память
 }
 
 void TMForm::OpenFile()
@@ -51,8 +51,8 @@ void TMForm::OpenFile()
 //    //        Memo1->Lines->Add((*it).c_str());
 //    //    }
 //    pData->chapter();
-    TStringList* sl = textStruct->getText();
-    sl->
+//    TStringList* sl = textStruct->getText();
+//    sl->
 }
 
 const char* TMForm::AnsiToCChar(AnsiString text)
@@ -60,16 +60,34 @@ const char* TMForm::AnsiToCChar(AnsiString text)
     return text.c_str();
 }
 
-void __fastcall TMForm::ToolButton1Click(TObject *Sender)
+void __fastcall TMForm::FileOpenClick(TObject *Sender)
 {
-    textStruct = new TTextStruct();
+
     if(OpenTextFileDialog1->Execute())
     {
-        TStringList* sl = textStruct->getText();
-        sl->LoadFromFile(OpenTextFileDialog1->FileName);
-        Memo1->Lines->Text = sl->Text;
+        textStruct->fileLoad(OpenTextFileDialog1->FileName); // Открываем файл
+        showTextMemo(textStruct->getText()); // Вывод текста в Memo
     }
-    OpenFile();
+
 }
+
+void TMForm::showTextMemo(TStringList *sl)
+{
+    mmText->Clear();
+    mmText->Lines->Text = sl->Text;
+//    for(int i = 0;i < sl->Count - 1;i++)
+//    cout << sl->Strings[i].c_str();
+    cout << "gg";
+}
+
+void __fastcall TMForm::btnDelTopClick(TObject *Sender)
+{
+    textStruct->delTop();
+    mmText->Lines->Text = textStruct->getText()->Text;
+
+    cout << "gg";
+}
+
+
 
 
