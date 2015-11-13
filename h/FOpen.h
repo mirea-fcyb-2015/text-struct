@@ -25,7 +25,7 @@
 #include <string>
 #include <windows.h>
 #include <vector>
-#include "Data.h"
+#include "StructEngine.h"
 
 using namespace std;
 
@@ -43,10 +43,7 @@ class FOpen
     bool FOpenFile(const char *file);
     void FClose();
     friend bool CheckFormat(string str,const char* text);
-    void WriteToData(Data *pD);
-
-
-
+    //void WriteToData(Data *pD);
 
 };
 

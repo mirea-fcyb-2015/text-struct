@@ -21,7 +21,7 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include "Data.h"
+#include "StructEngine.h"
 #include "FOpen.h"
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
@@ -35,23 +35,36 @@ class TMForm : public TForm
 {
 __published:	// IDE-managed Components
     TOpenTextFileDialog *OpenTextFileDialog1;
+    TImageList *ImageList1;                     // Хранилище изображений для кнопок
+
+    // MainMenu
     TMainMenu *MainMenu1;
-    TMenuItem *N1;
+    TMenuItem *N1;                              //файл
     TMenuItem *N2;
     TMenuItem *N3;
-    TImageList *ImageList1;
-    TToolBar *ToolBar1;
-    TToolButton *ToolButton1;
-    TToolButton *ToolButton2;
-    TToolButton *ToolButton3;
-    TPanel *Panel1;
-    TTreeView *TreeView1;
-    TMemo *Memo1;
-    void __fastcall ToolButton1Click(TObject *Sender);
+
+    // Toolbar
+    TToolBar *ToolBar;
+    TToolButton *FileOpen;                      // Кнопка открытия файла
+    TToolButton *Separator1;                    // Разделитель кнопки
+    TToolButton *FileClose;                     // кнопка закрытия файла
+    TToolButton *Separator2;                    // Разделитель кнопки
+
+    // Panel
+    TPanel *Panel1;                             // Панель
+    TTreeView *TreeView;                        // Отображение оглавления в TreeView
+    TMemo *mmText;
+    TToolButton *btnDelTop;
+    TToolButton *btnFind;
+    void __fastcall FileOpenClick(TObject *Sender);
+    void __fastcall btnDelTopClick(TObject *Sender);
+
 private:	// User declarations
     AnsiString str;
-    TTextStruct* textStruct;
-    Data *pData;
+    TTextStruct* textStruct; // Создание объекта
+    void showTextMemo(TStringList *sl); // отобразить текст в Memo
+    void setCountRowListView1();
+
 public:		// User declarations
     __fastcall TMForm(TComponent* Owner);
     __fastcall ~TMForm();

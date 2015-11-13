@@ -1,9 +1,28 @@
-п»ї//---------------------------------------------------------------------------
+/*______________________________ Data.h ________________________________ */
+/**
+    \file       Data.h
+    \brief      Класс для работы с данными
+    \author     Шепшелевич П. , Молчанов К. , Березин А.
+    \version    1.0
+    \date       22.10.2015
+    \remarks
+    \par        История создания:
+    \code
+        22/10/2015 – 1.0 – Создание файла
+        29/10/2015 - 1.1 - Добавил фукции addString и clearVector
+    \endcode
 
-#ifndef TextStructtH
-#define TextStructtH
+*/
+#ifndef StructEngine_H
+#define StructEngine_H
 
-#include <System.Classes.hpp>
+#include <Classes.hpp>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <cctype>
+using namespace std;
 
 class TTextStruct
 {
@@ -11,20 +30,21 @@ private:
     TStringList* text;
 
 public:
-    TTextStruct();      // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
-    ~TTextStruct();     // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
+    TTextStruct();      // Конструктор
+    ~TTextStruct();     // Деструктор
 
-    void algArtefact(); // РЎС‚СЂСѓРєС‚СѓСЂРёР·Р°С†РёСЏ РїСЂРѕ Р°СЂС‚РµС„Р°РєС‚Р°Рј
-	void algContent();  // РЎС‚СЂСѓРєС‚СѓСЂРёР·Р°С†РёСЏ РїРѕ РѕРіР»Р°РІР»РµРЅРёСЋ
-    void delHeader();   // РЈРґР°Р»РµРЅРёРµ С‚РµРєСЃС‚Р° РїРµСЂРµРґ РѕРіР»Р°РІР»РµРЅРёРµРј
-    void delPage();     // РЈРґР°Р»РµРЅРёРµ РЅРѕРјРµСЂРѕРІ СЃС‚СЂР°РЅРёС†
-    void delTop();      // РЈРґР°Р»РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё РїРµСЂРµРґ СЃРѕРґРµСЂР¶Р°РЅРёРµРј
-    void fileLoad(UnicodeString fileName);    // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°
-
-	void new_Exchange(int num, String new1); // Р¤СѓРЅРєС†РёСЏ Р·Р°РјРµРЅС‹ СЃС‚СЂРѕРє РІ РјР°СЃСЃРёРІРµ СЃС‚СЂРѕРє
+    void algArtefact(); // Структуризация про артефактам
+	void algContent();  // Структуризация по оглавлению
+    void delHeader();   // Удаление текста перед оглавлением
+    void delPage();     // Удаление номеров страниц
+    void delTop();      // Удаление информации перед содержанием
+    void fileLoad(UnicodeString fileName);    // Загрузка данных из файла
+    int findInText(AnsiString t);
+	void new_Exchange(int num, String new1); // Функция замены строк в массиве строк
 
 	void setText(TStringList *txt);
 	TStringList *getText();
 };
-//---------------------------------------------------------------------------
+
 #endif
+
