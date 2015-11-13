@@ -3,7 +3,12 @@
 #include <vcl.h>
 #pragma hdrstop
 
+#include <string>
+
 #include "FormMain.h"
+
+using namespace std;
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -119,6 +124,47 @@ void TfrmMain::refreshMemo()
 {
     mmText->Clear();
     mmText->Lines->Text = textStruct->getText()->Text;
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmMain::Button1Click(TObject *Sender)
+{
+//    int index = textStruct->getText()->IndexOf(edtFind->Text);
+//    if(index > -1)
+//    {
+//        TListItem *li = lvStruct->Items->Add();
+//        li->Caption = textStruct->getText()->Strings[index];
+//    }
+
+    for(int i=0; i<100; ++i)
+    {
+        char *ch1 = "";
+        ch1 = (char*)(edtFind->Text.c_str());
+        string str = ch1;
+        if(textStruct->getText()->Strings[i] == "")
+            continue;
+        char *ch2 = "";
+        ch2 = (char*)textStruct->getText()->Strings[i].c_str();
+        string str2 = ch2;
+
+        lvStruct->Items->Add()->Caption = str2.c_str();
+
+        char *ch = strstr( const_cast<char*>(str2.c_str()), const_cast<char*>(str.c_str()));
+        if(ch)
+        {
+            TListItem *li = lvStruct->Items->Add();
+            li->Caption = textStruct->getText()->Strings[i];
+            break;
+        }
+    }
+
+//    strint s1 = "называется";
+//    string s2 = "стока называется номер один";
+//
+//    //char *ch1 = (char*)(edtFind->Text.c_str());
+//    char *ch1 = "ergerge";
+//    string str = ch1;
+//
+//    edtFind->Text = str.c_str();
 }
 //---------------------------------------------------------------------------
 

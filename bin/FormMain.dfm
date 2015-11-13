@@ -2,7 +2,7 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = #1057#1090#1088#1091#1082#1090#1091#1088#1080#1088#1086#1074#1072#1085#1080#1077' '#1090#1077#1082#1089#1090#1072
-  ClientHeight = 648
+  ClientHeight = 716
   ClientWidth = 928
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object frmMain: TfrmMain
   object Splitter1: TSplitter
     Left = 255
     Top = 0
-    Height = 613
+    Height = 608
     ExplicitLeft = 296
     ExplicitTop = 216
     ExplicitHeight = 100
@@ -26,50 +26,55 @@ object frmMain: TfrmMain
   object Panel1: TPanel
     AlignWithMargins = True
     Left = 3
-    Top = 616
+    Top = 685
     Width = 922
-    Height = 29
+    Height = 28
     Align = alBottom
     TabOrder = 0
+    ExplicitTop = 613
     object btnMemoText: TButton
       Left = 1
       Top = 1
       Width = 160
-      Height = 27
+      Height = 26
       Align = alLeft
       Caption = #1054#1090#1082#1088#1099#1090#1100' '#1092#1072#1081#1083' '#1076#1083#1103' Memo'
       TabOrder = 0
       OnClick = btnMemoTextClick
+      ExplicitHeight = 920
     end
     object Button2: TButton
       Left = 161
       Top = 1
       Width = 136
-      Height = 27
+      Height = 26
       Align = alLeft
       Caption = #1054#1090#1082#1088#1099#1090#1100' '#1092#1072#1081#1083' '#1076#1083#1103' lv'
       TabOrder = 1
       OnClick = Button2Click
+      ExplicitHeight = 27
     end
     object btnDelTop: TButton
       Left = 297
       Top = 1
       Width = 75
-      Height = 27
+      Height = 26
       Align = alLeft
       Caption = 'delTop'
       TabOrder = 2
       OnClick = btnDelTopClick
+      ExplicitHeight = 27
     end
     object btnFind: TButton
       Left = 372
       Top = 1
       Width = 75
-      Height = 27
+      Height = 26
       Align = alLeft
       Caption = 'btnFind'
       TabOrder = 3
       OnClick = btnFindClick
+      ExplicitHeight = 27
     end
   end
   object mmText: TMemo
@@ -77,20 +82,21 @@ object frmMain: TfrmMain
     Left = 261
     Top = 3
     Width = 664
-    Height = 607
+    Height = 602
     Align = alClient
     Lines.Strings = (
       'mmText')
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 1
+    ExplicitHeight = 607
   end
   object lvStruct: TListView
     AlignWithMargins = True
     Left = 3
     Top = 3
     Width = 249
-    Height = 607
+    Height = 602
     Align = alLeft
     Columns = <
       item
@@ -100,6 +106,32 @@ object frmMain: TfrmMain
     ShowColumnHeaders = False
     TabOrder = 2
     ViewStyle = vsReport
+    ExplicitHeight = 607
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 608
+    Width = 928
+    Height = 74
+    Align = alBottom
+    Caption = 'Panel2'
+    TabOrder = 3
+    object edtFind: TEdit
+      Left = 4
+      Top = 3
+      Width = 121
+      Height = 21
+      TabOrder = 0
+    end
+    object Button1: TButton
+      Left = 144
+      Top = 3
+      Width = 75
+      Height = 21
+      Caption = 'btnFind'
+      TabOrder = 1
+      OnClick = Button1Click
+    end
   end
   object FODForMemo: TFileOpenDialog
     FavoriteLinks = <>

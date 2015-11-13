@@ -46,6 +46,9 @@ __published:	// IDE-managed Components
     TMenuItem *miAbout;
     TMenuItem *miDelPage;
     TMenuItem *N1;
+    TPanel *Panel2;
+    TEdit *edtFind;
+    TButton *Button1;
     void __fastcall btnMemoTextClick(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
     void __fastcall btnDelTopClick(TObject *Sender);
@@ -57,6 +60,7 @@ __published:	// IDE-managed Components
     void __fastcall miDelTopClick(TObject *Sender);
     void __fastcall miDelHeaderClick(TObject *Sender);
     void __fastcall miDelPageClick(TObject *Sender);
+    void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
     TTextStruct* textStruct; // Класс работы с текстом
 
