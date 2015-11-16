@@ -1,19 +1,19 @@
 //---------------------------------------------------------------------------
 
-#ifndef AlgArtefactH
-#define AlgArtefactH
+#ifndef DelHeaderH
+#define DelHeaderH
 
-#include "AlgAbstract.h"
+#include "DelAbstract.h"
 
-class AlgArtefact : public AlgAbstract
+class DelHeader : public DelAbstract
 {
 private:
 
 public:
-    AlgArtefact();
-    ~AlgArtefact();
+    DelHeader();
+    ~DelHeader();
 
-    void AlgStruct(TStringList *sl);
+    void Delete(TStringList *sl);
 };
 //---------------------------------------------------------------------------
 #endif

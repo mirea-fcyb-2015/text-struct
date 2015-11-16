@@ -1,19 +1,16 @@
 //---------------------------------------------------------------------------
 
-#ifndef AlgArtefactH
-#define AlgArtefactH
+#ifndef AlgAbstractH
+#define AlgAbstractH
 
-#include "AlgAbstract.h"
+#include <System.Classes.hpp>
 
-class AlgArtefact : public AlgAbstract
+class AlgAbstract
 {
 private:
 
 public:
-    AlgArtefact();
-    ~AlgArtefact();
-
-    void AlgStruct(TStringList *sl);
+    virtual void AlgStruct(TStringList *sl) = 0;
 };
 //---------------------------------------------------------------------------
 #endif

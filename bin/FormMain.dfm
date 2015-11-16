@@ -31,7 +31,6 @@ object frmMain: TfrmMain
     Height = 28
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 613
     object btnMemoText: TButton
       Left = 1
       Top = 1
@@ -41,7 +40,6 @@ object frmMain: TfrmMain
       Caption = #1054#1090#1082#1088#1099#1090#1100' '#1092#1072#1081#1083' '#1076#1083#1103' Memo'
       TabOrder = 0
       OnClick = btnMemoTextClick
-      ExplicitHeight = 920
     end
     object Button2: TButton
       Left = 161
@@ -52,7 +50,6 @@ object frmMain: TfrmMain
       Caption = #1054#1090#1082#1088#1099#1090#1100' '#1092#1072#1081#1083' '#1076#1083#1103' lv'
       TabOrder = 1
       OnClick = Button2Click
-      ExplicitHeight = 27
     end
     object btnDelTop: TButton
       Left = 297
@@ -63,7 +60,6 @@ object frmMain: TfrmMain
       Caption = 'delTop'
       TabOrder = 2
       OnClick = btnDelTopClick
-      ExplicitHeight = 27
     end
     object btnFind: TButton
       Left = 372
@@ -74,7 +70,6 @@ object frmMain: TfrmMain
       Caption = 'btnFind'
       TabOrder = 3
       OnClick = btnFindClick
-      ExplicitHeight = 27
     end
   end
   object mmText: TMemo
@@ -89,7 +84,6 @@ object frmMain: TfrmMain
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 1
-    ExplicitHeight = 607
   end
   object lvStruct: TListView
     AlignWithMargins = True
@@ -106,7 +100,6 @@ object frmMain: TfrmMain
     ShowColumnHeaders = False
     TabOrder = 2
     ViewStyle = vsReport
-    ExplicitHeight = 607
   end
   object Panel2: TPanel
     Left = 0
@@ -122,6 +115,7 @@ object frmMain: TfrmMain
       Width = 121
       Height = 21
       TabOrder = 0
+      OnKeyDown = edtFindKeyDown
     end
     object Button1: TButton
       Left = 144
@@ -131,6 +125,15 @@ object frmMain: TfrmMain
       Caption = 'btnFind'
       TabOrder = 1
       OnClick = Button1Click
+    end
+    object btnClearLv: TButton
+      Left = 225
+      Top = 3
+      Width = 75
+      Height = 21
+      Caption = 'btnClearLv'
+      TabOrder = 2
+      OnClick = btnClearLvClick
     end
   end
   object FODForMemo: TFileOpenDialog

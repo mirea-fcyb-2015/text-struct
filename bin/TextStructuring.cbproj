@@ -105,6 +105,14 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="DelHeader.cpp">
+            <DependentOn>DelHeader.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="DelTop.cpp">
+            <DependentOn>DelTop.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
         <CppCompile Include="FormMain.cpp">
             <Form>frmMain</Form>
             <FormType>dfm</FormType>
@@ -123,6 +131,10 @@
         <CppCompile Include="..\src\StructEngine.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\units\AlgAbstract.cpp">
+            <DependentOn>..\units\AlgAbstract.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\units\AlgArtefact.cpp">
             <DependentOn>..\units\AlgArtefact.h</DependentOn>
             <BuildOrder>7</BuildOrder>
@@ -131,9 +143,13 @@
             <DependentOn>..\units\AlgContent.h</DependentOn>
             <BuildOrder>6</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\units\Algorithm.cpp">
-            <DependentOn>..\units\Algorithm.h</DependentOn>
-            <BuildOrder>5</BuildOrder>
+        <CppCompile Include="..\units\DelAbstract.cpp">
+            <DependentOn>..\units\DelAbstract.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\units\DelPage.cpp">
+            <DependentOn>..\units\DelPage.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
         </CppCompile>
         <FormResources Include="FormMain.dfm"/>
         <BuildConfiguration Include="Release">

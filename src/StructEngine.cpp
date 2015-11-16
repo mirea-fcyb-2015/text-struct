@@ -3,19 +3,25 @@
 #pragma hdrstop
 
 #include "StructEngine.h"
-#include "Algorithm.h"
+#include "AlgAbstract.h"
 #include "AlgArtefact.h"
 #include "AlgContent.h"
+#include "DelAbstract.h"
+#include "DelHeader.h"
+#include "DelPage.h"
+#include "DelTop.h"
 
 TTextStruct::TTextStruct()
 {
     text = NULL;
     alg  = NULL;
+    del  = NULL;
 }
 TTextStruct::~TTextStruct()
 {
     delete text;
     delete alg;
+    delete del;
 }
 void TTextStruct::setText(TStringList *txt)
 {
@@ -27,11 +33,10 @@ TStringList* TTextStruct::getText()
 }
 void TTextStruct::delTop()
 {
-    /// пока удаляем только первые 10 строк
-    for(int i = 0; i < 10; ++i)
-    {
-        text->Delete(0);
-    }
+    if(!del)
+        delete del;
+    del = new DelTop();
+    del->Delete(text);
 }
 void TTextStruct::algArtefact()
 {
@@ -54,22 +59,21 @@ void TTextStruct::fileLoad(UnicodeString fileName)
     text = new TStringList();
     text->LoadFromFile(fileName);
 }
-// Функция замены строк в массиве строк
-void TTextStruct::new_Exchange(int num, String new1)
-{
-    text->Add(new1);          //добавление строки в конец массива строк
-    int num1 = text->Count;   //получение количества строк
-    --num1;                        //установка номера последней строки (нумерация с 0)
-    text->Exchange(num,num1); //замена строк - последняя становится выделенной, выделенная - последней
-    text->Delete(num1);       //удаление последней строки
-}
 void TTextStruct::delHeader()
 {
     // Удаление колонтитулов
+    if(!del)
+        delete del;
+    del = new DelHeader();
+    del->Delete(text);
 }
 void TTextStruct::delPage()
 {
     // Удаление номеров страниц
+    if(!del)
+        delete del;
+    del = new DelPage();
+    del->Delete(text);
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

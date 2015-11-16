@@ -128,43 +128,36 @@ void TfrmMain::refreshMemo()
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::Button1Click(TObject *Sender)
 {
-//    int index = textStruct->getText()->IndexOf(edtFind->Text);
-//    if(index > -1)
-//    {
-//        TListItem *li = lvStruct->Items->Add();
-//        li->Caption = textStruct->getText()->Strings[index];
-//    }
-
-    for(int i=0; i<100; ++i)
+    // поиск строки в тексте
+    if(edtFind->Text != "")
     {
-        char *ch1 = "";
-        ch1 = (char*)(edtFind->Text.c_str());
-        string str = ch1;
-        if(textStruct->getText()->Strings[i] == "")
-            continue;
-        char *ch2 = "";
-        ch2 = (char*)textStruct->getText()->Strings[i].c_str();
-        string str2 = ch2;
+        string str = (AnsiString(edtFind->Text)).c_str();
+        string::size_type size;
 
-        lvStruct->Items->Add()->Caption = str2.c_str();
-
-        char *ch = strstr( const_cast<char*>(str2.c_str()), const_cast<char*>(str.c_str()));
-        if(ch)
+        for(int i=0; i<100; ++i)
         {
-            TListItem *li = lvStruct->Items->Add();
-            li->Caption = textStruct->getText()->Strings[i];
-            break;
+            string str2 = (AnsiString(textStruct->getText()->Strings[i])).c_str();
+            size = str2.find(str);
+
+            if (size != string::npos)
+            {
+                TListItem *li = lvStruct->Items->Add();
+                li->Caption = textStruct->getText()->Strings[i];
+            }
         }
     }
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmMain::btnClearLvClick(TObject *Sender)
+{
+    lvStruct->Clear();
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmMain::edtFindKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 
-//    strint s1 = "называется";
-//    string s2 = "стока называется номер один";
-//
-//    //char *ch1 = (char*)(edtFind->Text.c_str());
-//    char *ch1 = "ergerge";
-//    string str = ch1;
-//
-//    edtFind->Text = str.c_str();
+{
+    if(Key == VK_RETURN)
+        Button1Click(Sender);
 }
 //---------------------------------------------------------------------------
 

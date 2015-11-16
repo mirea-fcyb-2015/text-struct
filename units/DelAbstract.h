@@ -1,16 +1,16 @@
 //---------------------------------------------------------------------------
 
-#ifndef AlgorithmH
-#define AlgorithmH
+#ifndef DelAbstractH
+#define DelAbstractH
 
 #include <System.Classes.hpp>
 
-class AlgAbstract
+class DelAbstract
 {
 private:
 
 public:
-    virtual void AlgStruct(TStringList *sl) = 0;
+    virtual void Delete(TStringList *sl) = 0;
 };
 //---------------------------------------------------------------------------
 #endif

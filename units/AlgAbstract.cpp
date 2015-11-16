@@ -2,7 +2,7 @@
 
 #pragma hdrstop
 
-#include "Algorithm.h"
+#include "AlgAbstract.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

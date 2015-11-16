@@ -49,6 +49,7 @@ __published:	// IDE-managed Components
     TPanel *Panel2;
     TEdit *edtFind;
     TButton *Button1;
+    TButton *btnClearLv;
     void __fastcall btnMemoTextClick(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
     void __fastcall btnDelTopClick(TObject *Sender);
@@ -61,6 +62,9 @@ __published:	// IDE-managed Components
     void __fastcall miDelHeaderClick(TObject *Sender);
     void __fastcall miDelPageClick(TObject *Sender);
     void __fastcall Button1Click(TObject *Sender);
+    void __fastcall btnClearLvClick(TObject *Sender);
+    void __fastcall edtFindKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 private:	// User declarations
     TTextStruct* textStruct; // Класс работы с текстом
 
