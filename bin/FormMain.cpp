@@ -1,4 +1,20 @@
-﻿//---------------------------------------------------------------------------
+﻿/*______________________________ FormMain.cpp ________________________________ */
+/**
+    \file       FormMain.cpp
+    \brief      Реализация класса, отвечающего за главную форму
+    \author     Шепшелевич П.И. , Березин А.
+    \version    1.0
+    \date       16.10.2015
+    \note
+    \remarks
+    \par        История создания:
+    \code
+        16/10/2015 - 1.0 - Создание пустой формы
+
+    \endcode
+
+*/
+//---------------------------------------------------------------------------
 
 #include <vcl.h>
 #pragma hdrstop
@@ -154,7 +170,6 @@ void __fastcall TfrmMain::btnClearLvClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::edtFindKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-
 {
     if(Key == VK_RETURN)
         Button1Click(Sender);

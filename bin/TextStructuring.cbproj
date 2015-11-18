@@ -105,14 +105,6 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="DelHeader.cpp">
-            <DependentOn>DelHeader.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="DelTop.cpp">
-            <DependentOn>DelTop.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
         <CppCompile Include="FormMain.cpp">
             <Form>frmMain</Form>
             <FormType>dfm</FormType>
@@ -147,9 +139,17 @@
             <DependentOn>..\units\DelAbstract.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\units\DelHeader.cpp">
+            <DependentOn>..\units\DelHeader.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\units\DelPage.cpp">
             <DependentOn>..\units\DelPage.h</DependentOn>
             <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\units\DelTop.cpp">
+            <DependentOn>..\units\DelTop.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
         </CppCompile>
         <FormResources Include="FormMain.dfm"/>
         <BuildConfiguration Include="Release">

@@ -1,7 +1,7 @@
-﻿/*______________________________ DelPage.h ________________________________ */
+﻿/*______________________________ DelHeader.h ________________________________ */
 /**
-    \file       DelPage.h
-    \brief      Класс удаления номеров страниц в тексте
+    \file       DelHeader.h
+    \brief      Класс удаления колонтитулов в тексте
     \author     Шепшелевич П.И. , Березин А.Е.
     \version    1.0
     \date       18.11.2015
@@ -14,18 +14,18 @@
 */
 //---------------------------------------------------------------------------
 
-#ifndef DelPageH
-#define DelPageH
+#ifndef DelHeaderH
+#define DelHeaderH
 
 #include "DelAbstract.h"
 
-class DelPage : public DelAbstract
+class DelHeader : public DelAbstract
 {
 private:
 
 public:
-    DelPage();
-    ~DelPage();
+    DelHeader();
+    ~DelHeader();
 
     void Delete(TStringList *sl);
 };
