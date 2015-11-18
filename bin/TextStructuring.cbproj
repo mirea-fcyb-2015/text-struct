@@ -151,6 +151,10 @@
             <DependentOn>..\units\DelTop.h</DependentOn>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\units\FindContent.cpp">
+            <DependentOn>..\units\FindContent.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
         <FormResources Include="FormMain.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

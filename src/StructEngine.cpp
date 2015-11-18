@@ -13,45 +13,55 @@
     \endcode
 */
 //---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "StructEngine.h"
 #include "AlgAbstract.h"
 #include "AlgArtefact.h"
 #include "AlgContent.h"
+#include "FindContent.h"
 #include "DelAbstract.h"
 #include "DelHeader.h"
 #include "DelPage.h"
 #include "DelTop.h"
 
+/**
+    Конструктор
+*/
 TTextStruct::TTextStruct()
 {
     text = NULL;
     alg  = NULL;
     del  = NULL;
+    findCont = NULL;
 }
+/**
+    Деструктор
+*/
 TTextStruct::~TTextStruct()
 {
     delete text;
     delete alg;
     delete del;
+    delete findCont;
 }
+/**
+    Set-функция присвоения текста
+*/
 void TTextStruct::setText(TStringList *txt)
 {
     text = txt;
 }
+/**
+    Get-функция получения указателя на текст
+*/
 TStringList* TTextStruct::getText()
 {
     return text;
 }
-void TTextStruct::delTop()
-{
-    if(!del)
-        delete del;
-    del = new DelTop();
-    del->Delete(text);
-}
+/**
+    Структуризация текста по артефатам
+*/
 void TTextStruct::algArtefact()
 {
     if(!alg)
@@ -59,6 +69,9 @@ void TTextStruct::algArtefact()
     alg = new AlgArtefact();
     alg->AlgStruct(text);
 }
+/**
+    Структуризация текста по содержанию
+*/
 void TTextStruct::algContent()
 {
     if(!alg)
@@ -66,13 +79,9 @@ void TTextStruct::algContent()
     alg = new AlgContent();
     alg->AlgStruct(text);
 }
-void TTextStruct::fileLoad(UnicodeString fileName)
-{
-    if(text)
-        delete text;
-    text = new TStringList();
-    text->LoadFromFile(fileName);
-}
+/**
+    Удаление колонтитулов в тексте
+*/
 void TTextStruct::delHeader()
 {
     // Удаление колонтитулов
@@ -81,6 +90,9 @@ void TTextStruct::delHeader()
     del = new DelHeader();
     del->Delete(text);
 }
+/**
+    Удаление номеров страниц в тексте
+*/
 void TTextStruct::delPage()
 {
     // Удаление номеров страниц
@@ -88,6 +100,36 @@ void TTextStruct::delPage()
         delete del;
     del = new DelPage();
     del->Delete(text);
+}
+/**
+    Удаление текста перед содержанием в тексте
+*/
+void TTextStruct::delTop()
+{
+    if(!del)
+        delete del;
+    del = new DelTop();
+    del->Delete(text);
+}
+/**
+    Загрузка текста из файла
+*/
+void TTextStruct::fileLoad(UnicodeString fileName)
+{
+    if(text)
+        delete text;
+    text = new TStringList();
+    text->LoadFromFile(fileName);
+}
+/**
+    Поиск и извлечение оглавления
+*/
+void TTextStruct::findContent()
+{
+    if(!findCont)
+        delete findCont;
+    findCont = new FindContent();
+    findCont->findContent(text);
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

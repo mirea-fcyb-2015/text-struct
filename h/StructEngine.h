@@ -21,13 +21,22 @@
 
 class AlgAbstract;
 class DelAbstract;
+class FindContent;
 
+/**
+    Класс работы с текстом
+*/
 class TTextStruct
 {
 private:
-    TStringList *text;
-    AlgAbstract *alg;
-    DelAbstract *del;
+    TStringList *text; // текст
+
+    /// Классы работы с текстом
+    AlgAbstract *alg;       // Алгоритмы структуризации
+    DelAbstract *del;       // Алгоритмы корректирования текста
+    FindContent *findCont;  // Алгоритм поиска и извлечения оглавления
+
+    void new_Exchange(int num, String new1); // Функция замены строк в массиве строк (пригодится для чего-нибудь)
 
 public:
     TTextStruct();      // Конструктор
@@ -40,9 +49,9 @@ public:
     void delPage();     // Удаление номеров страниц
     void delTop();      // Удаление информации перед содержанием
 
-    void fileLoad(UnicodeString fileName);    // Загрузка данных из файла
+    void findContent(); // Поиск и извлечение оглавления
 
-	void new_Exchange(int num, String new1); // Функция замены строк в массиве строк (пригодится для чего-нибудь)
+    void fileLoad(UnicodeString fileName);    // Загрузка данных из файла
 
 	void setText(TStringList *txt);
 	TStringList *getText();
