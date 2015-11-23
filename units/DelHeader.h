@@ -22,12 +22,15 @@
 class DelHeader : public DelAbstract
 {
 private:
+    TStringList *text;
 
 public:
-    DelHeader();
+    DelHeader(TStringList *sl);
     ~DelHeader();
 
-    void Delete(TStringList *sl);
+    void Delete();
+    void delTransfer();
+    void concStrings();
 };
 //---------------------------------------------------------------------------
 #endif

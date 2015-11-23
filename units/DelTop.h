@@ -27,14 +27,14 @@ using namespace std;
 class DelTop : public DelAbstract
 {
 private:
-
+    TStringList *text;
 public:
-    DelTop();
+    DelTop(TStringList *sl);
     ~DelTop();
 
-    void Delete(TStringList *sl);
+    void Delete();
 
-    bool findInText(TStringList *sl, int countStrings, string str);
+    bool findInText(int countStrings, string str);
 };
 //---------------------------------------------------------------------------
 #endif

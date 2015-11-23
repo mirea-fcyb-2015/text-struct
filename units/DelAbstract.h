@@ -26,7 +26,7 @@ class DelAbstract
 private:
 
 public:
-    virtual void Delete(TStringList *sl) = 0;
+    virtual void Delete() = 0;
 };
 //---------------------------------------------------------------------------
 #endif

@@ -71,6 +71,19 @@ object frmMain: TfrmMain
       TabOrder = 3
       OnClick = btnFindClick
     end
+    object btnHeader: TButton
+      Left = 447
+      Top = 1
+      Width = 75
+      Height = 26
+      Align = alLeft
+      Caption = 'btnHeader'
+      TabOrder = 4
+      OnClick = btnHeaderClick
+      ExplicitLeft = 464
+      ExplicitTop = 8
+      ExplicitHeight = 25
+    end
   end
   object mmText: TMemo
     AlignWithMargins = True

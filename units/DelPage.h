@@ -22,12 +22,12 @@
 class DelPage : public DelAbstract
 {
 private:
-
+    TStringList *text;
 public:
-    DelPage();
+    DelPage(TStringList *sl);
     ~DelPage();
 
-    void Delete(TStringList *sl);
+    void Delete();
 };
 //---------------------------------------------------------------------------
 #endif

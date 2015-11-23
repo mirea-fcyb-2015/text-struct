@@ -34,6 +34,8 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     : TForm(Owner)
 {
     textStruct = new TTextStruct();
+    textStruct->fileLoad("C:\\Users\\Mario\\Desktop\\УРПО 2015\\kd\\0803.txt");
+    showTextMemo(textStruct->getText());
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::btnMemoTextClick(TObject *Sender)
@@ -173,6 +175,13 @@ void __fastcall TfrmMain::edtFindKeyDown(TObject *Sender, WORD &Key, TShiftState
 {
     if(Key == VK_RETURN)
         Button1Click(Sender);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::btnHeaderClick(TObject *Sender)
+{
+    textStruct->delHeader();
+    refreshMemo();
 }
 //---------------------------------------------------------------------------
 

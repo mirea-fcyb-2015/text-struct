@@ -18,9 +18,9 @@
 
 #include "DelTop.h"
 //---------------------------------------------------------------------------
-DelTop::DelTop()
+DelTop::DelTop(TStringList *sl)
 {
-
+    text = sl;
 }
 //---------------------------------------------------------------------------
 DelTop::~DelTop()
@@ -28,7 +28,7 @@ DelTop::~DelTop()
 
 }
 //---------------------------------------------------------------------------
-void DelTop::Delete(TStringList *sl)
+void DelTop::Delete()
 {
     // алгоритм удаления текста перед оглавлением
     vector<string> vStr;
@@ -39,22 +39,23 @@ void DelTop::Delete(TStringList *sl)
 
     for( int i=0; i < vStr.size(); ++i )
     {
-        if(findInText(sl, 300, vStr[i]))
+        if(findInText(300, vStr[i]))
             break;
     }
 }
 //---------------------------------------------------------------------------
-bool DelTop::findInText(TStringList *sl, int countStrings, string str)
+bool DelTop::findInText(int countStrings, string str)
 {
     for(int i=0; i < countStrings; ++i)
     {
-        string str2 = (AnsiString(sl->Strings[i])).c_str();
+        string str2 = (AnsiString(text->Strings[i])).c_str();
         string::size_type size = str2.find(str);
 
+        // удаление строк до строки с артефактом
         if (size != std::string::npos)
         {
             for(int j=0; j < i; ++j)
-                sl->Delete(0);
+                text->Delete(0);
             return true;
         }
     }

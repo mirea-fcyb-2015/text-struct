@@ -87,8 +87,8 @@ void TTextStruct::delHeader()
     // Удаление колонтитулов
     if(!del)
         delete del;
-    del = new DelHeader();
-    del->Delete(text);
+    del = new DelHeader(text);
+    del->Delete();
 }
 /**
     Удаление номеров страниц в тексте
@@ -98,8 +98,8 @@ void TTextStruct::delPage()
     // Удаление номеров страниц
     if(!del)
         delete del;
-    del = new DelPage();
-    del->Delete(text);
+    del = new DelPage(text);
+    del->Delete();
 }
 /**
     Удаление текста перед содержанием в тексте
@@ -108,8 +108,8 @@ void TTextStruct::delTop()
 {
     if(!del)
         delete del;
-    del = new DelTop();
-    del->Delete(text);
+    del = new DelTop(text);
+    del->Delete();
 }
 /**
     Загрузка текста из файла
