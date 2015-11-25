@@ -67,7 +67,7 @@ void DelHeader::concStrings()
     for(int i=0; i < text->Count - 1; ++i)
     {
         ++count;
-        if(count == 405)
+        if(count == 5)
             int f = 0;
 
         std::string str = (AnsiString(text->Strings[i])).c_str();
@@ -77,16 +77,11 @@ void DelHeader::concStrings()
         if(str[size - 1] != '.')
         {
             std::string str2 = (AnsiString(text->Strings[i+1])).c_str();
-            bool b1 = ((str2[0] >= 'а') && (str2[0] <= 'я'));
-            bool b2 = (str2[0] == ' ');
-            bool b3 = (str2[0] ==  '(');
-            bool b4 = (str2[0] ==  ')');
-            bool b5 = (str[size - 1] == ',');
-            bool b6 = ( (str[size - 2] == ',') && (str[size - 1] == ' '));
+            bool b1 = conditionConcStrings(str2[0]);
+            bool b2 = (str[size - 1] == ',');
+            bool b3 = ( (str[size - 2] == ',') && (str[size - 1] == ' '));
 
-//            if( ((str2[0] >= 'а') && (str2[0] <= 'я')) ||
-//                (str2[0] = ' ')   || (str2[0] =  '(')  || (str2[0] =  ')') )
-            if(b1 || b2 || b3 || b4 || b5 || b6)
+            if(b1 || b2 || b3)
             {
                 str.insert(size-1, " "); // вставка символа
                 str += str2;
@@ -98,6 +93,24 @@ void DelHeader::concStrings()
 
     }
     int k = 6;
+}
+//---------------------------------------------------------------------------
+// Условия склеивания строк
+//---------------------------------------------------------------------------
+bool DelHeader::conditionConcStrings(char ch)
+{
+    if(ch >= 'а' && ch <= 'я')
+        return true;
+    switch(ch)
+    {
+        case ' ':
+        case '(':
+        case ')':
+            return true;
+        default:
+            break;
+    }
+    return false;
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

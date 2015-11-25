@@ -142,6 +142,7 @@ void TfrmMain::refreshMemo()
 {
     mmText->Clear();
     mmText->Lines->Text = textStruct->getText()->Text;
+    stAllStrings->Caption = mmText->Lines->Count;
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::Button1Click(TObject *Sender)
@@ -182,6 +183,20 @@ void __fastcall TfrmMain::btnHeaderClick(TObject *Sender)
 {
     textStruct->delHeader();
     refreshMemo();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::btnPageClick(TObject *Sender)
+{
+    textStruct->delPage();
+    refreshMemo();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::mmTextMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y)
+{
+    stNumLine->Caption = mmText->CaretPos.y;
 }
 //---------------------------------------------------------------------------
 

@@ -27,7 +27,9 @@ public:
     DelPage(TStringList *sl);
     ~DelPage();
 
-    void Delete();
+    void Delete();  // Удаление номеров страниц
+    void delNum();  // Алгоритм удаления
+    bool conditionDelPage(char ch); // Условия определения номера страницы
 };
 //---------------------------------------------------------------------------
 #endif

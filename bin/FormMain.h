@@ -67,6 +67,11 @@ __published:	// IDE-managed Components
     TButton *Button1;
     TButton *btnClearLv;
     TButton *btnHeader;
+    TButton *btnPage;
+    TStaticText *stNumLine;
+    TLabel *Label1;
+    TStaticText *stAllStrings;
+    TLabel *Label2;
     void __fastcall btnMemoTextClick(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
     void __fastcall btnDelTopClick(TObject *Sender);
@@ -82,6 +87,9 @@ __published:	// IDE-managed Components
     void __fastcall btnClearLvClick(TObject *Sender);
     void __fastcall edtFindKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall btnHeaderClick(TObject *Sender);
+    void __fastcall btnPageClick(TObject *Sender);
+    void __fastcall mmTextMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
 
 private:	// User declarations
     TTextStruct* textStruct; // Класс работы с текстом

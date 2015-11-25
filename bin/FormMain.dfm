@@ -80,7 +80,17 @@ object frmMain: TfrmMain
       Caption = 'btnHeader'
       TabOrder = 4
       OnClick = btnHeaderClick
-      ExplicitLeft = 464
+    end
+    object btnPage: TButton
+      Left = 522
+      Top = 1
+      Width = 75
+      Height = 26
+      Align = alLeft
+      Caption = 'btnPage'
+      TabOrder = 5
+      OnClick = btnPageClick
+      ExplicitLeft = 600
       ExplicitTop = 8
       ExplicitHeight = 25
     end
@@ -97,6 +107,7 @@ object frmMain: TfrmMain
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 1
+    OnMouseDown = mmTextMouseDown
   end
   object lvStruct: TListView
     AlignWithMargins = True
@@ -122,6 +133,20 @@ object frmMain: TfrmMain
     Align = alBottom
     Caption = 'Panel2'
     TabOrder = 3
+    object Label1: TLabel
+      Left = 720
+      Top = 3
+      Width = 117
+      Height = 13
+      Caption = #1053#1086#1084#1077#1088' '#1090#1077#1082#1091#1097#1077#1081' '#1089#1090#1088#1086#1082#1080
+    end
+    object Label2: TLabel
+      Left = 720
+      Top = 26
+      Width = 117
+      Height = 13
+      Caption = #1053#1086#1084#1077#1088' '#1090#1077#1082#1091#1097#1077#1081' '#1089#1090#1088#1086#1082#1080
+    end
     object edtFind: TEdit
       Left = 4
       Top = 3
@@ -147,6 +172,28 @@ object frmMain: TfrmMain
       Caption = 'btnClearLv'
       TabOrder = 2
       OnClick = btnClearLvClick
+    end
+    object stNumLine: TStaticText
+      Left = 856
+      Top = 3
+      Width = 50
+      Height = 17
+      Alignment = taCenter
+      AutoSize = False
+      BevelKind = bkSoft
+      Caption = '0'
+      TabOrder = 3
+    end
+    object stAllStrings: TStaticText
+      Left = 856
+      Top = 26
+      Width = 50
+      Height = 17
+      Alignment = taCenter
+      AutoSize = False
+      BevelKind = bkSoft
+      Caption = '0'
+      TabOrder = 4
     end
   end
   object FODForMemo: TFileOpenDialog

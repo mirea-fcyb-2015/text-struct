@@ -28,9 +28,10 @@ public:
     DelHeader(TStringList *sl);
     ~DelHeader();
 
-    void Delete();
-    void delTransfer();
-    void concStrings();
+    void Delete(); // Удаление колонтитулов
+    void delTransfer(); // Склеивание строк при переносе с помощью дефиса
+    void concStrings(); // Склеивание строк
+    bool conditionConcStrings(char ch); // Условия склеивания строк
 };
 //---------------------------------------------------------------------------
 #endif
