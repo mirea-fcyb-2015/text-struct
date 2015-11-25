@@ -147,7 +147,7 @@ void TfrmMain::refreshMemo()
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::Button1Click(TObject *Sender)
 {
-    // поиск строки в тексте
+    // поиск строки в  тексте
     if(edtFind->Text != "")
     {
         string str = (AnsiString(edtFind->Text)).c_str();
