@@ -2,7 +2,9 @@
 #ifndef AlgArtefactH
 #define AlgArtefactH
 
-#include "Algorithm.h"
+#include "AlgAbstract.h"
+#include <vector>
+using namespace std;
 
 class AlgArtefact : public AlgAbstract
 {
@@ -13,6 +15,9 @@ public:
     ~AlgArtefact();
 
     void AlgStruct(TStringList *sl);
+    void setMap( std::map<int,AnsiString> *pM);
+    AnsiString DelAllArtefactFromStr(AnsiString str);
+    void ViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
 };
 
 

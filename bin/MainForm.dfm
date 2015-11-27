@@ -2,8 +2,8 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'frmMain'
-  ClientHeight = 716
-  ClientWidth = 932
+  ClientHeight = 713
+  ClientWidth = 933
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object frmMain: TfrmMain
   object ToolBar: TToolBar
     Left = 0
     Top = 0
-    Width = 932
+    Width = 933
     Height = 65
     ButtonHeight = 64
     ButtonWidth = 64
@@ -68,23 +68,29 @@ object frmMain: TfrmMain
     end
   end
   object Panel1: TPanel
-    Left = 0
-    Top = 64
-    Width = 932
-    Height = 649
+    AlignWithMargins = True
+    Left = 3
+    Top = 68
+    Width = 927
+    Height = 642
+    Align = alClient
+    AutoSize = True
     TabOrder = 1
     object TreeView: TTreeView
-      Left = 10
-      Top = 7
-      Width = 239
-      Height = 634
+      Left = 13
+      Top = 3
+      Width = 300
+      Height = 638
       Indent = 19
+      ParentShowHint = False
+      ShowHint = False
       TabOrder = 0
+      OnMouseDown = TreeViewMouseDown
     end
     object mmText: TMemo
-      Left = 247
-      Top = 7
-      Width = 666
+      Left = 319
+      Top = 3
+      Width = 602
       Height = 634
       ReadOnly = True
       ScrollBars = ssVertical
@@ -114,7 +120,7 @@ object frmMain: TfrmMain
     Left = 840
     Top = 8
     Bitmap = {
-      494C0101020038005C0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102003800740020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

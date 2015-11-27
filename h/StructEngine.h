@@ -1,46 +1,67 @@
-/*______________________________ StructEngine.h ________________________________ */
+﻿/*______________________________ StructEngine.h ________________________________ */
 /**
     \file       StructEngine.h
-    \brief      ????? ??? ?????? ? ???????
-    \author     ?????????? ?. , ???????? ?. , ??????? ?.
+    \brief      Основной класс программы для работы с текстом
+    \author     Шепшелевич П.И. , Березин А.Е.
     \version    1.0
-    \date       22.10.2015
+    \date       18.11.2015
+    \note
     \remarks
-    \par        ??????? ????????:
+    \par
     \code
-        22/10/2015 ? 1.0 ? ???????? ?????
-        29/10/2015 - 1.1 - ??????? ?????? addString ? clearVector
+        18/11/2015 – 1.0 – создание класса.
     \endcode
-
 */
-#ifndef StructEngine_H
-#define StructEngine_H
+//---------------------------------------------------------------------------
+
+#ifndef StructEngineH
+#define StructEngineH
 
 #include <Classes.hpp>
-#include <iostream>
+#include <map>
+#include <vector>
 using namespace std;
 
 class AlgAbstract;
-
+class DelAbstract;
+class FindContent;
+/**
+    Класс работы с текстом
+*/
 class TTextStruct
 {
 private:
-    TStringList* text;
-    AlgAbstract *alg;
+    TStringList *text; // текст
+    std::map<int,AnsiString> tree;
+    /// Классы работы с текстом
+    AlgAbstract *alg;       // Алгоритмы структуризации
+    DelAbstract *del;       // Алгоритмы корректирования текста
+    FindContent *findCont;  // Алгоритм поиска и извлечения оглавления
+
+    void new_Exchange(int num, String new1); // Функция замены строк в массиве строк (пригодится для чего-нибудь)
+
 public:
-    TTextStruct();      // ???????????
-    ~TTextStruct();     // ??????????
+    TTextStruct();      // Конструктор
+    ~TTextStruct();     // Деструктор
 
-    void algArtefact(); // ?????????????? ??? ??????????
-	void algContent();  // ?????????????? ?? ??????????
-    void delHeader();   // ???????? ?????? ????? ???????????
-    void delPage();     // ???????? ??????? ???????
-    void fileLoad(UnicodeString fileName);    // ???????? ?????? ?? ?????
-	void new_Exchange(int num, String new1); // ??????? ?????? ????? ? ??????? ?????
+    void algArtefact(); // Структуризация про артефактам
+    void algContent();  // Структуризация по оглавлению
 
-	void setText(TStringList *txt);
-	TStringList *getText();
+    void delHeader();   // Удаление текста перед оглавлением
+    void delPage();     // Удаление номеров страниц
+    void delTop();      // Удаление информации перед содержанием
+
+    void findContent(); // Поиск и извлечение оглавления
+
+    void fileLoad(UnicodeString fileName);    // Загрузка данных из файла
+
+    void setText(TStringList *txt);
+    std::map<int,AnsiString> *getMap(){return &tree; }
+    AnsiString getDelAllArtefactFromStr(AnsiString str);
+    TStringList *getText();
+    void callViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
 };
 
 #endif
+
 

@@ -58,6 +58,8 @@ __published:	// IDE-managed Components
     TToolButton *btnFind;
     void __fastcall FileOpenClick(TObject *Sender);
     void __fastcall btnDelTopClick(TObject *Sender);
+    void __fastcall TreeViewMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
 
 private:	// User declarations
     AnsiString str;
@@ -65,6 +67,7 @@ private:	// User declarations
     void showTextMemo(TStringList *sl); // отобразить текст в Memo
     void setCountRowListView1();
     void refreshMemo();
+    void InputTree();
 
 
 public:		// User declarations

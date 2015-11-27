@@ -28,13 +28,21 @@ TfrmMain *frmMain;
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     : TForm(Owner)
 {
+
     OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";   // Чтобы мог открыть только файлы с расширением txt
     textStruct = new TTextStruct();
+
+//    TreeView->Items->AddChild(line,"узел_1.1");
+//    TreeView->Items->AddChild(line,"узел_1.2");
+//    TreeView->Items->AddChild(line,"узел_1.3");
+//    TreeView->FullExpand();
+
 }
 
  __fastcall TfrmMain::~TfrmMain()
 {
    delete textStruct; // Освобождаем память
+
 }
 
 
@@ -54,15 +62,22 @@ void TfrmMain::showTextMemo(TStringList *sl)
 {
     mmText->Clear();
     mmText->Lines->Text = sl->Text;
-//    for(int i = 0;i < sl->Count - 1;i++)
-//    cout << sl->Strings[i].c_str();
-    cout << "gg";
 }
 
 void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
     textStruct->algContent();
+    InputTree();
+
     refreshMemo();
+}
+void TfrmMain::InputTree()
+{
+    std::map<int,AnsiString> *p = textStruct->getMap();
+    for (std::map<int,AnsiString>::iterator it = p->begin(); it != p->end(); ++it)
+    {
+        TreeView->Items->Add(NULL,it->second.c_str());
+    }
 }
 
 void TfrmMain::refreshMemo()
@@ -72,4 +87,23 @@ void TfrmMain::refreshMemo()
 }
 
 
+
+
+void __fastcall TfrmMain::TreeViewMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+    mmText->Clear();
+    TStringList *l = new TStringList();
+    if(TreeView->GetNodeAt(X, Y) == NULL)
+    return;
+    TreeView->Selected = TreeView->GetNodeAt(X, Y);
+    TTreeNode *tmp_node = TreeView->Selected;
+    //ViewSubstance(textStruct->getText(),str,&v);
+    textStruct->callViewSubstance(textStruct->getText(),tmp_node->Text,l);
+    mmText->Lines->Text = l->Text;
+    delete l;
+
+
+}
+//---------------------------------------------------------------------------
 
