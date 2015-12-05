@@ -31,29 +31,21 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 
     OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";   // Чтобы мог открыть только файлы с расширением txt
     textStruct = new TTextStruct();
-
-//    TreeView->Items->AddChild(line,"узел_1.1");
-//    TreeView->Items->AddChild(line,"узел_1.2");
-//    TreeView->Items->AddChild(line,"узел_1.3");
-//    TreeView->FullExpand();
-
 }
+
 
  __fastcall TfrmMain::~TfrmMain()
 {
    delete textStruct; // Освобождаем память
-
 }
-
-
 
 void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
 {
 
     if(OpenTextFileDialog1->Execute())
     {
-        textStruct->fileLoad(OpenTextFileDialog1->FileName); // Открываем файл
-        showTextMemo(textStruct->getText()); // Вывод текста в Memo
+        textStruct->fileLoad(OpenTextFileDialog1->FileName);    // Открываем файл
+        showTextMemo(textStruct->getText());                    // Вывод текста в Memo
     }
 
 }
@@ -71,6 +63,7 @@ void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 
     refreshMemo();
 }
+
 void TfrmMain::InputTree()
 {
     std::map<int,AnsiString> *p = textStruct->getMap();
@@ -86,22 +79,17 @@ void TfrmMain::refreshMemo()
     mmText->Lines->Text = textStruct->getText()->Text;
 }
 
-
-
-
 void __fastcall TfrmMain::TreeViewMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y)
 {
-    mmText->Clear();
-    TStringList *l = new TStringList();
-    if(TreeView->GetNodeAt(X, Y) == NULL)
-    return;
-    TreeView->Selected = TreeView->GetNodeAt(X, Y);
-    TTreeNode *tmp_node = TreeView->Selected;
-    //ViewSubstance(textStruct->getText(),str,&v);
-    textStruct->callViewSubstance(textStruct->getText(),tmp_node->Text,l);
-    mmText->Lines->Text = l->Text;
-    delete l;
+    mmText->Clear();                                                        // Очищаем мемо
+    TStringList *l = new TStringList();                                     // Создаем новый StringList для отображения куска главы
+    if(TreeView->GetNodeAt(X, Y) == NULL) return;
+    TreeView->Selected = TreeView->GetNodeAt(X, Y);                         // Получаем выбранную строку в списке treeview
+    TTreeNode *tmp_node = TreeView->Selected;                               // Создаем новый указатель на выделенную строку;
+    textStruct->callViewSubstance(textStruct->getText(),tmp_node->Text,l);  // Вызываем функцию вывода содержимого по указанной главе
+    mmText->Lines->Text = l->Text;                                          // Выводит в мемо StringList l
+    delete l;                                                               // Освобождаем память
 
 
 }

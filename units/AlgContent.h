@@ -22,39 +22,39 @@
 #include <string>
 #include <wctype.h>
 #include <locale.h>
+#include <vector>
 
 
 using namespace std;
 
-struct Substance
-{
-    int num;
-    AnsiString strChapter;
-    AnsiString strSubstance;
-};
-
+//
+// Класс для работы с структурированием по оглавлению
+//
 class AlgContent : public AlgAbstract
 {
 private:
-    Substance *p;
     map<int,AnsiString> *myMap;
-	int rating;
 public:
 
     AlgContent();
     ~AlgContent();
 
-    void delTop(TStringList *sl);								//Функция удаления всех строк перед оглавлением
-    void AlgStruct(TStringList *sl);  	                        // Функция структурирования текстаAlgStruct
-    void AlgChapter(TStringList *sl);                           // Функция вывода оглавления текста
-    void AlgSubstance(TStringList *sl);                         // Фукция определения содержания к выбранной главе
-    int findInStrI(TStringList *sl,AnsiString str);  			// Функция поиска строки = значению str; Возвращает номер строки
-    bool findInStrB(TStringList *sl,AnsiString str);            // Функция поиска строки = значению str; Возвращает да,если нашел совпадение,нет,если нету
-    int findSubStrI(TStringList *sl,AnsiString str);
+    void delTop(TStringList *sl);								        // Функция удаления всех строк перед оглавлением
+    void AlgStruct(TStringList *sl);  	                                // Функция структурирования текстаAlgStruct
+    void AlgChapter(TStringList *sl,int begin,int end);                 // Функция вывода оглавления текста
+    void AlgSubstance(TStringList *sl);                                 // Фукция определения содержания к выбранной главе
+    int findInStrI(TStringList *sl,AnsiString str);  			        // Функция поиска строки = значению str; Возвращает номер строки
+    bool findInStrB(TStringList *sl,AnsiString str);                    // Функция поиска строки = значению str; Возвращает да,если нашел совпадение,нет,если нету
+    int findSubStrI(TStringList *sl,AnsiString str);                    //
     bool FindPoint(AnsiString str);
     int FindNumPage(AnsiString str);
+    bool FindNumPageB(AnsiString str);
     void setMap(map<int,AnsiString> *pM);
     void ViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
+    int UpdateChapter(TStringList *sl,int begin,int end);
+
+    int FindBegin(TStringList *sl);
+    int FindEnd(TStringList *sl,int begin);
 
     AnsiString DelFromStr(AnsiString str);
     AnsiString DelAllArtefactFromStr(AnsiString str);
