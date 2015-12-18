@@ -19,7 +19,6 @@
 
 #include "MainForm.h"
 
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -28,6 +27,8 @@ TfrmMain *frmMain;
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     : TForm(Owner)
 {
+    UIProxy = new TUIProxy(frmMain,frmMain);
+
 
     OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";   // Чтобы мог открыть только файлы с расширением txt
     textStruct = new TTextStruct();
@@ -37,6 +38,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
  __fastcall TfrmMain::~TfrmMain()
 {
    delete textStruct; // Освобождаем память
+   delete UIProxy;
 }
 
 void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
@@ -58,6 +60,7 @@ void TfrmMain::showTextMemo(TStringList *sl)
 
 void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
+    textStruct->getUIProxy(UIProxy);
     textStruct->algContent();
     InputTree();
 
@@ -66,11 +69,12 @@ void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 
 void TfrmMain::InputTree()
 {
-    std::map<int,AnsiString> *p = textStruct->getMap();
-    for (std::map<int,AnsiString>::iterator it = p->begin(); it != p->end(); ++it)
+    std::multimap<int,Data> *p = textStruct->getMap();
+    for (std::multimap<int,Data>::iterator it = p->begin(); it != p->end(); ++it)
     {
-        TreeView->Items->Add(NULL,it->second.c_str());
+        TreeView->Items->Add(NULL,it->second.Chapter.c_str());
     }
+
 }
 
 void TfrmMain::refreshMemo()

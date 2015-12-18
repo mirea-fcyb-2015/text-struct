@@ -80,6 +80,9 @@
 			<ResFiles Include="TextStruct.res">
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
+			<None Include="..\h\Data.h">
+				<BuildOrder>15</BuildOrder>
+			</None>
 			<None Include="..\h\FOpen.h">
 				<BuildOrder>6</BuildOrder>
 			</None>
@@ -124,6 +127,16 @@
 				<DependentOn>..\units\FindContent.h</DependentOn>
 				<BuildOrder>15</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="..\units\RefreshUnit.cpp">
+				<Form>TRefreshForm</Form>
+				<DependentOn>..\units\RefreshUnit.h</DependentOn>
+				<BuildOrder>17</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="..\units\TUIProxy.cpp">
+				<DependentOn>..\units\TUIProxy.h</DependentOn>
+				<BuildOrder>17</BuildOrder>
+			</CppCompile>
+			<FormResources Include="..\units\RefreshUnit.dfm"/>
 			<FormResources Include="MainForm.dfm"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

@@ -21,8 +21,6 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include "StructEngine.h"
-#include "FOpen.h"
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
 #include <ComCtrls.hpp>
@@ -30,6 +28,10 @@
 #include <Menus.hpp>
 #include <ToolWin.hpp>
 #include <ExtCtrls.hpp>
+//---------------------------------------------------------------------------
+#include "StructEngine.h"
+#include "FOpen.h"
+#include "TUIProxy.h"
 //---------------------------------------------------------------------------
 class TfrmMain : public TForm
 {
@@ -76,6 +78,8 @@ public:		// User declarations
     void OpenFile();
     const char* AnsiToCChar(AnsiString text); //! Convert Ansistring to const char
     AnsiString GetStr(){ return str;}
+
+    TUIProxy *UIProxy;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfrmMain *frmMain;

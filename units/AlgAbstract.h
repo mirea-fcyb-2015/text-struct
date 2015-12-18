@@ -19,6 +19,8 @@
 #ifndef AlgAbstractH
 #define AlgAbstractH
 
+#include "TUIProxy.h"
+#include "Data.h"
 #include <vector>
 #include <Classes.hpp>
 #include <map>
@@ -34,8 +36,9 @@ public:
 
     virtual void ViewSubstance(TStringList *sl,AnsiString str,TStringList *l) = 0;
     virtual void AlgStruct(TStringList *sl) = 0;
-    virtual void setMap( std::map<int,AnsiString> *pM) = 0;
+    virtual void setMap( std::multimap<int,Data> *pM) = 0;
     virtual AnsiString DelAllArtefactFromStr(AnsiString str) = 0;
+    virtual void setTUIProxy(TUIProxy *UIProxy) = 0;
 
 };
 //---------------------------------------------------------------------------

@@ -19,6 +19,7 @@
 
 #pragma hdrstop
 
+
 #include "AlgContent.h"
 #include <Character.hpp>  //static bool __fastcall IsLower(const System::UnicodeString S, int Index)/* overload */;
 #include <iostream>
@@ -28,6 +29,10 @@
 //!
 AlgContent::AlgContent()
 {
+    ChapterBegin = 0;
+    ChapterEnd = 0;
+    lenght = 0;
+    page = 0;
 
 }
 
@@ -36,7 +41,7 @@ AlgContent::AlgContent()
 //!
 AlgContent::~AlgContent()
 {
-
+    
 }
 
 //!
@@ -44,66 +49,95 @@ AlgContent::~AlgContent()
 //!
 void AlgContent::AlgStruct(TStringList *sl)
 {
-    int ChapterBegin = 0,ChapterEnd = 0;
+
     ChapterBegin = FindBegin(sl);               // Начало оглавление
     ChapterEnd = FindEnd(sl,ChapterBegin);      // Конец оглавления
-    ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd);  // Обработка текста(Убираем пустые строки)
-    AlgChapter(sl,ChapterBegin,ChapterEnd);     // Выводим Оглавление
+    ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd);  // Обработка текста(Убираем пустые строки и склеиваем главы)
+    setLenght(ChapterEnd-ChapterBegin);
+    if( getLenght() != NULL )
+    {
+       AlgChapter(sl,ChapterBegin,ChapterEnd);
+    }
+         // Выводим Оглавление
                         // Выводим Содержимое оглавления
 }
 
 //!
 //! Присвоить значение map
 //!
-void AlgContent::setMap(map<int,AnsiString> *pM)
+void AlgContent::setMap(std::multimap<int,Data> *pM)
 {
-    myMap = pM;
+    Content = pM;
 }
 
+void AlgContent::setTUIProxy(TUIProxy *UIProxy)
+{
+    UI = UIProxy;
+}
 //!
 //! Записывает в map главы
 //!
 void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 {
-    AnsiString ShortStr;
+    Data S;
     int Page = 0; // страница
-    for (int i = begin; i < sl->Count - 1; ++i ) //пробегаемся по всем строкам
+    int B=0,E=0,d = (end-begin)/100,four = 0;
+    double v=0.01;
+    four  = begin;
+    //
+    UI->ShowProgressWindow("Загрузка");
+    for (int i = begin; i < end + 1; ++i ) //пробегаемся по всем строкам
     {
-        if( FindPoint(sl->Strings[i]) == true ) // Ищем строку с страницей
-        {
+        //if( FindPoint(sl->Strings[i]) == true ) // Ищем строку с точками
+        //{
             if((Page = FindNumPage(sl->Strings[i])) != -1 ) //если есть страница
             {
-                ShortStr = DelAllArtefactFromStr(sl->Strings[i]);
-                myMap->insert( pair<int,AnsiString>(Page,sl->Strings[i]));
-            }
-        }else
-        if( FindPoint(sl->Strings[i]) == false ) // Проверяем не разделина ли строка
-        {
-                int j = i;
-                    if( FindPoint(sl->Strings[++j]) == true)
+                S.Chapter = Trim(sl->Strings[i]);
+                B=0;E=0;
+                for (int j = end + 1; j < sl->Count; ++j ) //пробегаемся по всем строкам
+                {
+                    if( DelAllArtefactFromStr(S.Chapter) == Trim(sl->Strings[j]) )
                     {
-                        if((Page = FindNumPage(sl->Strings[j])) != -1 ) //если есть страница
-                        {
-                            AnsiString str2 = Trim(sl->Strings[j]);
-                            if(  IsLower(str2,1) == true)
-                            {
-                                (--j);
-                                AnsiString str1 = Trim(sl->Strings[j]);
-                                str1 += " "+  str2;
-                                myMap->insert( pair<int,AnsiString>(Page,str1));
-                                i = i + 2;
-                            }
-                        }
+                        B = j; // Начало главы
+                        //Ищем конец главы
+                        E = j + 100;
+                        j = E;
                     }
-        }
 
-            if(i == end)
-            {
-                break; //Находит начало первой строки
+                }
+                S.begin = B;
+                S.end = E;
+                Content->insert( std::pair<int,Data>(i,S) );
             }
+
+        //}
+        if( i == end )
+        {
+            break; //Находит начало первой строки
         }
+        if( four + d == i )
+        {
+            UI->SetProgressValue(v);
+            v = v + 0.01;
+            four = four + d;
+        }
+        //chekc cancel button
+    }
+    UI->HideProgressWindow();
 
+}
 
+void AlgContent::ContentBeginAndEnd(TStringList *sl,AnsiString str,int &cBegin,int &cEnd,int end)
+{
+    AnsiString s = DelAllArtefactFromStr(str);
+     for ( int i = end; i< sl->Count; ++i ) //пробегаемся по всем строкам
+    {
+        if( Trim(sl->Strings[i]) == s)
+        {
+            cBegin = i;
+            cEnd = i+100;
+        }
+    }
 
 }
 
@@ -112,51 +146,64 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 //!
 void AlgContent::ViewSubstance(TStringList *sl,AnsiString str,TStringList *l)
 {
-    bool a = false;
-    int index = 0;
-    AnsiString sec;
-    for ( int i = 0; i< sl->Count; ++i ) //пробегаемся по всем строкам
-    {
-        if ( DelAllArtefactFromStr(str) == Trim(sl->Strings[i]) )
-        {
-            a = true;
-            //!
-            //! Находим следующую главу после заданной.
-            //!
-            for (std::map<int,AnsiString>::iterator it = myMap->begin(); it != myMap->end(); ++it)
-            {
-                 if( Trim(it->second) == str)
-                 {
-                    if( ++it != myMap->end() )
-                    {
-                        if((++it)->second != "") //!!!!! Переделать
-                        sec = (++it)->second; //Следующая глава
-                        DelAllArtefactFromStr(sec);
-                    }else
-                    {
-                        sec = NULL;
-                    }
-                 }
-            }
-            //!
-        }
+//    bool a = false;
+//    int index = 0;
+//    AnsiString sec;
+//    for ( int i = 0; i< sl->Count; ++i ) //пробегаемся по всем строкам
+//    {
+//        if ( DelAllArtefactFromStr(str) == Trim(sl->Strings[i]) )
+//        {
+//            a = true;
+//            //!
+//            //! Находим следующую главу после заданной.
+//            //!
+//            for (std::map<int,AnsiString>::iterator it = myMap->begin(); it != myMap->end(); ++it)
+//            {
+//                 if( Trim(it->second) == str)
+//                 {
+//                    if( ++it != myMap->end() )
+//                    {
+//                        if((++it)->second != "") //!!!!! Переделать
+//                        sec = (++it)->second; //Следующая глава
+//                        DelAllArtefactFromStr(sec);
+//                    }else
+//                    {
+//                        sec = NULL;
+//                    }
+//                 }
+//            }
+//            //!
+//        }
+//
+//        if(a == true)
+//        {
+//            if(index < sl->Count)
+//            {
+//                if( sec != NULL)
+//                {
+//                    if(DelAllArtefactFromStr(sl->Strings[i]) == DelAllArtefactFromStr(sec) ) break;
+//                    index = l->Add(sl->Strings[i]);
+//                }else
+//                {
+//                    index = l->Add(sl->Strings[i]);
+//                }
+//            }
+//        }
+//
+//    }
 
-        if(a == true)
+        for (std::multimap<int,Data>::iterator it = Content->begin(); it != Content->end(); ++it)
         {
-            if(index < sl->Count)
+            if( str == it->second.Chapter)
             {
-                if( sec != NULL)
+                for (int j = it->second.begin; j < it->second.end; j++)
                 {
-                    if(DelAllArtefactFromStr(sl->Strings[i]) == DelAllArtefactFromStr(sec) ) break;
-                    index = l->Add(sl->Strings[i]);
-                }else
-                {
-                    index = l->Add(sl->Strings[i]);
+                    if(j < sl->Count)
+                    l->Add(sl->Strings[j]);
                 }
             }
         }
 
-    }
 
 
 }
@@ -221,6 +268,7 @@ AnsiString AlgContent::DelAllArtefactFromStr(AnsiString str)
     AnsiString s(str);
     s = delPoints(s);
     s = delNumPage(s);
+   // s = delBeforeUpp(s);
     return Trim(s);
 }
 
@@ -238,8 +286,11 @@ AnsiString AlgContent::delPoints(AnsiString str)
        s = delPoints(s);
     }
     return s;
-
 }
+
+//!
+//! Удалить номера страниц
+//!
 AnsiString AlgContent::delNumPage(AnsiString str)
 {
     AnsiString s(str);
@@ -256,6 +307,23 @@ AnsiString AlgContent::delNumPage(AnsiString str)
     return s;
 }
 
+//!
+//! Удалить все некорректные символы
+//!
+AnsiString AlgContent::delBeforeUpp(AnsiString str)
+{
+    int i = 1;
+    if( IsUpper(str,i) == true )
+    {
+        return str.SubString(i,str.Length());
+    }else
+    {
+        if(i != 10)
+        i++;
+
+    }
+    return str;
+}
 /**
     Найти номер страницы
 */
@@ -399,16 +467,95 @@ int AlgContent::FindBegin(TStringList *sl)
 //!
 int AlgContent::UpdateChapter(TStringList *sl,int begin,int end)
 {
+    sl->BeginUpdate();
     int i = begin;
+    int e;
     do{
         if(sl->Strings[i] == "")
         {
             sl->Delete(i);
             --end;
+
         }
         ++i;
     }while(i < end);
+
+    end = GlueLine(sl,begin,end);
+
+    i = begin;
+    do{
+        if(IsLower(sl->Strings[i],1) == true)
+        {
+
+            sl->Delete(i);
+            --end;
+
+        }
+        ++i;
+    }while(i < end);
+
+    sl->EndUpdate();
     return end;
+}
+
+//!
+//! Функция для склеивания глав,если она разбиты на 2 строки
+//!
+int AlgContent::GlueLine(TStringList *sl,int begin,int end)
+{
+    AnsiString s1,s2;
+    int Page = 0;
+     for (int i = begin; i < end ; ++i ) //пробегаемся по всем строкам
+    {
+        // Проверяем не разделина ли строка
+        if( FindPoint(sl->Strings[i]) == false )
+        {
+            int j = i;
+            if( FindPoint(sl->Strings[++j]) == true)
+            {
+                if((Page = FindNumPage(sl->Strings[j])) != -1 ) //если есть страница
+                {
+                    AnsiString str2 = Trim(sl->Strings[j]);
+                    s2 = Trim(sl->Strings[j]);
+                    if(  IsLower(str2,1) == true)
+                    {
+                        (--j);
+                        AnsiString str1 = Trim(sl->Strings[j]);
+                        s1 = Trim(sl->Strings[j]);
+                        sl->Insert(j,str1 += " "+  str2);
+                        j++;
+                        sl->Delete(j);
+                        // Находим в тексте отделенные строки главы и соединяем их
+                        for (int l = end + 1; l < sl->Count; l++)
+                        {
+                            s1 = DelAllArtefactFromStr(s1);
+                            s2 = DelAllArtefactFromStr(s2);
+                            if(s1 == Trim(sl->Strings[l]))
+                            {
+                                ++l;
+                                if(s2 == Trim(sl->Strings[l]))
+                                {
+                                    --l;
+                                    sl->Delete(l);
+                                    sl->Insert(l,s1 += " "+  s2);
+                                    ++l;
+                                    sl->Delete(l);
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
+    return end;
+
 }
 
 //!
@@ -437,10 +584,10 @@ int AlgContent::FindEnd(TStringList *sl,int begin)
         // Нужно написать функцию,которая будет определять по каким артефактам обрабатывается текст
          if( (Page = FindNumPage(sl->Strings[i])) != -1 ) // Ищем строку с страницей
         {
-            if( FindPoint(sl->Strings[i]) == true)
-            {
+            //if( FindPoint(sl->Strings[i]) == true)
+            //{
                 maxNum = i;
-            }
+            //}
         }
     }
     return maxNum + 1;

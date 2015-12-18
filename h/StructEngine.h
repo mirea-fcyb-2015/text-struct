@@ -17,9 +17,20 @@
 #ifndef StructEngineH
 #define StructEngineH
 
+
 #include <Classes.hpp>
 #include <map>
 #include <vector>
+
+
+#include "AlgContent.h"
+#include "AlgArtefact.h"
+#include "FindContent.h"
+#include "DelAbstract.h"
+#include "DelHeader.h"
+#include "DelPage.h"
+#include "DelTop.h"
+
 using namespace std;
 
 class AlgAbstract;
@@ -28,11 +39,13 @@ class FindContent;
 /**
     Класс работы с текстом
 */
+
 class TTextStruct
 {
 private:
     TStringList *text; // текст
-    std::map<int,AnsiString> tree;
+    TUIProxy *Prx;
+    std::multimap<int,Data> Content;
     /// Классы работы с текстом
     AlgAbstract *alg;       // Алгоритмы структуризации
     DelAbstract *del;       // Алгоритмы корректирования текста
@@ -56,7 +69,9 @@ public:
     void fileLoad(UnicodeString fileName);    // Загрузка данных из файла
 
     void setText(TStringList *txt);
-    std::map<int,AnsiString> *getMap(){return &tree; }
+    void getUIProxy(TUIProxy *UIProxy){Prx = UIProxy;}
+    std::multimap<int,Data> *getMap(){return &Content; }
+    //std::map<int,AnsiString> *getMap(){return &tree; }
     AnsiString getDelAllArtefactFromStr(AnsiString str);
     TStringList *getText();
     void callViewSubstance(TStringList *sl,AnsiString str,TStringList *l);

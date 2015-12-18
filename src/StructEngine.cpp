@@ -14,16 +14,7 @@
 */
 //---------------------------------------------------------------------------
 #pragma hdrstop
-
 #include "StructEngine.h"
-#include "AlgContent.h"
-#include "AlgArtefact.h"
-#include "FindContent.h"
-#include "DelAbstract.h"
-#include "DelHeader.h"
-#include "DelPage.h"
-#include "DelTop.h"
-
 
 /**
     Конструктор
@@ -77,7 +68,8 @@ void TTextStruct::algContent()
     if(!alg)
         delete alg;
     alg = new AlgContent();
-    alg->setMap(&tree);
+    alg->setMap(&Content);
+    alg->setTUIProxy(Prx);
     alg->AlgStruct(text);
 }
 AnsiString TTextStruct::getDelAllArtefactFromStr(AnsiString str)

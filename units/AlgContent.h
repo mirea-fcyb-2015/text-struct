@@ -24,7 +24,6 @@
 #include <locale.h>
 #include <vector>
 
-
 using namespace std;
 
 //
@@ -33,7 +32,12 @@ using namespace std;
 class AlgContent : public AlgAbstract
 {
 private:
-    map<int,AnsiString> *myMap;
+    int lenght;
+    int page;
+    multimap<int,Data> *Content;
+    int ChapterBegin;
+    int ChapterEnd;
+    TUIProxy *UI;
 public:
 
     AlgContent();
@@ -46,22 +50,27 @@ public:
     int findInStrI(TStringList *sl,AnsiString str);  			        // Функция поиска строки = значению str; Возвращает номер строки
     bool findInStrB(TStringList *sl,AnsiString str);                    // Функция поиска строки = значению str; Возвращает да,если нашел совпадение,нет,если нету
     int findSubStrI(TStringList *sl,AnsiString str);                    //
+    int GlueLine(TStringList *sl,int begin,int end);
+    void ContentBeginAndEnd(TStringList *sl,AnsiString str,int &cBegin,int &cEnd,int end);
     bool FindPoint(AnsiString str);
     int FindNumPage(AnsiString str);
     bool FindNumPageB(AnsiString str);
-    void setMap(map<int,AnsiString> *pM);
+    void setMap(multimap<int,Data> *pM);
     void ViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
     int UpdateChapter(TStringList *sl,int begin,int end);
-
+    void setLenght(int l){lenght = l;}
     int FindBegin(TStringList *sl);
     int FindEnd(TStringList *sl,int begin);
-
+    int getLenght(){return lenght;}
     AnsiString DelFromStr(AnsiString str);
     AnsiString DelAllArtefactFromStr(AnsiString str);
     AnsiString delPoints(AnsiString str);
     AnsiString delNumPage(AnsiString str);
+    AnsiString delBeforeUpp(AnsiString str);
+    void setTUIProxy(TUIProxy *UIProxy);
 
 };
+
 
 
 //---------------------------------------------------------------------------

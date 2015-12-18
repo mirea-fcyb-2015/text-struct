@@ -15,9 +15,10 @@ public:
     ~AlgArtefact();
 
     void AlgStruct(TStringList *sl);
-    void setMap( std::map<int,AnsiString> *pM);
+    void setMap( std::multimap<int,Data> *pM );
     AnsiString DelAllArtefactFromStr(AnsiString str);
     void ViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
+    void setTUIProxy(TUIProxy *UIProxy);
 };
 
 
