@@ -79,13 +79,23 @@ void AlgContent::setTUIProxy(TUIProxy *UIProxy)
 //!
 void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 {
-    Data S;
+    Data S; // Создаем структру данных главы
+    /*
+    AnsiString Chapter;     // Имя главы
+    AnsiString LiteChapter; // Упрощеный вид главы(Без артефактов)
+    int begin;              // Начало главы
+    int end;                // Конец главы
+    int page;               // Номер страницы
+    */
     int Page = 0; // страница
     int B=0,E=0,d = (end-begin)/100,four = 0;
     double v=0.01;
     four  = begin;
-    //
+
+    // Открываем панель загрузки
     UI->ShowProgressWindow("Загрузка");
+    //
+
     for (int i = begin; i < end + 1; ++i ) //пробегаемся по всем строкам
     {
         //if( FindPoint(sl->Strings[i]) == true ) // Ищем строку с точками
@@ -93,39 +103,96 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
             if((Page = FindNumPage(sl->Strings[i])) != -1 ) //если есть страница
             {
                 S.Chapter = Trim(sl->Strings[i]);
+                S.LiteChapter = DelAllArtefactFromStr(Trim(sl->Strings[i]));
+                S.page = Page;
                 B=0;E=0;
                 for (int j = end + 1; j < sl->Count; ++j ) //пробегаемся по всем строкам
                 {
-                    if( DelAllArtefactFromStr(S.Chapter) == Trim(sl->Strings[j]) )
+                    if( S.LiteChapter == Trim(sl->Strings[j]) )
                     {
                         B = j; // Начало главы
                         //Ищем конец главы
-                        E = j + 100;
-                        j = E;
+                        //E = j + 100;
+                        //j = B;
+                        //E = j;
                     }
 
                 }
                 S.begin = B;
-                S.end = E;
+                //S.end = E;
+                S.end = 0;
                 Content->insert( std::pair<int,Data>(i,S) );
+
             }
 
-        //}
-        if( i == end )
-        {
-            break; //Находит начало первой строки
-        }
-        if( four + d == i )
-        {
-            UI->SetProgressValue(v);
-            v = v + 0.01;
-            four = four + d;
-        }
+            //}
+            if( i == end )
+            {
+                break; //Находит начало первой строки
+            }
+            if( four + d == i )
+            {
+                UI->SetProgressValue(v);
+                v = v + 0.01;
+                four = four + d;
+            }
         //chekc cancel button
     }
-    UI->HideProgressWindow();
+    bool a = true;
+    // Проверка на логичность страниц
+    for(std::multimap<int,Data>::iterator it = Content->end(); it != Content->begin(); it--)
+    {
+        if(it->second.begin != 0)
+        {
+            std::multimap<int,Data>::iterator itLite = it;
+            for(itLite; itLite != Content->begin(); itLite--)
+            {
+                if( a == true)
+                    {
+                        if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
+                        {
+                            itLite->second.begin = 0;
+                        }
+                    }else
+                    {
+                        break;
+                    }
+            }
+            a = true;
+        }
+    }
 
+    a =true;
+    for(std::multimap<int,Data>::iterator it = Content->begin(); it != Content->end(); ++it)
+    {
+        if( it->second.begin != 0)
+        {
+            std::multimap<int,Data>::iterator itLite = it;
+
+                for(itLite; itLite != Content->end(); ++itLite)
+                {
+                    if( a == true)
+                    {
+                        if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
+                        {
+                            it->second.end = itLite->second.begin;
+                            a = false;
+                        }
+                    }else
+                    {
+                        break;
+                    }
+                }
+                a = true;
+                cout << it->second.LiteChapter.c_str();
+                cout << it->second.begin;
+                cout << it->second.end;
+        }
+    }
+
+    UI->HideProgressWindow();
 }
+
 
 void AlgContent::ContentBeginAndEnd(TStringList *sl,AnsiString str,int &cBegin,int &cEnd,int end)
 {
@@ -198,8 +265,11 @@ void AlgContent::ViewSubstance(TStringList *sl,AnsiString str,TStringList *l)
             {
                 for (int j = it->second.begin; j < it->second.end; j++)
                 {
-                    if(j < sl->Count)
-                    l->Add(sl->Strings[j]);
+                    if(it->second.begin != 0 & it->second.end != 0)
+                    {
+                        if(j < sl->Count)
+                        l->Add(sl->Strings[j]);
+                    }
                 }
             }
         }
@@ -268,6 +338,7 @@ AnsiString AlgContent::DelAllArtefactFromStr(AnsiString str)
     AnsiString s(str);
     s = delPoints(s);
     s = delNumPage(s);
+    s = delArtefact(s);
    // s = delBeforeUpp(s);
     return Trim(s);
 }
@@ -287,6 +358,19 @@ AnsiString AlgContent::delPoints(AnsiString str)
     }
     return s;
 }
+AnsiString AlgContent::delArtefact(AnsiString str)
+{
+    AnsiString s(str);
+    int index = 0;
+    index = s.Pos("I");
+    if(index != 0)
+    {
+        s.Delete(index,1);
+        s = delArtefact(s);
+    }
+    return s;
+}
+
 
 //!
 //! Удалить номера страниц
@@ -467,35 +551,40 @@ int AlgContent::FindBegin(TStringList *sl)
 //!
 int AlgContent::UpdateChapter(TStringList *sl,int begin,int end)
 {
-    sl->BeginUpdate();
-    int i = begin;
-    int e;
-    do{
-        if(sl->Strings[i] == "")
+    // Убираем пустые строки
+
+    //{
+    int i = 0;
+    int END = end;
+    for(i = end; i > begin; i--)
+    {
+        if( Trim(sl->Strings[i]) == "" )
         {
             sl->Delete(i);
-            --end;
-
+            --END;
         }
-        ++i;
-    }while(i < end);
+    }
+     std::cout << END;
 
-    end = GlueLine(sl,begin,end);
 
-    i = begin;
-    do{
-        if(IsLower(sl->Strings[i],1) == true)
-        {
+    //}
 
-            sl->Delete(i);
-            --end;
+    END = GlueLine(sl,begin,END);
 
-        }
-        ++i;
-    }while(i < end);
+//    i = begin;
+//    do{
+//        if(IsLower(sl->Strings[i],1) == true)
+//        {
+//
+//            sl->Delete(i);
+//            --end;
+//
+//        }
+//        ++i;
+//    }while(i < end);
 
-    sl->EndUpdate();
-    return end;
+
+return END;
 }
 
 //!
@@ -503,6 +592,7 @@ int AlgContent::UpdateChapter(TStringList *sl,int begin,int end)
 //!
 int AlgContent::GlueLine(TStringList *sl,int begin,int end)
 {
+
     AnsiString s1,s2;
     int Page = 0;
      for (int i = begin; i < end ; ++i ) //пробегаемся по всем строкам
@@ -552,12 +642,27 @@ int AlgContent::GlueLine(TStringList *sl,int begin,int end)
 
 
     }
-
+    int i = begin;
+    do{
+        if(IsLower(sl->Strings[i],1) == true)
+        {
+            sl->Delete(i);
+            --end;
+        }
+        ++i;
+    }while(i < end);
 
     return end;
 
 }
 
+//!
+//! Функция склеивания строк
+//!
+void AlgContent::GlueLineText(TStringList *sl)
+{
+
+}
 //!
 //! Находим конец оглавления
 //!

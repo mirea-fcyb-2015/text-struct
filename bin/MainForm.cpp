@@ -27,20 +27,22 @@ TfrmMain *frmMain;
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     : TForm(Owner)
 {
-    UIProxy = new TUIProxy(frmMain,frmMain);
-
-
+    UIProxy = new TUIProxy(frmMain,frmMain); // Создаем объект класса TUIProxy (окно загрузки)
     OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";   // Чтобы мог открыть только файлы с расширением txt
-    textStruct = new TTextStruct();
+    textStruct = new TTextStruct(); // Создаем объект класса TTextStruct
 }
 
 
  __fastcall TfrmMain::~TfrmMain()
 {
-   delete textStruct; // Освобождаем память
-   delete UIProxy;
+    // Освобождаем память
+    delete textStruct;
+    delete UIProxy;
 }
 
+//!
+//! Функция открытия файла по нажатию кнопки
+//!
 void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
 {
 
@@ -52,12 +54,18 @@ void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
 
 }
 
+//!
+//! Вывод текста в правую панель
+//!
 void TfrmMain::showTextMemo(TStringList *sl)
 {
     mmText->Clear();
     mmText->Lines->Text = sl->Text;
 }
 
+//!
+//! Временая кнопка для вывода структурированного текста
+//!
 void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
     textStruct->getUIProxy(UIProxy);
@@ -67,6 +75,9 @@ void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
     refreshMemo();
 }
 
+//!
+//!
+//! Вывод дерева в левой панели
 void TfrmMain::InputTree()
 {
     std::multimap<int,Data> *p = textStruct->getMap();

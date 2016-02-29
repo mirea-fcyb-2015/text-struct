@@ -66,8 +66,11 @@ public:
     AnsiString DelAllArtefactFromStr(AnsiString str);
     AnsiString delPoints(AnsiString str);
     AnsiString delNumPage(AnsiString str);
+    AnsiString delArtefact(AnsiString str);
     AnsiString delBeforeUpp(AnsiString str);
     void setTUIProxy(TUIProxy *UIProxy);
+    void GlueLineText(TStringList *sl)
+
 
 };
 
