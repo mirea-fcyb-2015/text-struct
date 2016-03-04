@@ -49,17 +49,19 @@ AlgContent::~AlgContent()
 //!
 void AlgContent::AlgStruct(TStringList *sl)
 {
-
-    ChapterBegin = FindBegin(sl);               // Начало оглавление
-    ChapterEnd = FindEnd(sl,ChapterBegin);      // Конец оглавления
-    ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd);  // Обработка текста(Убираем пустые строки и склеиваем главы)
-    setLenght(ChapterEnd-ChapterBegin);
-    if( getLenght() != NULL )
-    {
-       AlgChapter(sl,ChapterBegin,ChapterEnd);
-    }
-         // Выводим Оглавление
-                        // Выводим Содержимое оглавления
+    GlueLineText(sl);
+//    ChapterBegin = FindBegin(sl);               // Начало оглавление
+//    ChapterEnd = FindEnd(sl,ChapterBegin);      // Конец оглавления
+//    ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd);  // Обработка текста(Убираем пустые строки и склеиваем главы)
+//    setLenght(ChapterEnd-ChapterBegin);
+//    if( getLenght() != NULL )
+//    {
+//       AlgChapter(sl,ChapterBegin,ChapterEnd);
+//    }
+    //!
+    //! Алгоритм по артефактам
+    //!
+    AlgArtefact(sl);
 }
 
 //!
@@ -77,8 +79,40 @@ void AlgContent::setTUIProxy(TUIProxy *UIProxy)
 //!
 //! Записывает в map главы
 //!
+void AlgContent::AlgArtefact(TStringList *sl)
+{
+    Data s;
+    int index = 0;
+    for (int i = 0; i < sl->Count ; i++)
+    {
+        AnsiString str = Trim(sl->Strings[i]);
+        index = str.Pos(".");
+        if(index != 0 & str != "")
+        {
+            if( IsUpper( str,1 ) == true )
+            {
+                if( index != str.Length()  )
+                {
+                     s.Chapter = str;
+                     s.begin = i;
+                     if( i+100 > sl->Count )
+                     {
+                        s.end = sl->Count-1;
+                     }
+                     else
+                     {
+                        s.end = i+100;
+                     }
+                     Content->insert( std::pair<int,Data>(i,s) );
+                }
+            }
+        }
+    }
+}
+
 void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 {
+    bool ck = false;
     Data S; // Создаем структру данных главы
     /*
     AnsiString Chapter;     // Имя главы
@@ -108,16 +142,20 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
                 B=0;E=0;
                 for (int j = end + 1; j < sl->Count; ++j ) //пробегаемся по всем строкам
                 {
-                    if( S.LiteChapter == Trim(sl->Strings[j]) )
+                    if(ck == false)
                     {
-                        B = j; // Начало главы
-                        //Ищем конец главы
-                        //E = j + 100;
-                        //j = B;
-                        //E = j;
+                        if( S.LiteChapter == Trim(sl->Strings[j]) )
+                        {
+                            B = j; // Начало главы
+                            //Ищем конец главы
+                            //E = j + 100;
+                            //j = B;
+                            //E = j;
+                            ck = true;
+                        }
                     }
-
                 }
+                ck = false;
                 S.begin = B;
                 //S.end = E;
                 S.end = 0;
@@ -140,27 +178,27 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
     }
     bool a = true;
     // Проверка на логичность страниц
-    for(std::multimap<int,Data>::iterator it = Content->end(); it != Content->begin(); it--)
-    {
-        if(it->second.begin != 0)
-        {
-            std::multimap<int,Data>::iterator itLite = it;
-            for(itLite; itLite != Content->begin(); itLite--)
-            {
-                if( a == true)
-                    {
-                        if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
-                        {
-                            itLite->second.begin = 0;
-                        }
-                    }else
-                    {
-                        break;
-                    }
-            }
-            a = true;
-        }
-    }
+//    for(std::multimap<int,Data>::iterator it = Content->end(); it != Content->begin(); it--)
+//    {
+//        if(it->second.begin != 0)
+//        {
+//            std::multimap<int,Data>::iterator itLite = it;
+//            for(itLite; itLite != Content->begin(); itLite--)
+//            {
+//                if( a == true)
+//                    {
+//                        if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
+//                        {
+//                            itLite->second.begin = 0;
+//                        }
+//                    }else
+//                    {
+//                        break;
+//                    }
+//            }
+//            a = true;
+//        }
+//    }
 
     a =true;
     for(std::multimap<int,Data>::iterator it = Content->begin(); it != Content->end(); ++it)
@@ -168,11 +206,16 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
         if( it->second.begin != 0)
         {
             std::multimap<int,Data>::iterator itLite = it;
-
+            cout << it->second.LiteChapter.c_str();
+            cout << it->second.LiteChapter.c_str();
                 for(itLite; itLite != Content->end(); ++itLite)
                 {
+                    cout << itLite->second.LiteChapter.c_str();
+                    cout << itLite->second.LiteChapter.c_str();
                     if( a == true)
                     {
+                        cout << itLite->second.begin;
+                        cout << it->second.begin;
                         if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
                         {
                             it->second.end = itLite->second.begin;
@@ -564,7 +607,7 @@ int AlgContent::UpdateChapter(TStringList *sl,int begin,int end)
             --END;
         }
     }
-     std::cout << END;
+
 
 
     //}
@@ -661,7 +704,43 @@ int AlgContent::GlueLine(TStringList *sl,int begin,int end)
 //!
 void AlgContent::GlueLineText(TStringList *sl)
 {
+    bool ck = false;
+    int counter = 0;
+    AnsiString s1,s2;
+    int begin = 0;
+    int end = sl->Count;
+    for( int i = end - 1; i > begin; i-- )
+    {
+        s2 = Trim(sl->Strings[i]);
+        if(s2 != "")
+        {
+            if( IsLower( s2,1 ) == true )
+            {
 
+                for(int j = i-1; j > begin; j--)
+                {
+                    if(ck == false)
+                    {
+                        s1 = Trim(sl->Strings[j]);
+
+                        if( sl->Strings[j] == "" )
+                        {
+                            counter++;
+                            goto to;
+                        }
+                            sl->Strings[j] = s1 + " " + s2;
+                            ck = true;
+                            sl->Delete(i);
+                            i--;
+                    }
+                    to:
+                }
+
+            }
+            ck = false;
+
+        }
+    }
 }
 //!
 //! Находим конец оглавления

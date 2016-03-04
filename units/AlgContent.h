@@ -69,8 +69,9 @@ public:
     AnsiString delArtefact(AnsiString str);
     AnsiString delBeforeUpp(AnsiString str);
     void setTUIProxy(TUIProxy *UIProxy);
-    void GlueLineText(TStringList *sl)
-
+    void GlueLineText(TStringList *sl);
+    void AlgArtefact(TStringList *sl);
+    AnsiString getChapter(AnsiString s);
 
 };
 
