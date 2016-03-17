@@ -110,3 +110,12 @@ void __fastcall TfrmMain::TreeViewMouseDown(TObject *Sender, TMouseButton Button
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
+{
+    mmText->Clear();
+    std::multimap<int,Data> *p = textStruct->getMap();
+    p->clear();
+    TreeView->Items->Clear();
+}
+//---------------------------------------------------------------------------
+

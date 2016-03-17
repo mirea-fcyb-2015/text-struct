@@ -62,6 +62,7 @@ __published:	// IDE-managed Components
     void __fastcall btnDelTopClick(TObject *Sender);
     void __fastcall TreeViewMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
+    void __fastcall FileCloseClick(TObject *Sender);
 
 private:	// User declarations
     AnsiString str;
