@@ -1,15 +1,15 @@
 /*______________________________ AlgContent.cpp ________________________________ */
 /**
     \file       DelHeader.cpp
-    \brief      Класс структурирования по содержанию
-    \author     Шепшелевич П.И. , Березин А.Е.
+    \brief      РљР»Р°СЃСЃ СЃС‚СЂСѓРєС‚СѓСЂРёСЂРѕРІР°РЅРёСЏ РїРѕ СЃРѕРґРµСЂР¶Р°РЅРёСЋ
+    \author     РЁРµРїС€РµР»РµРІРёС‡ Рџ.Р. , Р‘РµСЂРµР·РёРЅ Рђ.Р•.
     \version    1.0
     \date       18.11.2015
     \note
     \remarks
     \par
     \code
-        19/11/2015 – 1.0 – Создание класса.
+        19/11/2015 вЂ“ 1.0 вЂ“ РЎРѕР·РґР°РЅРёРµ РєР»Р°СЃСЃР°.
 
     \endcode
 */
@@ -24,32 +24,26 @@
 #include <Character.hpp>  //static bool __fastcall IsLower(const System::UnicodeString S, int Index)/* overload */;
 #include <iostream>
 
-//!
-//! Конструктор
-//!
+//! РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 AlgContent::AlgContent()
 {
 
 
 }
 
-//!
-//! Деструктор
-//!
+//! Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 AlgContent::~AlgContent()
 {
     
 }
 
-//!
-//! Функция, которая выполняет все действия для стуртурирования текста
-//!
+//! Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РІС‹РїРѕР»РЅСЏРµС‚ РІСЃРµ РґРµР№СЃС‚РІРёСЏ РґР»СЏ СЃС‚СѓСЂС‚СѓСЂРёСЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
 void AlgContent::AlgStruct(TStringList *sl)
 {
     GlueLineText(sl);
-    ChapterBegin = FindBegin(sl);               // Начало оглавление
-    ChapterEnd = FindEnd(sl,ChapterBegin);      // Конец оглавления
-    ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd);  // Обработка текста(Убираем пустые строки и склеиваем главы)
+    ChapterBegin = FindBegin(sl);               // РќР°С‡Р°Р»Рѕ РѕРіР»Р°РІР»РµРЅРёРµ
+    ChapterEnd = FindEnd(sl,ChapterBegin);      // РљРѕРЅРµС† РѕРіР»Р°РІР»РµРЅРёСЏ
+    ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd);  // РћР±СЂР°Р±РѕС‚РєР° С‚РµРєСЃС‚Р°(РЈР±РёСЂР°РµРј РїСѓСЃС‚С‹Рµ СЃС‚СЂРѕРєРё Рё СЃРєР»РµРёРІР°РµРј РіР»Р°РІС‹)
     setLenght(ChapterEnd-ChapterBegin);
     if( getLenght() != NULL )
     {
@@ -57,49 +51,44 @@ void AlgContent::AlgStruct(TStringList *sl)
     }
 }
 
-
-
-
-
-
 void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 {
     bool ck = false;
-    Data S; // Создаем структру данных главы
+    Data S; // РЎРѕР·РґР°РµРј СЃС‚СЂСѓРєС‚СЂСѓ РґР°РЅРЅС‹С… РіР»Р°РІС‹
     /*
-    AnsiString Chapter;     // Имя главы
-    AnsiString LiteChapter; // Упрощеный вид главы(Без артефактов)
-    int begin;              // Начало главы
-    int end;                // Конец главы
-    int page;               // Номер страницы
+    AnsiString Chapter;     // РРјСЏ РіР»Р°РІС‹
+    AnsiString LiteChapter; // РЈРїСЂРѕС‰РµРЅС‹Р№ РІРёРґ РіР»Р°РІС‹(Р‘РµР· Р°СЂС‚РµС„Р°РєС‚РѕРІ)
+    int begin;              // РќР°С‡Р°Р»Рѕ РіР»Р°РІС‹
+    int end;                // РљРѕРЅРµС† РіР»Р°РІС‹
+    int page;               // РќРѕРјРµСЂ СЃС‚СЂР°РЅРёС†С‹
     */
-    int Page = 0; // страница
+    int Page = 0; // СЃС‚СЂР°РЅРёС†Р°
     int B=0,E=0,d = (end-begin)/100,four = 0;
     double v=0.01;
     four  = begin;
 
-    // Открываем панель загрузки
-    UI->ShowProgressWindow("Загрузка");
+    // РћС‚РєСЂС‹РІР°РµРј РїР°РЅРµР»СЊ Р·Р°РіСЂСѓР·РєРё
+    UI->ShowProgressWindow("Р—Р°РіСЂСѓР·РєР°");
     //
 
-    for (int i = begin; i < end + 1; ++i ) //пробегаемся по всем строкам
+    for (int i = begin; i < end + 1; ++i ) //РїСЂРѕР±РµРіР°РµРјСЃСЏ РїРѕ РІСЃРµРј СЃС‚СЂРѕРєР°Рј
     {
-        //if( FindPoint(sl->Strings[i]) == true ) // Ищем строку с точками
+        //if( FindPoint(sl->Strings[i]) == true ) // РС‰РµРј СЃС‚СЂРѕРєСѓ СЃ С‚РѕС‡РєР°РјРё
         //{
-            if((Page = FindNumPage(sl->Strings[i])) != -1 ) //если есть страница
+            if((Page = FindNumPage(sl->Strings[i])) != -1 ) //РµСЃР»Рё РµСЃС‚СЊ СЃС‚СЂР°РЅРёС†Р°
             {
                 S.Chapter = Trim(sl->Strings[i]);
                 S.LiteChapter = DelAllArtefactFromStr(Trim(sl->Strings[i]));
                 S.page = Page;
                 B=0;E=0;
-                for (int j = end + 1; j < sl->Count; ++j ) //пробегаемся по всем строкам
+                for (int j = end + 1; j < sl->Count; ++j ) //РїСЂРѕР±РµРіР°РµРјСЃСЏ РїРѕ РІСЃРµРј СЃС‚СЂРѕРєР°Рј
                 {
                     if(ck == false)
                     {
                         if( S.LiteChapter == Trim(sl->Strings[j]) )
                         {
-                            B = j; // Начало главы
-                            //Ищем конец главы
+                            B = j; // РќР°С‡Р°Р»Рѕ РіР»Р°РІС‹
+                            //РС‰РµРј РєРѕРЅРµС† РіР»Р°РІС‹
                             //E = j + 100;
                             //j = B;
                             //E = j;
@@ -118,7 +107,7 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
             //}
             if( i == end )
             {
-                break; //Находит начало первой строки
+                break; //РќР°С…РѕРґРёС‚ РЅР°С‡Р°Р»Рѕ РїРµСЂРІРѕР№ СЃС‚СЂРѕРєРё
             }
             if( four + d == i )
             {
