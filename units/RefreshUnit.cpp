@@ -11,64 +11,53 @@
 TRefreshForm *RefreshForm;
 //---------------------------------------------------------------------------
 __fastcall TRefreshForm::TRefreshForm(TComponent* Owner)
-	: TForm(Owner)
+    : TForm(Owner)
 {
-	bCancel = false;
+    bCancel = false;
 }
 //---------------------------------------------------------------------------
 void TRefreshForm::SetAction(AnsiString Action)
 {
-	CurrentAction->Caption = Action;
-	Application->ProcessMessages();
+    CurrentAction->Caption = Action;
+    Application->ProcessMessages();
 }
 //---------------------------------------------------------------------------
 void TRefreshForm::SetFile(AnsiString File)
 {
-	CurrentFile->Caption = File;
-	Application->ProcessMessages();
+    CurrentFile->Caption = File;
+    Application->ProcessMessages();
 }
 //---------------------------------------------------------------------------
 void TRefreshForm::SetProcent(double procent)
 {
-	Progress->Position = (int)(procent*100);
-	Procent->Caption   = AnsiString(Progress->Position) + "%";
-	if(procent*100 < 100)
-		Application->Title = (CurrentAction->Caption + AnsiString(" ") + AnsiString((int)(procent*100)) + AnsiString("%"));
-	else  //ïîïðàâèì îáðàòíî Title ïîñëå îêîí÷àíèÿ ïðîãðåññ-áàðà
-		Application->Title = "QuickView";
+    Progress->Position = (int)(procent*100);
+    Procent->Caption   = AnsiString(Progress->Position) + "%";
+    if(procent*100 < 100)
+        Application->Title = (CurrentAction->Caption + AnsiString(" ") + AnsiString((int)(procent*100)) + AnsiString("%"));
+    else  //Ð¿Ð¾Ð¿Ñ€Ð°Ð²Ð¸Ð¼ Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾ Title Ð¿Ð¾ÑÐ»Ðµ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ñ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑ-Ð±Ð°Ñ€Ð°
+        Application->Title = "QuickView";
 
-	if (procent < 0.00000000001)
-	{
-	 //	dStartTime = dblcurrenttime();
-	}
-	else
-	{
-	 //	double dTCurr = dblcurrenttime();
-	 //	SYSTEMTIME st = dbldecodetime(dTCurr - dStartTime);
-		/*char szPass[20], szLeft[20];
-		sprintf(szPass, "%02d:%02d:%02d", st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
-		st = dbldecodetime((dTCurr - dStartTime)/procent*(1-procent));
-		sprintf(szLeft, "%02d:%02d:%02d", st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
-		edPassed->Text = AnsiString(szPass);
-		edLeft->Text = AnsiString(szLeft);
-		*/
-		// Now().FormatS
-		//AnsiString cur_time = Now().FormatString("YYYY.MM.DD_hh-nn-ss"); //ôîðìèðóåì ñòðîêó, ñîäåðæàùóþ òåêóùåå âðåìÿ è äàòó
-
-	}
-	Application->ProcessMessages();
+    if (procent < 0.00000000001)
+    {
+        //	dStartTime = dblcurrenttime();
+    }
+    else
+    {
+        //AnsiString cur_time = Now().FormatString("YYYY.MM.DD_hh-nn-ss"); //Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€ÑƒÐµÐ¼ ÑÑ‚Ñ€Ð¾ÐºÑƒ, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰ÑƒÑŽ Ñ‚ÐµÐºÑƒÑ‰ÐµÐµ Ð²Ñ€ÐµÐ¼Ñ Ð¸ Ð´Ð°Ñ‚Ñƒ
+    }
+    Application->ProcessMessages();
 }
 //---------------------------------------------------------------------------
 void TRefreshForm::ShowForm(AnsiString caption)
 {
-	Caption = caption;
-	bCancel = false;
-	Show();
-	Application->ProcessMessages();
+    Caption = caption;
+    bCancel = false;
+    Show();
+    Application->ProcessMessages();
 }
 //---------------------------------------------------------------------------
-	//bCancel = true;
-    //btnAbortClick(Sender);
+//bCancel = true;
+//btnAbortClick(Sender);
 //---------------------------------------------------------------------------
 
 

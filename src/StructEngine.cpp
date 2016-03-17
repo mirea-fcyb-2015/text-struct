@@ -1,4 +1,4 @@
-﻿/*______________________________ StructEngine.cpp ________________________________ */
+/*______________________________ StructEngine.cpp ________________________________ */
 /**
     \file       StructEngine.cpp
     \brief      Основной класс программы для работы с текстом
@@ -12,13 +12,12 @@
         18/11/2015 – 1.0 – создание класса.
     \endcode
 */
-//---------------------------------------------------------------------------
+
 #pragma hdrstop
+
 #include "StructEngine.h"
 
-/**
-    Конструктор
-*/
+//! Конструтор
 TTextStruct::TTextStruct()
 {
     text = NULL;
@@ -26,9 +25,8 @@ TTextStruct::TTextStruct()
     del  = NULL;
     findCont = NULL;
 }
-/**
-    Деструктор
-*/
+
+//! Деструтор
 TTextStruct::~TTextStruct()
 {
     delete text;
@@ -36,23 +34,20 @@ TTextStruct::~TTextStruct()
     delete del;
     delete findCont;
 }
-/**
-    Set-функция присвоения текста
-*/
+
+//! Set-функция присвоения текста
 void TTextStruct::setText(TStringList *txt)
 {
     text = txt;
 }
-/**
-    Get-функция получения указателя на текст
-*/
+
+//! Get-функция получения указателя на текст
 TStringList* TTextStruct::getText()
 {
     return text;
 }
-/**
-    Структуризация текста по артефатам
-*/
+
+//! Структуризация текста по артефатам
 void TTextStruct::algArtefact()
 {
     if(!alg)
@@ -60,9 +55,8 @@ void TTextStruct::algArtefact()
     alg = new AlgArtefact();
     alg->AlgStruct(text);
 }
-/**
-    Структуризация текста по содержанию
-*/
+
+//! Структуризация текста по содержанию
 void TTextStruct::algContent()
 {
     if(!alg)
@@ -72,19 +66,22 @@ void TTextStruct::algContent()
     alg->setTUIProxy(Prx);
     alg->AlgStruct(text);
 }
+
+//! Удаление всех артефактов из строки
 AnsiString TTextStruct::getDelAllArtefactFromStr(AnsiString str)
 {
-        int a = 0;
-        AnsiString s = alg->DelAllArtefactFromStr(str);
-        return s;
+    int a = 0;
+    AnsiString s = alg->DelAllArtefactFromStr(str);
+    return s;
 }
+
+//! Вызов функции ViewSubstance 
 void TTextStruct::callViewSubstance(TStringList *sl,AnsiString str,TStringList *l)
 {
     alg->ViewSubstance(sl,str,l);
 }
-/**
-    Удаление колонтитулов в тексте
-*/
+
+//! Удаление колонтитулов в тексте
 void TTextStruct::delHeader()
 {
     // Удаление колонтитулов
@@ -93,9 +90,8 @@ void TTextStruct::delHeader()
     del = new DelHeader();
     del->Delete(text);
 }
-/**
-    Удаление номеров страниц в тексте
-*/
+
+//! Удаление номеров страниц в тексте
 void TTextStruct::delPage()
 {
     // Удаление номеров страниц
@@ -104,9 +100,8 @@ void TTextStruct::delPage()
 //    del = new DelPage();
 //    del->Delete(text);
 }
-/**
-    Удаление текста перед содержанием в тексте
-*/
+
+//! Удаление текста перед содержанием в тексте
 void TTextStruct::delTop()
 {
 //    if(!del)
@@ -114,9 +109,8 @@ void TTextStruct::delTop()
 //    del = new DelTop();
 //    del->Delete(text);
 }
-/**
-    Загрузка текста из файла
-*/
+    
+//! Загрузка текста из файла
 void TTextStruct::fileLoad(UnicodeString fileName)
 {
     if(text)
@@ -124,9 +118,8 @@ void TTextStruct::fileLoad(UnicodeString fileName)
     text = new TStringList();
     text->LoadFromFile(fileName);
 }
-/**
-    Поиск и извлечение оглавления
-*/
+
+//! Поиск и извлечение оглавления
 void TTextStruct::findContent()
 {
     if(!findCont)
@@ -134,4 +127,5 @@ void TTextStruct::findContent()
     findCont = new FindContent();
     findCont->findContent(text);
 }
+
 #pragma package(smart_init)

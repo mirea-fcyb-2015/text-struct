@@ -32,7 +32,6 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     textStruct = new TTextStruct(); // Создаем объект класса TTextStruct
 }
 
-
  __fastcall TfrmMain::~TfrmMain()
 {
     // Освобождаем память
@@ -40,9 +39,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     delete UIProxy;
 }
 
-//!
 //! Функция открытия файла по нажатию кнопки
-//!
 void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
 {
 
@@ -54,29 +51,22 @@ void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
 
 }
 
-//!
 //! Вывод текста в правую панель
-//!
 void TfrmMain::showTextMemo(TStringList *sl)
 {
     mmText->Clear();
     mmText->Lines->Text = sl->Text;
 }
 
-//!
 //! Временая кнопка для вывода структурированного текста
-//!
 void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
     textStruct->getUIProxy(UIProxy);
     textStruct->algContent();
     InputTree();
-
     refreshMemo();
 }
 
-//!
-//!
 //! Вывод дерева в левой панели
 void TfrmMain::InputTree()
 {
@@ -105,7 +95,6 @@ void __fastcall TfrmMain::TreeViewMouseDown(TObject *Sender, TMouseButton Button
     textStruct->callViewSubstance(textStruct->getText(),tmp_node->Text,l);  // Вызываем функцию вывода содержимого по указанной главе
     mmText->Lines->Text = l->Text;                                          // Выводит в мемо StringList l
     delete l;                                                               // Освобождаем память
-
 
 }
 //---------------------------------------------------------------------------

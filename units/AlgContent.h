@@ -1,4 +1,4 @@
-/*______________________________ AlgContent.h ________________________________ */
+﻿/*______________________________ AlgContent.h ________________________________ */
 /**
     \file       DelHeader.cpp
     \brief      Класс структурирования по содержанию
@@ -19,9 +19,7 @@
 
 #include "AlgAbstract.h"
 
-
 using namespace std;
-
 
 //! Класс для работы с структурированием по содержанию
 class AlgContent : public AlgAbstract

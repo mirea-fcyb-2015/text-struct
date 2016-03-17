@@ -1,4 +1,4 @@
-/*______________________________ AlgContent.cpp ________________________________ */
+﻿/*______________________________ AlgContent.cpp ________________________________ */
 /**
     \file       DelHeader.cpp
     \brief      Класс структурирования по содержанию
@@ -18,7 +18,6 @@
 #define bad_function
 
 #pragma hdrstop
-
 
 #include "AlgContent.h"
 #include <Character.hpp>  //static bool __fastcall IsLower(const System::UnicodeString S, int Index)/* overload */;
@@ -47,7 +46,7 @@ void AlgContent::AlgStruct(TStringList *sl)
     setLenght(ChapterEnd-ChapterBegin);
     if( getLenght() != NULL )
     {
-       AlgChapter(sl,ChapterBegin,ChapterEnd);
+        AlgChapter(sl,ChapterBegin,ChapterEnd);
     }
 }
 
@@ -75,46 +74,46 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
     {
         //if( FindPoint(sl->Strings[i]) == true ) // Ищем строку с точками
         //{
-            if((Page = FindNumPage(sl->Strings[i])) != -1 ) //если есть страница
+        if((Page = FindNumPage(sl->Strings[i])) != -1 ) //если есть страница
+        {
+            S.Chapter = Trim(sl->Strings[i]);
+            S.LiteChapter = DelAllArtefactFromStr(Trim(sl->Strings[i]));
+            S.page = Page;
+            B=0;E=0;
+            for (int j = end + 1; j < sl->Count; ++j ) //пробегаемся по всем строкам
             {
-                S.Chapter = Trim(sl->Strings[i]);
-                S.LiteChapter = DelAllArtefactFromStr(Trim(sl->Strings[i]));
-                S.page = Page;
-                B=0;E=0;
-                for (int j = end + 1; j < sl->Count; ++j ) //пробегаемся по всем строкам
+                if(ck == false)
                 {
-                    if(ck == false)
+                    if( S.LiteChapter == Trim(sl->Strings[j]) )
                     {
-                        if( S.LiteChapter == Trim(sl->Strings[j]) )
-                        {
-                            B = j; // Начало главы
-                            //Ищем конец главы
-                            //E = j + 100;
-                            //j = B;
-                            //E = j;
-                            ck = true;
-                        }
+                        B = j; // Начало главы
+                        //Ищем конец главы
+                        //E = j + 100;
+                        //j = B;
+                        //E = j;
+                        ck = true;
                     }
                 }
-                ck = false;
-                S.begin = B;
-                //S.end = E;
-                S.end = 0;
-                Content->insert( std::pair<int,Data>(i,S) );
+            }
+            ck = false;
+            S.begin = B;
+            //S.end = E;
+            S.end = 0;
+            Content->insert( std::pair<int,Data>(i,S) );
 
-            }
+        }
 
-            //}
-            if( i == end )
-            {
-                break; //Находит начало первой строки
-            }
-            if( four + d == i )
-            {
-                UI->SetProgressValue(v);
-                v = v + 0.01;
-                four = four + d;
-            }
+        //}
+        if( i == end )
+        {
+            break; //Находит начало первой строки
+        }
+        if( four + d == i )
+        {
+            UI->SetProgressValue(v);
+            v = v + 0.01;
+            four = four + d;
+        }
         //chekc cancel button
     }
     bool a = true;
@@ -127,28 +126,28 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
             std::multimap<int,Data>::iterator itLite = it;
             cout << it->second.LiteChapter.c_str();
             cout << it->second.LiteChapter.c_str();
-                for(itLite; itLite != Content->end(); ++itLite)
+            for(itLite; itLite != Content->end(); ++itLite)
+            {
+                cout << itLite->second.LiteChapter.c_str();
+                cout << itLite->second.LiteChapter.c_str();
+                if( a == true)
                 {
-                    cout << itLite->second.LiteChapter.c_str();
-                    cout << itLite->second.LiteChapter.c_str();
-                    if( a == true)
+                    cout << itLite->second.begin;
+                    cout << it->second.begin;
+                    if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
                     {
-                        cout << itLite->second.begin;
-                        cout << it->second.begin;
-                        if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
-                        {
-                            it->second.end = itLite->second.begin;
-                            a = false;
-                        }
-                    }else
-                    {
-                        break;
+                        it->second.end = itLite->second.begin;
+                        a = false;
                     }
+                }else
+                {
+                    break;
                 }
-                a = true;
-                cout << it->second.LiteChapter.c_str();
-                cout << it->second.begin;
-                cout << it->second.end;
+            }
+            a = true;
+            cout << it->second.LiteChapter.c_str();
+            cout << it->second.begin;
+            cout << it->second.end;
         }
     }
 

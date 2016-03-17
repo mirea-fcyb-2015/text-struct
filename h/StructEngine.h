@@ -36,10 +36,8 @@ using namespace std;
 class AlgAbstract;
 class DelAbstract;
 class FindContent;
-/**
-    Класс работы с текстом
-*/
 
+//! Класс для работы с текстом
 class TTextStruct
 {
 private:
