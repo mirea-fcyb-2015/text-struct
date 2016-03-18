@@ -95,6 +95,10 @@ void AlgAbstract::GlueLineText(TStringList *sl)
 
 }
 
+AnsiString AlgAbstract::StringToLowerCase(AnsiString str)
+{
+    return str.LowerCase();
+}
 //! Функция удаления текста перед оглавлением  
 void AlgAbstract::delTop(TStringList *sl)
 {
@@ -156,8 +160,9 @@ AnsiString AlgAbstract::DelAllArtefactFromStr(AnsiString str)
 {
     AnsiString s(str);
     s = delPoints(s);
-    s = delNumPage(s);
+    s = delNum(s);
     s = delArtefact(s);
+    s = delSpecArtefact(s);
     // s = delBeforeUpp(s);
     return Trim(s);
 }
@@ -175,7 +180,18 @@ AnsiString AlgAbstract::delPoints(AnsiString str)
     }
     return s;
 }
+AnsiString AlgAbstract::delSpecArtefact(AnsiString str)
+{
+    AnsiString NonReadableSymbols = "'<>\\/|#\"$¦=:;§";
+    for (int l = 1; l < str.Length()+1; l++) {
+         if (str.IsDelimiter(NonReadableSymbols,l)){
+             str.Delete(l,1);
+             l-=1;
+         }
+    }
+    return str;
 
+}
 //! Удалить артефакт (Римские символы)
 AnsiString AlgAbstract::delArtefact(AnsiString str)
 {
@@ -191,7 +207,7 @@ AnsiString AlgAbstract::delArtefact(AnsiString str)
 }
 
 //! Удалить номера страниц
-AnsiString AlgAbstract::delNumPage(AnsiString str)
+AnsiString AlgAbstract::delNum(AnsiString str)
 {
     AnsiString s(str);
     int index = 0;
@@ -201,8 +217,56 @@ AnsiString AlgAbstract::delNumPage(AnsiString str)
         {
             index = s.Pos(str.c_str()[i]);
             s.Delete(index,1);
-            s = delNumPage(s);
+            s = delNum(s);
         }
+    }
+    return s;
+}
+AnsiString AlgAbstract::delNumPage(AnsiString str)
+{
+    AnsiString s(str.SubString(str.Length()-5,6));
+    int indexD = str.Pos(s);
+    str.Delete(indexD,6);
+    int index = 0;
+    for(int i = 0;i < s.Length(); i++)
+    {
+        if(isdigit(s.c_str()[i]))
+        {
+            index = s.Pos(s.c_str()[i]);
+            s.Delete(index,1);
+            s = delNum(s);
+
+        }
+    }
+    str = str + s;
+    return Trim(str);
+}
+
+AnsiString AlgAbstract::delSubPoint(AnsiString str)
+{
+//! переделать!
+//    AnsiString s(str);
+//    int index = 0;
+//    s = s.SubString(10,s.Length()- 10); // Переделать в поиск по первому вхождению буквы
+//    index = s.Pos(".");
+//    if( index != 0 )
+//    {
+//        s.Delete(index,1);
+//        s = delSubPoint(s);
+//    }
+//
+//    return Trim(s);
+}
+
+AnsiString AlgAbstract::ConvertWithNoTab(AnsiString str)
+{
+    AnsiString s(str);
+    int index = s.Pos("\t");
+    if(index != 0)
+    {
+        s.Delete(index,1);
+        s.Insert(" ",index);
+        s = ConvertWithNoTab(s);
     }
     return s;
 }

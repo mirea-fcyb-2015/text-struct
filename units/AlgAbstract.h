@@ -70,6 +70,11 @@ public:
     AnsiString delArtefact(AnsiString str);                                                 //! Удалить артефакт (Римские символы)
     AnsiString delBeforeUpp(AnsiString str);                                                //! Удалить все некорректные символы
     AnsiString DelFromStr(AnsiString str);                                                  //! Удалить подстроку из строки
+    AnsiString delSpecArtefact(AnsiString str);
+    AnsiString StringToLowerCase(AnsiString str);
+    AnsiString delNum(AnsiString str);
+    AnsiString ConvertWithNoTab(AnsiString str);
+    AnsiString delSubPoint(AnsiString str);
 
     int getLenght(){return lenght;}                                                         //! получаем длину строки
     int findInStrI(TStringList *sl,AnsiString str);                                         //! Находим в строке подстроку

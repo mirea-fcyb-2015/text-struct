@@ -39,6 +39,7 @@ AlgContent::~AlgContent()
 //! Функция, которая выполняет все действия для стуртурирования текста
 void AlgContent::AlgStruct(TStringList *sl)
 {
+
     GlueLineText(sl);
     ChapterBegin = FindBegin(sl);               // Начало оглавление
     ChapterEnd = FindEnd(sl,ChapterBegin);      // Конец оглавления
@@ -76,9 +77,13 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
         //{
         if((Page = FindNumPage(sl->Strings[i])) != -1 ) //если есть страница
         {
-            S.Chapter = Trim(sl->Strings[i]);
-            S.LiteChapter = DelAllArtefactFromStr(Trim(sl->Strings[i]));
+            AnsiString s = ConvertWithNoTab( Trim(sl->Strings[i]) );
+            S.Chapter = s;
+            S.LiteChapter = DelAllArtefactFromStr(s);
+            AnsiString a(delNumPage(S.Chapter));
+            a = delSubPoint(a);
             S.page = Page;
+
             B=0;E=0;
             for (int j = end + 1; j < sl->Count; ++j ) //пробегаемся по всем строкам
             {
@@ -91,6 +96,16 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
                         //E = j + 100;
                         //j = B;
                         //E = j;
+                        ck = true;
+                    } else
+                    if( S.LiteChapter.UpperCase() == Trim(sl->Strings[j]) )
+                    {
+                        B = j; // Начало главы
+                        ck = true;
+                    }else
+                    if( a == Trim(sl->Strings[j]))
+                    {
+                        B = j; // Начало главы
                         ck = true;
                     }
                 }
@@ -124,16 +139,10 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
         if( it->second.begin != 0)
         {
             std::multimap<int,Data>::iterator itLite = it;
-            cout << it->second.LiteChapter.c_str();
-            cout << it->second.LiteChapter.c_str();
             for(itLite; itLite != Content->end(); ++itLite)
             {
-                cout << itLite->second.LiteChapter.c_str();
-                cout << itLite->second.LiteChapter.c_str();
                 if( a == true)
                 {
-                    cout << itLite->second.begin;
-                    cout << it->second.begin;
                     if(itLite->second.begin != 0 & (itLite->second.begin > it->second.begin) )
                     {
                         it->second.end = itLite->second.begin;
@@ -145,14 +154,13 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
                 }
             }
             a = true;
-            cout << it->second.LiteChapter.c_str();
-            cout << it->second.begin;
-            cout << it->second.end;
         }
     }
 
     UI->HideProgressWindow();
 }
+
+
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
