@@ -46,26 +46,27 @@ object frmMain: TfrmMain
       ImageIndex = 1
       OnClick = FileCloseClick
     end
-    object Separator2: TToolButton
+    object btnDelTop: TToolButton
       Left = 131
+      Top = 0
+      Caption = 'btnDelTop'
+      ImageIndex = 4
+      OnClick = btnDelTopClick
+    end
+    object Separator2: TToolButton
+      Left = 195
       Top = 0
       Width = 3
       Caption = 'Separator2'
       ImageIndex = 2
       Style = tbsSeparator
     end
-    object btnDelTop: TToolButton
-      Left = 134
-      Top = 0
-      Caption = 'btnDelTop'
-      ImageIndex = 4
-      OnClick = btnDelTopClick
-    end
     object btnFind: TToolButton
       Left = 198
       Top = 0
       Caption = 'btnFind'
       ImageIndex = 5
+      OnClick = btnFindClick
     end
   end
   object Panel1: TPanel
@@ -121,7 +122,7 @@ object frmMain: TfrmMain
     Left = 840
     Top = 8
     Bitmap = {
-      494C010102003800900020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102003800980020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

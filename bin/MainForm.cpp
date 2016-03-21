@@ -108,3 +108,12 @@ void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TfrmMain::btnFindClick(TObject *Sender)
+{
+    textStruct->getUIProxy(UIProxy);
+    textStruct->algArtefact();
+    InputTree();
+    refreshMemo();
+}
+//---------------------------------------------------------------------------
+

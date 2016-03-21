@@ -63,6 +63,7 @@ __published:	// IDE-managed Components
     void __fastcall TreeViewMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
     void __fastcall FileCloseClick(TObject *Sender);
+    void __fastcall btnFindClick(TObject *Sender);
 
 private:	// User declarations
     AnsiString str;

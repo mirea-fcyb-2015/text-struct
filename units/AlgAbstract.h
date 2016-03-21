@@ -65,16 +65,16 @@ public:
     bool FindPoint(AnsiString str);                                                         //! Находим точки в строке
 
     AnsiString DelAllArtefactFromStr(AnsiString str);                                       //! Удалить все артефакты
-    AnsiString delPoints(AnsiString str);                                                   //! Проверка на сопадение текста в строке
-    AnsiString delNumPage(AnsiString str);                                                  //! Найти номер страницы
+    AnsiString delPoints(AnsiString str);                                                   //! Удалить все точки в строке
+    AnsiString delNumPage(AnsiString str);                                                  //! удалить номер страницы
     AnsiString delArtefact(AnsiString str);                                                 //! Удалить артефакт (Римские символы)
     AnsiString delBeforeUpp(AnsiString str);                                                //! Удалить все некорректные символы
     AnsiString DelFromStr(AnsiString str);                                                  //! Удалить подстроку из строки
-    AnsiString delSpecArtefact(AnsiString str);
-    AnsiString StringToLowerCase(AnsiString str);
-    AnsiString delNum(AnsiString str);
-    AnsiString ConvertWithNoTab(AnsiString str);
-    AnsiString delSubPoint(AnsiString str);
+    AnsiString delSpecArtefact(AnsiString str);                                             //! Удаление символов из строки типа: "'<>\\/|#\"$¦=:;§"
+    AnsiString StringToLowerCase(AnsiString str);                                           //! Приведение строки к нижнему регистру
+    AnsiString delNum(AnsiString str);                                                      //! Удалить номера из строки
+    AnsiString ConvertWithNoTab(AnsiString str);                                            //! Конвертировать табы в пробел
+    AnsiString delSubPoint(AnsiString str);                                                 //! Удалить точки в конце строки(до первого вхождения буквы)
 
     int getLenght(){return lenght;}                                                         //! получаем длину строки
     int findInStrI(TStringList *sl,AnsiString str);                                         //! Находим в строке подстроку

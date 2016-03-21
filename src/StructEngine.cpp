@@ -1,4 +1,4 @@
-/*______________________________ StructEngine.cpp ________________________________ */
+﻿/*______________________________ StructEngine.cpp ________________________________ */
 /**
     \file       StructEngine.cpp
     \brief      Основной класс программы для работы с текстом
@@ -53,6 +53,8 @@ void TTextStruct::algArtefact()
     if(!alg)
         delete alg;
     alg = new AlgArtefact();
+    alg->setMap(&Content);
+    alg->setTUIProxy(Prx);
     alg->AlgStruct(text);
 }
 

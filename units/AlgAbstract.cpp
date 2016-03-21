@@ -94,7 +94,7 @@ void AlgAbstract::GlueLineText(TStringList *sl)
 
 
 }
-
+//! Приведение строки к нижнему регистру
 AnsiString AlgAbstract::StringToLowerCase(AnsiString str)
 {
     return str.LowerCase();
@@ -180,6 +180,8 @@ AnsiString AlgAbstract::delPoints(AnsiString str)
     }
     return s;
 }
+
+//! Удаление символов из строки типа: "'<>\\/|#\"$¦=:;§"
 AnsiString AlgAbstract::delSpecArtefact(AnsiString str)
 {
     AnsiString NonReadableSymbols = "'<>\\/|#\"$¦=:;§";
@@ -222,6 +224,8 @@ AnsiString AlgAbstract::delNum(AnsiString str)
     }
     return s;
 }
+
+//! Удалить номера страниц из строки
 AnsiString AlgAbstract::delNumPage(AnsiString str)
 {
     AnsiString s(str.SubString(str.Length()-5,6));
@@ -242,6 +246,7 @@ AnsiString AlgAbstract::delNumPage(AnsiString str)
     return Trim(str);
 }
 
+//! Удалить точки с конца(до первого вхождения буквы)
 AnsiString AlgAbstract::delSubPoint(AnsiString str)
 {
 //! переделать!
@@ -258,6 +263,7 @@ AnsiString AlgAbstract::delSubPoint(AnsiString str)
 //    return Trim(s);
 }
 
+//! Конвертация Строки с таблуяцией в строку с пробелами
 AnsiString AlgAbstract::ConvertWithNoTab(AnsiString str)
 {
     AnsiString s(str);

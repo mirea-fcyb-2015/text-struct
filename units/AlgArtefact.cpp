@@ -1,4 +1,4 @@
-/*______________________________ AlgArtefact.cpp ________________________________ */
+﻿/*______________________________ AlgArtefact.cpp ________________________________ */
 /**
     \file       AlgArtefact.cpp
     \brief      Класс структурирования по содержанию
@@ -33,10 +33,17 @@ AlgArtefact::~AlgArtefact()
 //! Структурирование по артефактам
 void AlgArtefact::AlgStruct(TStringList *sl)
 {
-    //!
-    //! Алгоритм по артефактам
-    //!
-    algArtefact(sl);
+    GlueLineText(sl);
+    
+    setLenght(ChapterEnd-ChapterBegin);
+    if( getLenght() != NULL )
+    {
+        //!
+        //! Алгоритм по артефактам
+        //!
+        algArtefact(sl);
+    }
+
 }
 
 //! Записывает в map главы
@@ -48,7 +55,7 @@ void AlgArtefact::algArtefact(TStringList *sl)
     {
         AnsiString str = Trim(sl->Strings[i]);
         index = str.Pos(".");
-        if(index != 0 & str != "")
+        if(index == 0 & str != "")
         {
             if( IsUpper( str,1 ) == true )
             {
