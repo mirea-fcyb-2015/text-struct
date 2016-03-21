@@ -66,6 +66,7 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
     int B=0,E=0,d = (end-begin)/100,four = 0;
     double v=0.01;
     four  = begin;
+    AnsiString z;
 
     // Открываем панель загрузки
     UI->ShowProgressWindow("Загрузка");
@@ -80,8 +81,8 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
             AnsiString s = ConvertWithNoTab( Trim(sl->Strings[i]) );
             S.Chapter = s;
             S.LiteChapter = DelAllArtefactFromStr(s);
-            AnsiString a(delNumPage(S.Chapter));
-            a = delSubPoint(a);
+//             z = delNumPage(S.Chapter);
+//            z = delSubPoint(z);
             S.page = Page;
 
             B=0;E=0;
@@ -102,12 +103,13 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
                     {
                         B = j; // Начало главы
                         ck = true;
-                    }else
-                    if( a == Trim(sl->Strings[j]))
-                    {
-                        B = j; // Начало главы
-                        ck = true;
                     }
+//                    else
+//                    if( z == Trim(sl->Strings[j]))
+//                    {
+//                        B = j; // Начало главы
+//                        ck = true;
+//                    }
                 }
             }
             ck = false;
