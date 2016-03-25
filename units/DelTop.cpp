@@ -27,6 +27,9 @@ DelTop::~DelTop()
 {
 
 }
-
+void DelTop::Delete(TStringList *sl)
+{
+    //
+}
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

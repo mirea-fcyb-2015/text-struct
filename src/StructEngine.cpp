@@ -66,6 +66,7 @@ void TTextStruct::algContent()
     alg = new AlgContent();
     alg->setMap(&Content);
     alg->setTUIProxy(Prx);
+    delPage();
     alg->AlgStruct(text);
 }
 
@@ -96,11 +97,12 @@ void TTextStruct::delHeader()
 //! Удаление номеров страниц в тексте
 void TTextStruct::delPage()
 {
-    // Удаление номеров страниц
-//    if(!del)
-//        delete del;
-//    del = new DelPage();
-//    del->Delete(text);
+
+    if(!del)
+        delete del;
+    del = new DelPage();
+    del->getText(text);
+    del->Delete(text);
 }
 
 //! Удаление текста перед содержанием в тексте

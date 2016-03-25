@@ -39,7 +39,7 @@ AlgContent::~AlgContent()
 //! Функция, которая выполняет все действия для стуртурирования текста
 void AlgContent::AlgStruct(TStringList *sl)
 {
-
+    ConvertWithNoTabC(sl);  //! Заменяем все табы пробелами
     GlueLineText(sl);
     ChapterBegin = FindBegin(sl);               // Начало оглавление
     ChapterEnd = FindEnd(sl,ChapterBegin);      // Конец оглавления
@@ -66,7 +66,7 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
     int B=0,E=0,d = (end-begin)/100,four = 0;
     double v=0.01;
     four  = begin;
-    AnsiString z;
+    AnsiString z,x,y;
 
     // Открываем панель загрузки
     UI->ShowProgressWindow("Загрузка");
@@ -83,6 +83,12 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
             S.LiteChapter = DelAllArtefactFromStr(s);
 //             z = delNumPage(S.Chapter);
 //            z = delSubPoint(z);
+             z  = getSubString(S.Chapter);
+             z = delMoreOneSpace(z);
+             y = z;
+             z = getSecondSub(z);
+             x = getNormalText(z);
+
             S.page = Page;
 
             B=0;E=0;
@@ -104,12 +110,23 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
                         B = j; // Начало главы
                         ck = true;
                     }
-//                    else
-//                    if( z == Trim(sl->Strings[j]))
-//                    {
-//                        B = j; // Начало главы
-//                        ck = true;
-//                    }
+                    else
+                    if( x == Trim(sl->Strings[j]))
+                    {
+                        B = j; // Начало главы
+                        ck = true;
+                    }else
+                    if( z == Trim(sl->Strings[j]))
+                    {
+                        B = j; // Начало главы
+                        ck = true;
+                    }else
+                    if( y == Trim(sl->Strings[j]))
+                    {
+                        B = j; // Начало главы
+                        ck = true;
+                    }
+
                 }
             }
             ck = false;
@@ -161,7 +178,21 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 
     UI->HideProgressWindow();
 }
+void AlgContent::ConvertWithNoTabC(TStringList *sl)
+{
+     for (int i = 0; i < sl->Count - 1; ++i ) //пробегаемся по всем строкам
+    {
+        AnsiString s = sl->Strings[i];
+        int index = s.Pos("\t");
+        if(index != 0)
+        {
+            s.Delete(index,1);
+            s.Insert(" ",index);
+            s = ConvertWithNoTab(s);
+        }
 
+    }
+}
 
 
 //---------------------------------------------------------------------------

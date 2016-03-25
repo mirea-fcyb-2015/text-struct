@@ -1,4 +1,4 @@
-/*______________________________ DelPage.h ________________________________ */
+﻿/*______________________________ DelPage.h ________________________________ */
 /**
     \file       DelPage.h
     \brief      Класс удаления номеров страниц в тексте
@@ -22,12 +22,12 @@
 class DelPage : public DelAbstract
 {
 private:
-    TStringList *text;
+
 public:
-    DelPage(TStringList *sl);
+    DelPage();
     ~DelPage();
 
-    void Delete();  // Удаление номеров страниц
+    void Delete(TStringList *sl);  // Удаление номеров страниц
     void delNum();  // Алгоритм удаления
     bool conditionDelPage(char ch); // Условия определения номера страницы
 };

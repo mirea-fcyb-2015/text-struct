@@ -23,7 +23,9 @@
 //! Конструктор
 AlgAbstract::AlgAbstract()
 {
-
+    SetConsoleCP(1251); // подключение кириллицы
+    SetConsoleOutputCP(1251); // подключение кириллицы
+    setlocale(LC_ALL, "");
 }
 
 //! Деструктор
@@ -142,6 +144,154 @@ bool AlgAbstract::findInStrB(TStringList *sl,AnsiString str)
     return false;
 }
 
+//AnsiString AlgAbstract::getSubString(AnsiString str)
+//{
+//	int positionFirstDots, positionSecondDots, positionLastDots, lastChar;
+//	AnsiString str1, str2, str3, strTrim;
+//	positionFirstDots = str.Pos(".");
+//	str1 = str.Delete(1, positionFirstDots);
+//	str2 = str.Trim();
+//
+//	if(!str1.AnsiCompare(str2))
+//	{
+//		positionSecondDots = str.Pos(".");
+//		str3 = str2.Delete(1, positionSecondDots);
+//	}
+//	else
+//	{
+//		str3 = str2;
+//	}
+//	positionLastDots = str3.Pos(".");
+//	lastChar = str3.Length();
+//	str3 = str3.Delete(positionLastDots, lastChar).Trim().LowerCase();
+//
+//
+//	return str3;
+//}//! Удалить часть после основной части главы (К примеру: Основная глава ..... 17 -> Основная глава)AnsiString AlgAbstract::getSubString(AnsiString str)
+{
+
+    bool ch = true;
+    AnsiString s;
+    int last = 0;
+    unsigned char *s2 = str.c_str();
+    unsigned char *s1;
+    last = strlen(s2)-1;
+    while (s2[last] != 0)
+    {
+        if(ch == true)
+        {
+            if ( isalpha(s2[last]) )
+            {
+                if(isalpha(s2[last-1]))
+                {
+                    AnsiString S((const char*)s2);
+                    s = S.SubString(0,last+1);
+                    ch = false;
+                }
+            }
+        }
+
+        last--;
+    }
+
+    delete [] s1,s2;
+    return s;
+}
+
+//! Удалить первую часть главы(до первого вхождения в основую часть текста). К примеру, Глава 1. Основная глава -> Основная глава
+AnsiString AlgAbstract::getSecondSub(AnsiString str)
+{
+    int index[6],last = 0;
+    index[0] = str.Pos("Глава");
+    index[1] = str.Pos("ГЛАВА");
+    index[2] = str.Pos("глава");
+    index[3] = str.Pos("Часть");
+    index[4] = str.Pos("ЧАСТЬ");
+    index[5] = str.Pos("часть");
+
+
+
+    unsigned char *s2 = str.c_str();
+    unsigned char *s1;
+    last = strlen(s2);
+    int i = 0;
+    while ( s2[i] != last )
+    {
+        if( isalpha(s2[i]) )
+        {
+            for(int j=0;j<6;j++)
+            {
+                if(index[j] == (i+1) & index[j] != 0)
+                {
+                    i+=6;
+                    while (s2[i] != last)
+                    {
+                        if(s2[i] == ' ')
+                        {
+                            int l = i+1;
+                            if( l != last)
+                            {
+                                if( isalpha(s2[l]) ) return str.SubString(l+1,str.Length()-l);
+                            }
+                        }
+                        i++;
+                    }
+                }
+
+            }
+
+        }
+        i++;
+    }
+
+    i = 0;
+    while ( s2[i] != last )
+    {
+        if( isalpha(s2[i]) )
+        {
+            return str.SubString(i+1,str.Length()-i);
+        }
+        i++;
+    }
+
+}
+
+//! Строку преобразовать в предложение(С большой буквы)
+AnsiString AlgAbstract::getNormalText(AnsiString str)
+{
+    AnsiString s1,s2,s;                    //! 2 подстроки
+    Trim(str);                             //! Убираем пробелы
+    s1 = str.SubString(1,1);               //! Берем первый символ
+    s1 = AnsiUpperCase(s1);                //! К верхнему регистру
+    s2 = str.SubString(2,str.Length()-1);  //! Берем все кроме первого символа
+    s2 = AnsiLowerCase(s2);                //! К нижнему регистру
+    s = s1 + s2;                           //! Сложение строк
+    return s;
+}
+
+//! Удаляются больше чем 1 пробел(если рядом есть ещё пробелы)
+AnsiString AlgAbstract::delMoreOneSpace(AnsiString str)
+{
+    char a = ' ';
+    int index = str.Length();
+    for(int i = index - 1 ;i >= 0;i--)
+    {
+        if( str.c_str()[i] == a )
+        {
+            int j = i;
+            if(j != 1)
+            {
+                --j;
+                if( str.c_str()[j] == a )
+                {
+                    str.Delete(i,1);
+
+                }
+            }
+        }
+    }
+    return str;
+}
 //! Проверка на сопадение текста в строке (возвращает номер строки)
 int AlgAbstract::findInStrI(TStringList *sl,AnsiString str)
 {

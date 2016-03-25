@@ -1,4 +1,4 @@
-/*______________________________ DelAbstract.h ________________________________ */
+﻿/*______________________________ DelAbstract.h ________________________________ */
 /**
     \file       DelAbstract.h
     \brief      Абстрактный класс корректирования текста
@@ -25,7 +25,9 @@ class DelAbstract
 private:
 
 public:
+    TStringList *text;
     virtual void Delete(TStringList *sl) = 0;
+    void getText(TStringList *t);
 };
 //---------------------------------------------------------------------------
 #endif

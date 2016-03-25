@@ -75,6 +75,10 @@ public:
     AnsiString delNum(AnsiString str);                                                      //! Удалить номера из строки
     AnsiString ConvertWithNoTab(AnsiString str);                                            //! Конвертировать табы в пробел
     AnsiString delSubPoint(AnsiString str);                                                 //! Удалить точки в конце строки(до первого вхождения буквы)
+    AnsiString getSubString(AnsiString str);                                                //! Удалить часть после основной части главы (К примеру: Основная глава ..... 17 -> Основная глава)
+    AnsiString delMoreOneSpace(AnsiString str);                                             //! Удаляются больше чем 1 пробел(если рядом есть ещё пробелы)
+    AnsiString getSecondSub(AnsiString str);                                                //! Удалить первую часть главы(до первого вхождения в основую часть текста). К примеру, Глава 1. Основная глава -> Основная глава
+    AnsiString getNormalText(AnsiString str);                                               //! Строку преобразовать в предложение(С большой буквы)
 
     int getLenght(){return lenght;}                                                         //! получаем длину строки
     int findInStrI(TStringList *sl,AnsiString str);                                         //! Находим в строке подстроку

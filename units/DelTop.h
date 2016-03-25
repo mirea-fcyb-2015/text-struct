@@ -31,7 +31,7 @@ private:
 public:
     DelTop();
     ~DelTop();
-
+    void Delete(TStringList *sl);
 };
 //---------------------------------------------------------------------------
 #endif
