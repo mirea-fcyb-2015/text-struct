@@ -94,6 +94,18 @@ void TTextStruct::delHeader()
     del->Delete(text);
 }
 
+void TTextStruct::useStruct()
+{
+    int i = 0;
+    i = FindBegin(text);
+    if(i == -1)
+    {
+        algArtefact();
+    }else
+    {
+        algContent();
+    }
+}
 //! Удаление номеров страниц в тексте
 void TTextStruct::delPage()
 {
@@ -132,4 +144,67 @@ void TTextStruct::findContent()
     findCont->findContent(text);
 }
 
+int TTextStruct::FindBegin(TStringList *sl)
+{
+    int CheckForContent = -1,count = 0;
+    try
+    {
+        if( findInStrB(sl,"===Begin===") == true )
+        {
+            CheckForContent = findInStrI(sl,"Begin");
+            throw count = 1;
+        } else
+        if( findInStrB(sl,"Содержание") == true )
+        {
+            CheckForContent = findInStrI(sl,"Содержание");
+            throw count = 2;
+        } else
+        if( findInStrB(sl,"Оглавление") == true )
+        {
+            CheckForContent = findInStrI(sl,"Оглавление");
+            throw count = 3;
+        } else
+        if( findInStrB(sl,"ОГЛАВЛЕНИЕ") == true )
+        {
+            CheckForContent = findInStrI(sl,"ОГЛАВЛЕНИЕ");
+            throw count = 4;
+        }
+    }
+
+    catch (int i)
+    {
+        if(CheckForContent != 0)
+            return CheckForContent;
+    }
+    catch (...)
+    {
+        return -1;
+    }
+}
+
+int TTextStruct::findInStrI(TStringList *sl,AnsiString str)
+{
+    for (int i = 0; i < sl->Count - 1; ++i ) //
+    {
+        if( Trim(sl->Strings[i]) == str ) // Функция Trim убирает пробелы из строки
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//! Проверка на сопадение текста в строке
+bool TTextStruct::findInStrB(TStringList *sl,AnsiString str)
+{
+    for (int i = 0; i < sl->Count - 1; ++i ) //пробегаемся по всем строкам
+    {
+        //if (Pos(Trim(str),Trim(sl->Strings[i])) > 0)
+        if (Trim(sl->Strings[i]) == str)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 #pragma package(smart_init)

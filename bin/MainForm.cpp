@@ -62,7 +62,7 @@ void TfrmMain::showTextMemo(TStringList *sl)
 void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
 {
     textStruct->getUIProxy(UIProxy);
-    textStruct->algContent();
+    textStruct->useStruct();
     InputTree();
     refreshMemo();
 }

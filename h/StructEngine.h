@@ -57,22 +57,24 @@ public:
 
     void algArtefact(); // Структуризация про артефактам
     void algContent();  // Структуризация по оглавлению
-
     void delHeader();   // Удаление текста перед оглавлением
     void delPage();     // Удаление номеров страниц
     void delTop();      // Удаление информации перед содержанием
-
     void findContent(); // Поиск и извлечение оглавления
-
     void fileLoad(UnicodeString fileName);    // Загрузка данных из файла
-
     void setText(TStringList *txt);
     void getUIProxy(TUIProxy *UIProxy){Prx = UIProxy;}
+    void callViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
+    void useStruct();
+
+    int FindBegin(TStringList *sl);
+    int findInStrI(TStringList *sl,AnsiString str);
+
+    bool findInStrB(TStringList *sl,AnsiString str);
+
     std::multimap<int,Data> *getMap(){return &Content; }
-    //std::map<int,AnsiString> *getMap(){return &tree; }
     AnsiString getDelAllArtefactFromStr(AnsiString str);
     TStringList *getText();
-    void callViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
 };
 
 #endif

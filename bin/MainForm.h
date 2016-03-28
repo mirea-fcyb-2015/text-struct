@@ -47,10 +47,8 @@ __published:	// IDE-managed Components
 
     // Toolbar
     TToolBar *ToolBar;
-    TToolButton *FileOpen;                      // Кнопка открытия файла
-    TToolButton *Separator1;                    // Разделитель кнопки
-    TToolButton *FileClose;                     // кнопка закрытия файла
-    TToolButton *Separator2;                    // Разделитель кнопки
+    TToolButton *FileOpen;                    // Разделитель кнопки
+    TToolButton *FileClose;                    // Разделитель кнопки
 
     // Panel
     TPanel *Panel1;                             // Панель

@@ -305,6 +305,20 @@ int AlgAbstract::findInStrI(TStringList *sl,AnsiString str)
     return -1;
 }
 
+int AlgAbstract::getTypeStruct(TStringList *sl)
+{
+    int i = 0;
+    i = FindBegin(sl);
+    if(i == -1)
+    {
+        return 0;
+    }else
+    {
+        return 1;
+    }
+
+}
+
 //! Удалить все артефакты
 AnsiString AlgAbstract::DelAllArtefactFromStr(AnsiString str)
 {

@@ -51,6 +51,7 @@ void AlgContent::AlgStruct(TStringList *sl)
     }
 }
 
+
 void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 {
     bool ck = false;
@@ -81,13 +82,13 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
             AnsiString s = ConvertWithNoTab( Trim(sl->Strings[i]) );
             S.Chapter = s;
             S.LiteChapter = DelAllArtefactFromStr(s);
-//             z = delNumPage(S.Chapter);
-//            z = delSubPoint(z);
-             z  = getSubString(S.Chapter);
-             z = delMoreOneSpace(z);
-             y = z;
-             z = getSecondSub(z);
-             x = getNormalText(z);
+//          z = delNumPage(S.Chapter);
+//          z = delSubPoint(z);
+            z  = getSubString(S.Chapter);
+            z = delMoreOneSpace(z);
+            y = z;
+            z = getSecondSub(z);
+            x = getNormalText(z);
 
             S.page = Page;
 

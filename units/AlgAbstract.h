@@ -88,6 +88,7 @@ public:
     int FindBegin(TStringList *sl);                                                         //! Ищем начало содержания
     int UpdateChapter(TStringList *sl,int begin,int end);                                   //! Удаляем все пустые строки
     int GlueLine(TStringList *sl,int begin,int end);                                        //! Функция склеивания строк
+    int getTypeStruct(TStringList *sl);
 
 };
 //---------------------------------------------------------------------------
