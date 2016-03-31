@@ -10,7 +10,7 @@
     \par        История создания:
     \code
         16/10/2015 - 1.0 - Создание пустой формы
-      
+        31/03/2016 - 2.0 - Финальтная версия программы
     \endcode
 
 */
@@ -27,14 +27,14 @@ TfrmMain *frmMain;
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     : TForm(Owner)
 {
-    UIProxy = new TUIProxy(frmMain,frmMain); // Создаем объект класса TUIProxy (окно загрузки)
-    OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";   // Чтобы мог открыть только файлы с расширением txt
-    textStruct = new TTextStruct(); // Создаем объект класса TTextStruct
+    UIProxy = new TUIProxy(frmMain,frmMain);                    //! Создаем объект класса TUIProxy (окно загрузки)
+    OpenTextFileDialog1->Filter = "Text files (*.txt)|*.TXT";   //! Чтобы мог открыть только файлы с расширением txt
+    textStruct = new TTextStruct();                             //! Создаем объект класса TTextStruct
 }
 
  __fastcall TfrmMain::~TfrmMain()
 {
-    // Освобождаем память
+    //! Освобождаем память
     delete textStruct;
     delete UIProxy;
 }
@@ -59,12 +59,12 @@ void TfrmMain::showTextMemo(TStringList *sl)
 }
 
 //! Временая кнопка для вывода структурированного текста
-void __fastcall TfrmMain::btnDelTopClick(TObject *Sender)
+void __fastcall TfrmMain::StructClick(TObject *Sender)
 {
-    textStruct->getUIProxy(UIProxy);
-    textStruct->useStruct();
-    InputTree();
-    refreshMemo();
+    textStruct->getUIProxy(UIProxy);    //! Окно загрузки
+    textStruct->useStruct();            //! Выбор структурирования
+    InputTree();                        //! Вывод дерева
+    refreshMemo();                      //! Обновленить memo
 }
 
 //! Вывод дерева в левой панели
@@ -84,6 +84,7 @@ void TfrmMain::refreshMemo()
     mmText->Lines->Text = textStruct->getText()->Text;
 }
 
+//! При нажатии главы в левой панели выводится её содержимое
 void __fastcall TfrmMain::TreeViewMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y)
 {
@@ -99,6 +100,7 @@ void __fastcall TfrmMain::TreeViewMouseDown(TObject *Sender, TMouseButton Button
 }
 //---------------------------------------------------------------------------
 
+//! Закрыть файл
 void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
 {
     mmText->Clear();
@@ -108,12 +110,5 @@ void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmMain::btnFindClick(TObject *Sender)
-{
-    textStruct->getUIProxy(UIProxy);
-    textStruct->algArtefact();
-    InputTree();
-    refreshMemo();
-}
-//---------------------------------------------------------------------------
+
 

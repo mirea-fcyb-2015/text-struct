@@ -67,11 +67,6 @@ public:
     void callViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
     void useStruct();
 
-    int FindBegin(TStringList *sl);
-    int findInStrI(TStringList *sl,AnsiString str);
-
-    bool findInStrB(TStringList *sl,AnsiString str);
-
     std::multimap<int,Data> *getMap(){return &Content; }
     AnsiString getDelAllArtefactFromStr(AnsiString str);
     TStringList *getText();

@@ -34,6 +34,38 @@ AlgAbstract::~AlgAbstract()
 
 }
 
+bool AlgAbstract::beforeStruct(TStringList *sl)
+{
+    ConvertWithNoTabC(sl);                                  //! Заменяем все табы пробелами
+    GlueLineText(sl);                                       //! Соединение строк
+    ChapterBegin = FindBegin(sl);                           //! Начало оглавление
+    if( ChapterBegin == -1)
+    {
+        return false;
+    }else
+    {
+        ChapterEnd = FindEnd(sl,ChapterBegin);                  //! Конец оглавления
+        ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd); //! Обработка текста(Убираем пустые строки и склеиваем главы)
+        return true;
+    }
+
+}
+//! Конвертируем строки. Вместо табуляции вставляем пробелы
+void AlgAbstract::ConvertWithNoTabC(TStringList *sl)
+{
+     for (int i = 0; i < sl->Count - 1; ++i ) //! пробегаемся по всем строкам
+    {
+        AnsiString s = sl->Strings[i];
+        int index = s.Pos("\t");
+        if(index != 0)
+        {
+            s.Delete(index,1);
+            s.Insert(" ",index);
+            s = ConvertWithNoTab(s);
+        }
+
+    }
+}
 //! Присвоить значение map
 void AlgAbstract::setMap(std::multimap<int,Data> *pM)
 {
@@ -209,8 +241,6 @@ AnsiString AlgAbstract::getSecondSub(AnsiString str)
     index[4] = str.Pos("ЧАСТЬ");
     index[5] = str.Pos("часть");
 
-
-
     unsigned char *s2 = str.c_str();
     unsigned char *s1;
     last = strlen(s2);
@@ -303,20 +333,6 @@ int AlgAbstract::findInStrI(TStringList *sl,AnsiString str)
         }
     }
     return -1;
-}
-
-int AlgAbstract::getTypeStruct(TStringList *sl)
-{
-    int i = 0;
-    i = FindBegin(sl);
-    if(i == -1)
-    {
-        return 0;
-    }else
-    {
-        return 1;
-    }
-
 }
 
 //! Удалить все артефакты
@@ -632,6 +648,7 @@ int AlgAbstract::FindBegin(TStringList *sl)
     {
 
     }
+    return -1;
 }
 
 //! Удаляем все пустые строки

@@ -51,7 +51,9 @@ public:
      AlgAbstract();                         //! Конструктор
     ~AlgAbstract();                         //! Деструктор
 
-    virtual void AlgStruct(TStringList *sl) = 0;                                            //!                     
+    virtual void AlgStruct(TStringList *sl) = 0;                                            //! Вирутуальный класс структурирования
+    bool beforeStruct(TStringList *sl);                                                     //! Обработка текста перед структурированием
+    void ConvertWithNoTabC(TStringList *sl);                                                //! Конвертирование табуляций в пробелы
     void setMap(multimap<int,Data> *pM);                                                    //! Присвоить значение map
     void setTUIProxy(TUIProxy *UIProxy);                                                    //! Присваеваем значения объекту 
     void delTop(TStringList *sl);                                                           //! Удаление текста перед оглавлением   
@@ -73,7 +75,7 @@ public:
     AnsiString delSpecArtefact(AnsiString str);                                             //! Удаление символов из строки типа: "'<>\\/|#\"$¦=:;§"
     AnsiString StringToLowerCase(AnsiString str);                                           //! Приведение строки к нижнему регистру
     AnsiString delNum(AnsiString str);                                                      //! Удалить номера из строки
-    AnsiString ConvertWithNoTab(AnsiString str);                                            //! Конвертировать табы в пробел
+    AnsiString ConvertWithNoTab(AnsiString str);                                            //! Конвертировать табы в пробел (В строке)
     AnsiString delSubPoint(AnsiString str);                                                 //! Удалить точки в конце строки(до первого вхождения буквы)
     AnsiString getSubString(AnsiString str);                                                //! Удалить часть после основной части главы (К примеру: Основная глава ..... 17 -> Основная глава)
     AnsiString delMoreOneSpace(AnsiString str);                                             //! Удаляются больше чем 1 пробел(если рядом есть ещё пробелы)
@@ -88,7 +90,6 @@ public:
     int FindBegin(TStringList *sl);                                                         //! Ищем начало содержания
     int UpdateChapter(TStringList *sl,int begin,int end);                                   //! Удаляем все пустые строки
     int GlueLine(TStringList *sl,int begin,int end);                                        //! Функция склеивания строк
-    int getTypeStruct(TStringList *sl);
 
 };
 //---------------------------------------------------------------------------

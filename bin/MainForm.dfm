@@ -20,7 +20,7 @@ object frmMain: TfrmMain
     Width = 933
     Height = 57
     ButtonHeight = 52
-    ButtonWidth = 78
+    ButtonWidth = 60
     Caption = 'ToolBar'
     Images = ImageList1
     ShowCaptions = True
@@ -33,7 +33,7 @@ object frmMain: TfrmMain
       OnClick = FileOpenClick
     end
     object FileClose: TToolButton
-      Left = 78
+      Left = 60
       Top = 0
       Caption = 'Close'
       ImageIndex = 1
@@ -41,19 +41,12 @@ object frmMain: TfrmMain
       ShowHint = True
       OnClick = FileCloseClick
     end
-    object btnDelTop: TToolButton
-      Left = 156
+    object Struct: TToolButton
+      Left = 120
       Top = 0
-      Caption = 'Stuct content'
+      Caption = 'Structuring'
       ImageIndex = 2
-      OnClick = btnDelTopClick
-    end
-    object btnFind: TToolButton
-      Left = 234
-      Top = 0
-      Caption = 'Struct artefact'
-      ImageIndex = 2
-      OnClick = btnFindClick
+      OnClick = StructClick
     end
   end
   object Panel1: TPanel
@@ -65,8 +58,6 @@ object frmMain: TfrmMain
     Align = alClient
     AutoSize = True
     TabOrder = 1
-    ExplicitLeft = -2
-    ExplicitTop = 63
     object TreeView: TTreeView
       Left = 13
       Top = 3
@@ -82,7 +73,7 @@ object frmMain: TfrmMain
       Left = 319
       Top = 3
       Width = 602
-      Height = 634
+      Height = 638
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 1
@@ -111,7 +102,7 @@ object frmMain: TfrmMain
     Left = 840
     Top = 8
     Bitmap = {
-      494C010103003800A80020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103003800B00020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

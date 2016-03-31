@@ -36,34 +36,32 @@
 class TfrmMain : public TForm
 {
 __published:	// IDE-managed Components
-    TOpenTextFileDialog *OpenTextFileDialog1;
-    TImageList *ImageList1;                     // Хранилище изображений для кнопок
+    TOpenTextFileDialog *OpenTextFileDialog1;   //! Файловый диалог
+    TImageList *ImageList1;                     //! Хранилище изображений для кнопок
 
     // MainMenu
-    TMainMenu *MainMenu1;
-    TMenuItem *N1;                              //файл
-    TMenuItem *N2;
-    TMenuItem *N3;
+    TMainMenu *MainMenu1;                       //! Верхняя менюшка
+    TMenuItem *N1;                              //! Файл
+    TMenuItem *N2;                              //! Параметры
+    TMenuItem *N3;                              //! Справка
 
     // Toolbar
-    TToolBar *ToolBar;
-    TToolButton *FileOpen;                    // Разделитель кнопки
-    TToolButton *FileClose;                    // Разделитель кнопки
+    TToolBar *ToolBar;                          //! Тулбар
+    TToolButton *FileOpen;                      //! Разделитель кнопки
+    TToolButton *FileClose;                     //! Разделитель кнопки
 
     // Panel
-    TPanel *Panel1;                             // Панель
-    TTreeView *TreeView;                        // Отображение оглавления в TreeView
-    TMemo *mmText;
-    TToolButton *btnDelTop;
-    TToolButton *btnFind;
+    TPanel *Panel1;                             //! Панель
+    TTreeView *TreeView;                        //! Отображение оглавления в TreeView
+    TMemo *mmText;                              //! Мемо
+    TToolButton *Struct;                        //!
     void __fastcall FileOpenClick(TObject *Sender);
-    void __fastcall btnDelTopClick(TObject *Sender);
+    void __fastcall StructClick(TObject *Sender);
     void __fastcall TreeViewMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
     void __fastcall FileCloseClick(TObject *Sender);
-    void __fastcall btnFindClick(TObject *Sender);
 
-private:	// User declarations
+private:
     AnsiString str;
     TTextStruct* textStruct; // Создание объекта
     void showTextMemo(TStringList *sl); // отобразить текст в Memo

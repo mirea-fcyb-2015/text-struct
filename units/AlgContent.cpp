@@ -39,16 +39,15 @@ AlgContent::~AlgContent()
 //! Функция, которая выполняет все действия для стуртурирования текста
 void AlgContent::AlgStruct(TStringList *sl)
 {
-    ConvertWithNoTabC(sl);  //! Заменяем все табы пробелами
-    GlueLineText(sl);
-    ChapterBegin = FindBegin(sl);               // Начало оглавление
-    ChapterEnd = FindEnd(sl,ChapterBegin);      // Конец оглавления
-    ChapterEnd = UpdateChapter(sl,ChapterBegin,ChapterEnd);  // Обработка текста(Убираем пустые строки и склеиваем главы)
     setLenght(ChapterEnd-ChapterBegin);
-    if( getLenght() != NULL )
+    if( ChapterBegin <= ChapterEnd )         //Если конец оглавления больше начала
     {
-        AlgChapter(sl,ChapterBegin,ChapterEnd);
+        if( getLenght() != NULL )
+        {
+            AlgChapter(sl,ChapterBegin,ChapterEnd);
+        }
     }
+
 }
 
 
@@ -179,24 +178,6 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 
     UI->HideProgressWindow();
 }
-
-//! Конвертируем строки. Вместо табуляции вставляем пробелы
-void AlgContent::ConvertWithNoTabC(TStringList *sl)
-{
-     for (int i = 0; i < sl->Count - 1; ++i ) //! пробегаемся по всем строкам
-    {
-        AnsiString s = sl->Strings[i];
-        int index = s.Pos("\t");
-        if(index != 0)
-        {
-            s.Delete(index,1);
-            s.Insert(" ",index);
-            s = ConvertWithNoTab(s);
-        }
-
-    }
-}
-
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

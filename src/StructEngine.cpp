@@ -53,31 +53,29 @@ void TTextStruct::algArtefact()
     if(!alg)
         delete alg;
     alg = new AlgArtefact();
-    alg->setMap(&Content);
+    alg->setMap(&Content);      //! Присваем значение map
     alg->setTUIProxy(Prx);
-    delPage();
-    alg->AlgStruct(text);
-    delHeader();
+    delPage();                  //! Удаляем страницы
+    delHeader();                //! Удаляем колонтитулы
+    alg->AlgStruct(text);       //! Выполняем алгоритм структурирования по артефактам
 }
 
 //! Структуризация текста по содержанию
 void TTextStruct::algContent()
 {
-    if(!alg)
-        delete alg;
-    alg = new AlgContent();
-    alg->setMap(&Content);
+//    if(!alg)
+//        delete alg;
+//    alg = new AlgContent();   //! Выполняется до этого в функции useStruct
+    alg->setMap(&Content);      //! Аналогично
     alg->setTUIProxy(Prx);
     delPage();
     delHeader();
     alg->AlgStruct(text);
-
 }
 
 //! Удаление всех артефактов из строки
 AnsiString TTextStruct::getDelAllArtefactFromStr(AnsiString str)
 {
-    int a = 0;
     AnsiString s = alg->DelAllArtefactFromStr(str);
     return s;
 }
@@ -95,31 +93,32 @@ void TTextStruct::delHeader()
     if(!del)
         delete del;
     del = new DelHeader();
-    del->getText(text);
-    del->Delete(text);
+    del->getText(text);     //! Получаем текст
+    del->Delete(text);      //! Удаляем текст
 }
 
 void TTextStruct::useStruct()
 {
-    int i = 0;
-    i = FindBegin(text);
-    if(i == -1)
-    {
-        algArtefact();
-    }else
+    if(!alg)
+        delete alg;
+    alg = new AlgContent();
+    if( alg->beforeStruct(text) == true )
     {
         algContent();
+    }else
+    {
+        algArtefact();
     }
+
 }
 //! Удаление номеров страниц в тексте
 void TTextStruct::delPage()
 {
-
     if(!del)
         delete del;
     del = new DelPage();
-    del->getText(text);
-    del->Delete(text);
+    del->getText(text);     //! Получаем текст
+    del->Delete(text);      //! Удаляем текст
 }
 
 //! Удаление текста перед содержанием в тексте
@@ -149,67 +148,4 @@ void TTextStruct::findContent()
     findCont->findContent(text);
 }
 
-int TTextStruct::FindBegin(TStringList *sl)
-{
-    int CheckForContent = -1,count = 0;
-    try
-    {
-        if( findInStrB(sl,"===Begin===") == true )
-        {
-            CheckForContent = findInStrI(sl,"Begin");
-            throw count = 1;
-        } else
-        if( findInStrB(sl,"Содержание") == true )
-        {
-            CheckForContent = findInStrI(sl,"Содержание");
-            throw count = 2;
-        } else
-        if( findInStrB(sl,"Оглавление") == true )
-        {
-            CheckForContent = findInStrI(sl,"Оглавление");
-            throw count = 3;
-        } else
-        if( findInStrB(sl,"ОГЛАВЛЕНИЕ") == true )
-        {
-            CheckForContent = findInStrI(sl,"ОГЛАВЛЕНИЕ");
-            throw count = 4;
-        }
-    }
-
-    catch (int i)
-    {
-        if(CheckForContent != 0)
-            return CheckForContent;
-    }
-    catch (...)
-    {
-        return -1;
-    }
-}
-
-int TTextStruct::findInStrI(TStringList *sl,AnsiString str)
-{
-    for (int i = 0; i < sl->Count - 1; ++i ) //
-    {
-        if( Trim(sl->Strings[i]) == str ) // Функция Trim убирает пробелы из строки
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-//! Проверка на сопадение текста в строке
-bool TTextStruct::findInStrB(TStringList *sl,AnsiString str)
-{
-    for (int i = 0; i < sl->Count - 1; ++i ) //пробегаемся по всем строкам
-    {
-        //if (Pos(Trim(str),Trim(sl->Strings[i])) > 0)
-        if (Trim(sl->Strings[i]) == str)
-        {
-            return true;
-        }
-    }
-    return false;
-}
 #pragma package(smart_init)

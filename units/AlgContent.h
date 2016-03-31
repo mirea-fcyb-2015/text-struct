@@ -33,8 +33,6 @@ public:
 
     void AlgStruct(TStringList *sl);  	                                // Функция структурирования текста по содержани.
     void AlgChapter(TStringList *sl,int begin,int end);                 // Функция вывода оглавления текста
-    void ConvertWithNoTabC(TStringList *sl);
-
 };
 
 #endif

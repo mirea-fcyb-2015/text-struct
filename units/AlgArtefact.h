@@ -31,6 +31,7 @@ public:
 
     void AlgStruct(TStringList *sl);	// Структурирование по артефактам
     void algArtefact(TStringList *sl);	// Функция реализующая алгоритм структурирования по артефактам
+
 };
 
 #endif
