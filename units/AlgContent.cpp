@@ -179,9 +179,11 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
 
     UI->HideProgressWindow();
 }
+
+//! Конвертируем строки. Вместо табуляции вставляем пробелы
 void AlgContent::ConvertWithNoTabC(TStringList *sl)
 {
-     for (int i = 0; i < sl->Count - 1; ++i ) //пробегаемся по всем строкам
+     for (int i = 0; i < sl->Count - 1; ++i ) //! пробегаемся по всем строкам
     {
         AnsiString s = sl->Strings[i];
         int index = s.Pos("\t");

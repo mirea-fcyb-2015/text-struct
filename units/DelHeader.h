@@ -27,7 +27,9 @@ public:
     DelHeader();
     ~DelHeader();
 
-    void Delete(TStringList *sl);
+    void Delete(TStringList *sl); //! Удаление колонтитулов
+    void delTransfer();
+
 };
 //---------------------------------------------------------------------------
 #endif

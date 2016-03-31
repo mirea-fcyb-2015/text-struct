@@ -55,7 +55,9 @@ void TTextStruct::algArtefact()
     alg = new AlgArtefact();
     alg->setMap(&Content);
     alg->setTUIProxy(Prx);
+    delPage();
     alg->AlgStruct(text);
+    delHeader();
 }
 
 //! Структуризация текста по содержанию
@@ -67,7 +69,9 @@ void TTextStruct::algContent()
     alg->setMap(&Content);
     alg->setTUIProxy(Prx);
     delPage();
+    delHeader();
     alg->AlgStruct(text);
+
 }
 
 //! Удаление всех артефактов из строки
@@ -91,6 +95,7 @@ void TTextStruct::delHeader()
     if(!del)
         delete del;
     del = new DelHeader();
+    del->getText(text);
     del->Delete(text);
 }
 
