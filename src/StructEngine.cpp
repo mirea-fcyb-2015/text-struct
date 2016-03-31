@@ -63,9 +63,9 @@ void TTextStruct::algArtefact()
 //! Структуризация текста по содержанию
 void TTextStruct::algContent()
 {
-//    if(!alg)
-//        delete alg;
-//    alg = new AlgContent();   //! Выполняется до этого в функции useStruct
+    //    if(!alg)
+    //        delete alg;
+    //    alg = new AlgContent();   //! Выполняется до этого в функции useStruct
     alg->setMap(&Content);      //! Аналогично
     alg->setTUIProxy(Prx);
     delPage();
@@ -124,12 +124,12 @@ void TTextStruct::delPage()
 //! Удаление текста перед содержанием в тексте
 void TTextStruct::delTop()
 {
-//    if(!del)
-//        delete del;
-//    del = new DelTop();
-//    del->Delete(text);
+    //    if(!del)
+    //        delete del;
+    //    del = new DelTop();
+    //    del->Delete(text);
 }
-    
+
 //! Загрузка текста из файла
 void TTextStruct::fileLoad(UnicodeString fileName)
 {

@@ -81,8 +81,8 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
             AnsiString s = ConvertWithNoTab( Trim(sl->Strings[i]) );
             S.Chapter = s;
             S.LiteChapter = DelAllArtefactFromStr(s);
-//          z = delNumPage(S.Chapter);
-//          z = delSubPoint(z);
+            //          z = delNumPage(S.Chapter);
+            //          z = delSubPoint(z);
             z  = getSubString(S.Chapter);
             z = delMoreOneSpace(z);
             y = z;
@@ -105,27 +105,27 @@ void AlgContent::AlgChapter(TStringList *sl,int begin,int end)
                         //E = j;
                         ck = true;
                     } else
-                    if( S.LiteChapter.UpperCase() == Trim(sl->Strings[j]) )
-                    {
-                        B = j; // Начало главы
-                        ck = true;
-                    }
-                    else
-                    if( x == Trim(sl->Strings[j]))
-                    {
-                        B = j; // Начало главы
-                        ck = true;
-                    }else
-                    if( z == Trim(sl->Strings[j]))
-                    {
-                        B = j; // Начало главы
-                        ck = true;
-                    }else
-                    if( y == Trim(sl->Strings[j]))
-                    {
-                        B = j; // Начало главы
-                        ck = true;
-                    }
+                        if( S.LiteChapter.UpperCase() == Trim(sl->Strings[j]) )
+                        {
+                            B = j; // Начало главы
+                            ck = true;
+                        }
+                        else
+                            if( x == Trim(sl->Strings[j]))
+                            {
+                                B = j; // Начало главы
+                                ck = true;
+                            }else
+                                if( z == Trim(sl->Strings[j]))
+                                {
+                                    B = j; // Начало главы
+                                    ck = true;
+                                }else
+                                    if( y == Trim(sl->Strings[j]))
+                                    {
+                                        B = j; // Начало главы
+                                        ck = true;
+                                    }
 
                 }
             }

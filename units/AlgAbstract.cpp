@@ -34,6 +34,7 @@ AlgAbstract::~AlgAbstract()
 
 }
 
+//! Обработка текста перед структурированием
 bool AlgAbstract::beforeStruct(TStringList *sl)
 {
     ConvertWithNoTabC(sl);                                  //! Заменяем все табы пробелами
@@ -50,10 +51,11 @@ bool AlgAbstract::beforeStruct(TStringList *sl)
     }
 
 }
+
 //! Конвертируем строки. Вместо табуляции вставляем пробелы
 void AlgAbstract::ConvertWithNoTabC(TStringList *sl)
 {
-     for (int i = 0; i < sl->Count - 1; ++i ) //! пробегаемся по всем строкам
+    for (int i = 0; i < sl->Count - 1; ++i ) //! пробегаемся по всем строкам
     {
         AnsiString s = sl->Strings[i];
         int index = s.Pos("\t");
@@ -66,6 +68,7 @@ void AlgAbstract::ConvertWithNoTabC(TStringList *sl)
 
     }
 }
+
 //! Присвоить значение map
 void AlgAbstract::setMap(std::multimap<int,Data> *pM)
 {
@@ -118,21 +121,20 @@ void AlgAbstract::GlueLineText(TStringList *sl)
 
                         }
                     }
-                    to:
+to:
                 }
             }
             ck = false;
         }
     }
-
-
-
 }
+
 //! Приведение строки к нижнему регистру
 AnsiString AlgAbstract::StringToLowerCase(AnsiString str)
 {
     return str.LowerCase();
 }
+
 //! Функция удаления текста перед оглавлением  
 void AlgAbstract::delTop(TStringList *sl)
 {
@@ -175,59 +177,34 @@ bool AlgAbstract::findInStrB(TStringList *sl,AnsiString str)
     }
     return false;
 }
-
-//AnsiString AlgAbstract::getSubString(AnsiString str)
-//{
-//	int positionFirstDots, positionSecondDots, positionLastDots, lastChar;
-//	AnsiString str1, str2, str3, strTrim;
-//	positionFirstDots = str.Pos(".");
-//	str1 = str.Delete(1, positionFirstDots);
-//	str2 = str.Trim();
-//
-//	if(!str1.AnsiCompare(str2))
-//	{
-//		positionSecondDots = str.Pos(".");
-//		str3 = str2.Delete(1, positionSecondDots);
-//	}
-//	else
-//	{
-//		str3 = str2;
-//	}
-//	positionLastDots = str3.Pos(".");
-//	lastChar = str3.Length();
-//	str3 = str3.Delete(positionLastDots, lastChar).Trim().LowerCase();
-//
-//
-//	return str3;
-//}//! Удалить часть после основной части главы (К примеру: Основная глава ..... 17 -> Основная глава)AnsiString AlgAbstract::getSubString(AnsiString str)
+//! Удалить часть после основной части главы (К примеру: Основная глава ..... 17 -> Основная глава)AnsiString AlgAbstract::getSubString(AnsiString str)
 {
-
-    bool ch = true;
-    AnsiString s;
-    int last = 0;
-    unsigned char *s2 = str.c_str();
-    unsigned char *s1;
-    last = strlen(s2)-1;
-    while (s2[last] != 0)
+bool ch = true;
+AnsiString s;
+int last = 0;
+unsigned char *s2 = str.c_str();
+unsigned char *s1;
+last = strlen(s2)-1;
+while (s2[last] != 0)
+{
+    if(ch == true)
     {
-        if(ch == true)
+        if ( isalpha(s2[last]) )
         {
-            if ( isalpha(s2[last]) )
+            if(isalpha(s2[last-1]))
             {
-                if(isalpha(s2[last-1]))
-                {
-                    AnsiString S((const char*)s2);
-                    s = S.SubString(0,last+1);
-                    ch = false;
-                }
+                AnsiString S((const char*)s2);
+                s = S.SubString(0,last+1);
+                ch = false;
             }
         }
-
-        last--;
     }
 
-    delete [] s1,s2;
-    return s;
+    last--;
+}
+
+delete [] s1,s2;
+return s;
 }
 
 //! Удалить первую часть главы(до первого вхождения в основую часть текста). К примеру, Глава 1. Основная глава -> Основная глава
@@ -322,6 +299,7 @@ AnsiString AlgAbstract::delMoreOneSpace(AnsiString str)
     }
     return str;
 }
+
 //! Проверка на сопадение текста в строке (возвращает номер строки)
 int AlgAbstract::findInStrI(TStringList *sl,AnsiString str)
 {
@@ -366,14 +344,15 @@ AnsiString AlgAbstract::delSpecArtefact(AnsiString str)
 {
     AnsiString NonReadableSymbols = "'<>\\/|#\"$¦=:;§";
     for (int l = 1; l < str.Length()+1; l++) {
-         if (str.IsDelimiter(NonReadableSymbols,l)){
-             str.Delete(l,1);
-             l-=1;
-         }
+        if (str.IsDelimiter(NonReadableSymbols,l)){
+            str.Delete(l,1);
+            l-=1;
+        }
     }
     return str;
 
 }
+
 //! Удалить артефакт (Римские символы)
 AnsiString AlgAbstract::delArtefact(AnsiString str)
 {
@@ -429,18 +408,18 @@ AnsiString AlgAbstract::delNumPage(AnsiString str)
 //! Удалить точки с конца(до первого вхождения буквы)
 AnsiString AlgAbstract::delSubPoint(AnsiString str)
 {
-//! переделать!
-//    AnsiString s(str);
-//    int index = 0;
-//    s = s.SubString(10,s.Length()- 10); // Переделать в поиск по первому вхождению буквы
-//    index = s.Pos(".");
-//    if( index != 0 )
-//    {
-//        s.Delete(index,1);
-//        s = delSubPoint(s);
-//    }
-//
-//    return Trim(s);
+    //! переделать!
+    //    AnsiString s(str);
+    //    int index = 0;
+    //    s = s.SubString(10,s.Length()- 10); // Переделать в поиск по первому вхождению буквы
+    //    index = s.Pos(".");
+    //    if( index != 0 )
+    //    {
+    //        s.Delete(index,1);
+    //        s = delSubPoint(s);
+    //    }
+    //
+    //    return Trim(s);
 }
 
 //! Конвертация Строки с таблуяцией в строку с пробелами
@@ -575,7 +554,6 @@ int AlgAbstract::FindNumPage(AnsiString str)
     }
     if(result == 0 ) return -1;
     return result;
-
 }
 
 //! Нахождение номера страницы в строке
@@ -622,21 +600,21 @@ int AlgAbstract::FindBegin(TStringList *sl)
             CheckForContent = findInStrI(sl,"Begin");
             throw count = 1;
         } else
-        if( findInStrB(sl,"Содержание") == true )
-        {
-            CheckForContent = findInStrI(sl,"Содержание");
-            throw count = 2;
-        } else
-        if( findInStrB(sl,"Оглавление") == true )
-        {
-            CheckForContent = findInStrI(sl,"Оглавление");
-            throw count = 3;
-        } else
-        if( findInStrB(sl,"ОГЛАВЛЕНИЕ") == true )
-        {
-            CheckForContent = findInStrI(sl,"ОГЛАВЛЕНИЕ");
-            throw count = 4;
-        }
+            if( findInStrB(sl,"Содержание") == true )
+            {
+                CheckForContent = findInStrI(sl,"Содержание");
+                throw count = 2;
+            } else
+                if( findInStrB(sl,"Оглавление") == true )
+                {
+                    CheckForContent = findInStrI(sl,"Оглавление");
+                    throw count = 3;
+                } else
+                    if( findInStrB(sl,"ОГЛАВЛЕНИЕ") == true )
+                    {
+                        CheckForContent = findInStrI(sl,"ОГЛАВЛЕНИЕ");
+                        throw count = 4;
+                    }
     }
 
     catch (int i)
