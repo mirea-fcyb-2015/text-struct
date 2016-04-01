@@ -178,6 +178,7 @@ bool AlgAbstract::findInStrB(TStringList *sl,AnsiString str)
     return false;
 }
 //! Удалить часть после основной части главы (К примеру: Основная глава ..... 17 -> Основная глава)AnsiString AlgAbstract::getSubString(AnsiString str)
+AnsiString AlgAbstract::getSubString(AnsiString str)
 {
 bool ch = true;
 AnsiString s;

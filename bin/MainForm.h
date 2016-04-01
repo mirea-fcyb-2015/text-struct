@@ -54,12 +54,15 @@ __published:	// IDE-managed Components
     TPanel *Panel1;                             //! Панель
     TTreeView *TreeView;                        //! Отображение оглавления в TreeView
     TMemo *mmText;                              //! Мемо
-    TToolButton *Struct;                        //!
+    TToolButton *Struct;
+    TToolButton *ToolButton1;
+    TToolButton *ToolButton2;                        //!
     void __fastcall FileOpenClick(TObject *Sender);
     void __fastcall StructClick(TObject *Sender);
     void __fastcall TreeViewMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
     void __fastcall FileCloseClick(TObject *Sender);
+    void __fastcall ToolButton1Click(TObject *Sender);
 
 private:
     AnsiString str;

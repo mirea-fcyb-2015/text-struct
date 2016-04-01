@@ -48,6 +48,21 @@ object frmMain: TfrmMain
       ImageIndex = 2
       OnClick = StructClick
     end
+    object ToolButton2: TToolButton
+      Left = 180
+      Top = 0
+      Width = 685
+      Caption = 'ToolButton2'
+      ImageIndex = 3
+      Style = tbsSeparator
+    end
+    object ToolButton1: TToolButton
+      Left = 865
+      Top = 0
+      Caption = 'Text'
+      ImageIndex = 2
+      OnClick = ToolButton1Click
+    end
   end
   object Panel1: TPanel
     AlignWithMargins = True
@@ -102,7 +117,7 @@ object frmMain: TfrmMain
     Left = 840
     Top = 8
     Bitmap = {
-      494C010103003800B00020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103003800B40020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

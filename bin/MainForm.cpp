@@ -112,3 +112,9 @@ void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
 
 
 
+void __fastcall TfrmMain::ToolButton1Click(TObject *Sender)
+{
+    refreshMemo();
+}
+//---------------------------------------------------------------------------
+
