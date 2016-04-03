@@ -47,7 +47,9 @@ void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
     {
         textStruct->fileLoad(OpenTextFileDialog1->FileName);    // Открываем файл
         showTextMemo(textStruct->getText());                    // Вывод текста в Memo
-    }
+    	Struct->Enabled = true;
+	}
+
 
 }
 
@@ -61,10 +63,10 @@ void TfrmMain::showTextMemo(TStringList *sl)
 //! Временая кнопка для вывода структурированного текста
 void __fastcall TfrmMain::StructClick(TObject *Sender)
 {
-    textStruct->getUIProxy(UIProxy);    //! Окно загрузки
-    textStruct->useStruct();            //! Выбор структурирования
-    InputTree();                        //! Вывод дерева
-    refreshMemo();                      //! Обновленить memo
+	textStruct->getUIProxy(UIProxy);    //! Окно загрузки
+	textStruct->useStruct();            //! Выбор структурирования
+	InputTree();                        //! Вывод дерева
+	refreshMemo();                      //! Обновленить memo
 }
 
 //! Вывод дерева в левой панели
@@ -106,7 +108,9 @@ void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
     mmText->Clear();
     std::multimap<int,Data> *p = textStruct->getMap();
     p->clear();
-    TreeView->Items->Clear();
+	TreeView->Items->Clear();
+	textStruct->textClear();
+	Struct->Enabled = false;
 }
 //---------------------------------------------------------------------------
 
@@ -115,6 +119,26 @@ void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
 void __fastcall TfrmMain::ToolButton1Click(TObject *Sender)
 {
     refreshMemo();
+}
+//---------------------------------------------------------------------------
+
+//! Выбор структурирования по оглавлению
+void __fastcall TfrmMain::N4Click(TObject *Sender)
+{
+	//
+	textStruct->getUIProxy(UIProxy);    //! Окно загрузки
+	textStruct->useStruct();            //! Выбор структурирования
+	InputTree();                        //! Вывод дерева
+	refreshMemo();                      //! Обновленить memo
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::N5Click(TObject *Sender)
+{
+	textStruct->getUIProxy(UIProxy);    //! Окно загрузки
+	textStruct->useStruct();            //! Выбор структурирования
+	InputTree();                        //! Вывод дерева
+	refreshMemo();
 }
 //---------------------------------------------------------------------------
 

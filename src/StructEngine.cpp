@@ -51,8 +51,8 @@ TStringList* TTextStruct::getText()
 void TTextStruct::algArtefact()
 {
     if(!alg)
-        delete alg;
-    alg = new AlgArtefact();
+		delete alg;
+	alg = new AlgArtefact();
     alg->setMap(&Content);      //! Присваем значение map
     alg->setTUIProxy(Prx);
     delPage();                  //! Удаляем страницы
@@ -63,9 +63,8 @@ void TTextStruct::algArtefact()
 //! Структуризация текста по содержанию
 void TTextStruct::algContent()
 {
-    //    if(!alg)
-    //        delete alg;
-    //    alg = new AlgContent();   //! Выполняется до этого в функции useStruct
+    delete alg;
+    alg = new AlgContent();
     alg->setMap(&Content);      //! Аналогично
     alg->setTUIProxy(Prx);
     delPage();

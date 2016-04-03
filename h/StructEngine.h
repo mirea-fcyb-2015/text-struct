@@ -65,7 +65,8 @@ public:
     void setText(TStringList *txt);
     void getUIProxy(TUIProxy *UIProxy){Prx = UIProxy;}
     void callViewSubstance(TStringList *sl,AnsiString str,TStringList *l);
-    void useStruct();
+	void useStruct();
+	void textClear(){ text->Clear();  if(!alg) delete alg;}
 
     std::multimap<int,Data> *getMap(){return &Content; }
     AnsiString getDelAllArtefactFromStr(AnsiString str);

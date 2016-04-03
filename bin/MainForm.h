@@ -56,17 +56,22 @@ __published:	// IDE-managed Components
     TMemo *mmText;                              //! Мемо
     TToolButton *Struct;
     TToolButton *ToolButton1;
-    TToolButton *ToolButton2;                        //!
+	TToolButton *ToolButton2;
+	TPopupMenu *PopupMenu1;
+	TMenuItem *N4;
+	TMenuItem *N5;                        //!
     void __fastcall FileOpenClick(TObject *Sender);
     void __fastcall StructClick(TObject *Sender);
     void __fastcall TreeViewMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
-    void __fastcall FileCloseClick(TObject *Sender);
+	void __fastcall FileCloseClick(TObject *Sender);
     void __fastcall ToolButton1Click(TObject *Sender);
+	void __fastcall N4Click(TObject *Sender);
+	void __fastcall N5Click(TObject *Sender);
 
 private:
     AnsiString str;
-    TTextStruct* textStruct; // Создание объекта
+	TTextStruct* textStruct; // Создание объекта
     void showTextMemo(TStringList *sl); // отобразить текст в Memo
     void setCountRowListView1();
     void refreshMemo();

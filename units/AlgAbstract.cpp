@@ -211,56 +211,59 @@ return s;
 //! Удалить первую часть главы(до первого вхождения в основую часть текста). К примеру, Глава 1. Основная глава -> Основная глава
 AnsiString AlgAbstract::getSecondSub(AnsiString str)
 {
-    int index[6],last = 0;
-    index[0] = str.Pos("Глава");
-    index[1] = str.Pos("ГЛАВА");
-    index[2] = str.Pos("глава");
-    index[3] = str.Pos("Часть");
-    index[4] = str.Pos("ЧАСТЬ");
-    index[5] = str.Pos("часть");
+	if (str != NULL ) 
+	{
+		int index[6],last = 0;
+		index[0] = str.Pos("Глава");
+		index[1] = str.Pos("ГЛАВА");
+		index[2] = str.Pos("глава");
+		index[3] = str.Pos("Часть");
+		index[4] = str.Pos("ЧАСТЬ");
+		index[5] = str.Pos("часть");
 
-    unsigned char *s2 = str.c_str();
-    unsigned char *s1;
-    last = strlen(s2);
-    int i = 0;
-    while ( s2[i] != last )
-    {
-        if( isalpha(s2[i]) )
-        {
-            for(int j=0;j<6;j++)
-            {
-                if(index[j] == (i+1) & index[j] != 0)
-                {
-                    i+=6;
-                    while (s2[i] != last)
-                    {
-                        if(s2[i] == ' ')
-                        {
-                            int l = i+1;
-                            if( l != last)
-                            {
-                                if( isalpha(s2[l]) ) return str.SubString(l+1,str.Length()-l);
-                            }
-                        }
-                        i++;
-                    }
-                }
+		unsigned char *s2 = str.c_str();
+		unsigned char *s1;
+		last = strlen(s2);
+		int i = 0;
+		while ( s2[i] != last )
+		{
+			if( isalpha(s2[i]) )
+			{
+				for(int j=0;j<6;j++)
+				{
+					if(index[j] == (i+1) & index[j] != 0)
+					{
+						i+=6;
+						while (s2[i] != last)
+						{
+							if(s2[i] == ' ')
+							{
+								int l = i+1;
+								if( l != last)
+								{
+									if( isalpha(s2[l]) ) return str.SubString(l+1,str.Length()-l);
+								}
+							}
+							i++;
+						}
+					}
 
-            }
+				}
 
-        }
-        i++;
-    }
+			}
+			i++;
+		}
 
-    i = 0;
-    while ( s2[i] != last )
-    {
-        if( isalpha(s2[i]) )
-        {
-            return str.SubString(i+1,str.Length()-i);
-        }
-        i++;
-    }
+		i = 0;
+		while ( s2[i] != last )
+		{
+			if( isalpha(s2[i]) )
+			{
+				return str.SubString(i+1,str.Length()-i);
+			}
+			i++;
+		}
+	}
 
 }
 
