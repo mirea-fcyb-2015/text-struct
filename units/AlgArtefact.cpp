@@ -13,7 +13,7 @@
         17/03/2016 - 2.0 - Завершение реализации всех необходимых классов
     \endcode
 */
-    
+
 #pragma hdrstop
 
 #include "AlgArtefact.h"

@@ -2,7 +2,7 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1072#1085#1072#1083#1080#1079#1072' '#1089#1090#1088#1091#1082#1090#1091#1088#1099' '#1090#1077#1082#1089#1090#1072
-  ClientHeight = 721
+  ClientHeight = 707
   ClientWidth = 929
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,23 +18,30 @@ object frmMain: TfrmMain
     Left = 0
     Top = 0
     Width = 929
-    Height = 721
-    Align = alClient
+    Height = 65
     ButtonHeight = 60
     ButtonWidth = 110
     Caption = 'ToolBar'
     Images = ImageList1
     ShowCaptions = True
     TabOrder = 0
-    object FileOpen: TToolButton
+    object ToolButton2: TToolButton
       Left = 0
+      Top = 0
+      Width = 1
+      Caption = 'ToolButton2'
+      ImageIndex = 3
+      Style = tbsSeparator
+    end
+    object FileOpen: TToolButton
+      Left = 1
       Top = 0
       Caption = #1054#1090#1082#1088#1099#1090#1100
       ImageIndex = 0
       OnClick = FileOpenClick
     end
     object FileClose: TToolButton
-      Left = 110
+      Left = 111
       Top = 0
       Caption = #1047#1072#1082#1088#1099#1090#1100
       ImageIndex = 1
@@ -43,7 +50,7 @@ object frmMain: TfrmMain
       OnClick = FileCloseClick
     end
     object Struct: TToolButton
-      Left = 220
+      Left = 221
       Top = 0
       Caption = #1057#1090#1088#1091#1082#1090#1091#1088#1080#1088#1086#1074#1072#1085#1080#1077
       DropdownMenu = PopupMenu1
@@ -52,16 +59,18 @@ object frmMain: TfrmMain
       Style = tbsDropDown
       OnClick = StructClick
     end
-    object ToolButton2: TToolButton
-      Left = 345
+    object ToolButton3: TToolButton
+      AlignWithMargins = True
+      Left = 346
       Top = 0
-      Width = 470
-      Caption = 'ToolButton2'
+      Width = 463
+      AllowAllUp = True
+      Caption = 'ToolButton3'
       ImageIndex = 3
       Style = tbsSeparator
     end
     object ToolButton1: TToolButton
-      Left = 815
+      Left = 809
       Top = 0
       Caption = 'Text'
       ImageIndex = 2
@@ -70,18 +79,15 @@ object frmMain: TfrmMain
   end
   object Panel1: TPanel
     AlignWithMargins = True
-    Left = 1
-    Top = 61
+    Left = 3
+    Top = 68
     Width = 923
-    Height = 715
-    Align = alCustom
-    AutoSize = True
+    Height = 636
+    Align = alClient
     TabOrder = 1
-    ExplicitLeft = -2
-    ExplicitTop = 58
     object TreeView: TTreeView
-      Left = 0
-      Top = 10
+      Left = 1
+      Top = 1
       Width = 313
       Height = 625
       Indent = 19
@@ -91,10 +97,11 @@ object frmMain: TfrmMain
       OnMouseDown = TreeViewMouseDown
     end
     object mmText: TMemo
-      Left = 319
-      Top = 10
-      Width = 594
+      Left = 320
+      Top = 1
+      Width = 602
       Height = 625
+      Align = alCustom
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 1
@@ -123,7 +130,7 @@ object frmMain: TfrmMain
     Left = 840
     Top = 8
     Bitmap = {
-      494C010103003800B80020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103003800C00020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

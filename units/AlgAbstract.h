@@ -48,16 +48,16 @@ public:
     TUIProxy *UI;                           //! Объект класса TUIProxy(Отвечает за вывод окна загрузки)
 
     // Методы
-     AlgAbstract();                         //! Конструктор
+    AlgAbstract();                         //! Конструктор
     ~AlgAbstract();                         //! Деструктор
 
     virtual void AlgStruct(TStringList *sl) = 0;                                            //! Вирутуальный класс структурирования
     bool beforeStruct(TStringList *sl);                                                     //! Обработка текста перед структурированием
     void ConvertWithNoTabC(TStringList *sl);                                                //! Конвертирование табуляций в пробелы
     void setMap(multimap<int,Data> *pM);                                                    //! Присвоить значение map
-    void setTUIProxy(TUIProxy *UIProxy);                                                    //! Присваеваем значения объекту 
-    void delTop(TStringList *sl);                                                           //! Удаление текста перед оглавлением   
-    void ViewSubstance(TStringList *sl,AnsiString str,TStringList *l);                      //! Функция для вывода содержимого по конкретной главе 
+    void setTUIProxy(TUIProxy *UIProxy);                                                    //! Присваеваем значения объекту
+    void delTop(TStringList *sl);                                                           //! Удаление текста перед оглавлением
+    void ViewSubstance(TStringList *sl,AnsiString str,TStringList *l);                      //! Функция для вывода содержимого по конкретной главе
     void ContentBeginAndEnd(TStringList *sl,AnsiString str,int &cBegin,int &cEnd,int end);  //! Функция нахождения начала и конца
     void GlueLineText(TStringList *sl);                                                     //! Функция для склеивания глав,если она разбиты на 2 строки
     void setLenght(int l){lenght = l;}                                                      //! Установка длины
@@ -86,7 +86,7 @@ public:
     int findInStrI(TStringList *sl,AnsiString str);                                         //! Находим в строке подстроку
     int FindEnd(TStringList *sl,int begin);                                                 //! Находим конец оглавления
     int FindNumPage(AnsiString str);                                                        //! Функция нахождения номера страницы
-        
+
     int FindBegin(TStringList *sl);                                                         //! Ищем начало содержания
     int UpdateChapter(TStringList *sl,int begin,int end);                                   //! Удаляем все пустые строки
     int GlueLine(TStringList *sl,int begin,int end);                                        //! Функция склеивания строк

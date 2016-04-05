@@ -53,13 +53,13 @@ __published:	// IDE-managed Components
     // Panel
     TPanel *Panel1;                             //! Панель
     TTreeView *TreeView;                        //! Отображение оглавления в TreeView
-    TMemo *mmText;                              //! Мемо
-    TToolButton *Struct;
-    TToolButton *ToolButton1;
-	TToolButton *ToolButton2;
+	TMemo *mmText;
+	TToolButton *Struct;
+    TToolButton *ToolButton1;					//! Открыть текст
 	TPopupMenu *PopupMenu1;
-	TMenuItem *N4;
-	TMenuItem *N5;                        //!
+	TMenuItem *N4;								//! Выбор структурирования по оглавлению
+	TMenuItem *N5;                              //! Выбор структурирования по артефактам
+	TToolButton *ToolButton3;                        //!
     void __fastcall FileOpenClick(TObject *Sender);
     void __fastcall StructClick(TObject *Sender);
     void __fastcall TreeViewMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
