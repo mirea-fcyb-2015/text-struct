@@ -24,9 +24,6 @@ class DelHeader : public DelAbstract
 private:
 
 public:
-    DelHeader();
-    ~DelHeader();
-
     void Delete(TStringList *sl); //! Удаление колонтитулов
     void delTransfer();
 

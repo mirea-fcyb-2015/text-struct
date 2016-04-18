@@ -8,10 +8,7 @@ TUIProxy::TUIProxy(TForm *frmMain, TForm *frmCurrent)
 	formMain = frmMain;
 	formCurrent = frmCurrent;
 }
-//---------------------------------------------------------------------------
-TUIProxy::~TUIProxy()
-{
-}
+
 //---------------------------------------------------------------------------
 void TUIProxy::ErrorMessage(const char *msg)
 {
@@ -70,11 +67,7 @@ void TUIProxy::SetAppTitle(const char *caption)
 {
 	Application->Title = AnsiString(caption);
 }
-//---------------------------------------------------------------------------
-void TUIProxy::DisableAllFormsExceptGiven(TForm *FormRemaining)
-{
 
-}
 //---------------------------------------------------------------------------
 void TUIProxy::EnableAllForms()
 {

@@ -29,9 +29,8 @@ class DelTop : public DelAbstract
 private:
     TStringList *text;
 public:
-    DelTop();
-    ~DelTop();
-    void Delete(TStringList *sl);
+
+    void Delete(TStringList *sl){};
 };
 //---------------------------------------------------------------------------
 #endif

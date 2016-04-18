@@ -44,6 +44,7 @@ object frmMain: TfrmMain
       Left = 111
       Top = 0
       Caption = #1047#1072#1082#1088#1099#1090#1100
+      Enabled = False
       ImageIndex = 1
       ParentShowHint = False
       ShowHint = True
@@ -73,6 +74,7 @@ object frmMain: TfrmMain
       Left = 809
       Top = 0
       Caption = 'Text'
+      Enabled = False
       ImageIndex = 2
       OnClick = ToolButton1Click
     end
@@ -130,7 +132,7 @@ object frmMain: TfrmMain
     Left = 840
     Top = 8
     Bitmap = {
-      494C010103003800C00020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103003800C80020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

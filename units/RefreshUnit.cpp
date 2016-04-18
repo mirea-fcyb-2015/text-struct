@@ -1,4 +1,4 @@
-
+﻿
 #include <vcl.h>
 #pragma hdrstop
 
@@ -56,10 +56,6 @@ void TRefreshForm::ShowForm(AnsiString caption)
     Application->ProcessMessages();
 }
 //---------------------------------------------------------------------------
-//bCancel = true;
-//btnAbortClick(Sender);
-//---------------------------------------------------------------------------
-
 
 void __fastcall TRefreshForm::btnAbortClick(TObject *Sender)
 {

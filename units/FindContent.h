@@ -1,4 +1,4 @@
-/*______________________________ FindContent.h ________________________________ */
+﻿/*______________________________ FindContent.h ________________________________ */
 /**
     \file       FindContent.h
     \brief      Абстрактный класс структуризации текста
@@ -28,7 +28,7 @@ public:
     FindContent();
     ~FindContent();
 
-    void findContent(TStringList *sl);
+    void findContent(TStringList *sl) {};
 };
 //---------------------------------------------------------------------------
 #endif

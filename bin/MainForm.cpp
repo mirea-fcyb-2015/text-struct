@@ -48,6 +48,8 @@ void __fastcall TfrmMain::FileOpenClick(TObject *Sender)
         textStruct->fileLoad(OpenTextFileDialog1->FileName);    // Открываем файл
         showTextMemo(textStruct->getText());                    // Вывод текста в Memo
     	Struct->Enabled = true;
+        FileClose->Enabled = true;
+        ToolButton1->Enabled = true;
 	}
 
 
@@ -107,10 +109,12 @@ void __fastcall TfrmMain::FileCloseClick(TObject *Sender)
 {
     mmText->Clear();
     std::multimap<int,Data> *p = textStruct->getMap();
-    p->clear();
+    if(p != 0)
+        p->clear();
 	TreeView->Items->Clear();
 	textStruct->textClear();
 	Struct->Enabled = false;
+    FileClose->Enabled = false;
 }
 //---------------------------------------------------------------------------
 
